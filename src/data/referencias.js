@@ -5,6 +5,7 @@ import p4 from './refs-parte4.js';
 import p5 from './refs-parte5.js';
 import novas from './refs-novas.js';
 
-// 116 referências distintas do PDF, com texto integral da Bíblia Livre.
-export const textosDasReferencias={...p1,...p2,...p3,...p4,...p5,...novas};
+// Preservar os 116 textos originais BLIVRE; novos textos são traduções de estudo rotuladas.
+// O acervo antigo prevalece se a mesma referência reaparecer na Aula 25.
+export const textosDasReferencias={...novas,...p1,...p2,...p3,...p4,...p5};
 export function textoDaReferencia(referencia){return textosDasReferencias[referencia]||null;}

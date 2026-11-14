@@ -55,3 +55,7 @@ A ação do GitHub executa `scripts/validar-fidelidade-pdf.mjs`, que confere:
 6. A manutenção do caderno dos 31 debates e da cobertura de 69 versículos.
 
 Essa auditoria é parte do **código do GitHub**; a hospedagem e a publicação externa não são acionadas.
+
+## 5. Ampliação posterior sem alteração do instantâneo auditado
+
+A Aula 25 (Gênesis 3:14–15) foi adicionada em arquivos separados. O hash e os 273 campos do acervo de 24 aulas originais em `src/data/aulas.js` permanecem intactos. O teste de auditoria continua verificando somente os 69 versículos e os 31 debates da fonte histórica, enquanto a curadoria geral passa a conferir 71 versículos e o caderno expandido reúne 37 debates. A Aula 25 utiliza traduções de estudo identificadas; os 116 textos BLIVRE anteriores continuam priorizados em referências repetidas. A ampliação não é uma nova auditoria do PDF original. GitHub Actions executa os validadores e o build; não publica na Vercel.

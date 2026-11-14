@@ -64,8 +64,12 @@ npm run build
 
 O GitHub Actions valida a curadoria dos 69 versículos, os registros das 24 aulas, as análises aprofundadas, os roteiros de Gênesis 1–3, os 80 versículos de leitura, as 116 passagens cruzadas e a compilação completa. Os testes do repositório não substituem a verificação visual no computador. **Publicação e hospedagem ficam por conta do mantenedor; este projeto não executa nenhuma operação nelas.**
 
+## Atualização posterior à auditoria — Aula 25 (14/11/2026)
+
+**Aula 25: Gênesis 3:14–15**, disponível nos seis módulos de cada versículo e no catálogo de aulas. Total: **25 aulas**, **71 versículos com aprofundamento** e **37 debates registrados**, incluindo os novos DB-034 a DB-039. O acervo original permanece integralmente em `src/data/aulas.js` sem modificações. A Aula 25 fica em `src/data/aulas-novas.js` e é integrada por `src/data/catalogo-aulas.js`, preservando o hash da auditoria histórica. Passagens recém-incluídas com tradução de estudo são identificadas como tal e não devem ser atribuídas à Bíblia Livre. O site continua sem avaliações obrigatórias. A Vercel permanece sob controle do mantenedor.
+
 ## Próximos estudos
 
-Aula 25 — **Gênesis 3:14–15**. Os textos de leitura de Gênesis 3:14–24 já estão disponíveis, mas os comentários desse trecho somente serão criados a partir da nova aula real.
+Aula 26 — **Gênesis 3:16–19**. Os textos de leitura de Gênesis 3:14–24 já estão disponíveis, mas os comentários desse trecho somente serão criados a partir da nova aula real.
 
 Esta versão foi concebida para que novas aulas possam ser adicionadas ao repositório sem recriar manualmente uma página para cada versículo.
