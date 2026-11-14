@@ -13,7 +13,7 @@ const next=v.numero<amostra.versos.length?v.numero+1:null;
   <section class="intro"><span class="eyebrow">Gênesis · Capítulo 1</span><h1>Gênesis 1:{v.numero}</h1><p class="muted">Explore os módulos e acompanhe o seu progresso no estudo.</p></section>
   <div class="verse-box">“{v.texto}”</div><p class="muted" style="font-size:12px;margin:12px 0 24px">{v.numero === 1 ? "Paráfrase de estudo — Atlas Bíblico, Aula 6 (edição consolidada, 14/11/2026). Estudo importado do PDF das aulas 1–24; não é transcrição integral do chat nem uma edição bíblica licenciada." : "Conteúdo demonstrativo. A publicação de estudos e traduções definitivos depende de revisão editorial e dos direitos de uso."}</p>
   {v.numero === 1 && <p class="notice" style="margin-bottom:20px">Estudo com base documental: aulas 5–7 do PDF consolidado. Pontos debatidos permanecem identificados; revisão acadêmica e ampliação bibliográfica ainda são etapas futuras.</p>}
-  <div class="section-heading"><h2>Explorar o estudo</h2><span class="tag" id="progress-label">0 de 6 concluídos</span></div>
+  {v.numero === 1 && <div class="controls"><a class="btn secondary" href="/estudos/6/">Aula 06 · Introdução</a><a class="btn secondary" href="/estudos/7/">Aula 07 · O princípio e a luz</a></div>}<div class="section-heading"><h2>Explorar o estudo</h2><span class="tag" id="progress-label">0 de 6 concluídos</span></div>
   <div class="bar"><div id="progress-bar"></div></div>
   <div class="grid two modules">
     {modulos.map((m,i)=><button class="card module" data-index={i} type="button"><div class="module-top"><span class="module-icon">{m.icone}</span><span class="module-check" data-check={i}>○</span></div><h3>{m.titulo}</h3><p class="muted">{m.descricao}</p></button>)}
