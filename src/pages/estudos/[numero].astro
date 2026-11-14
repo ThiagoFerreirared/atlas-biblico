@@ -12,8 +12,8 @@ const next=a.numero<24?a.numero+1:null;
 ---
 <Base title={'Aula '+String(a.numero).padStart(2,'0')+' — '+a.titulo}>
   <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/estudos/">Aulas</a> / <span class="gold">Aula {String(a.numero).padStart(2,'0')}</span></div>
-  <section class="intro"><span class="eyebrow">{a.categoria} · Aula {String(a.numero).padStart(2,'0')} de 24</span><h1>{a.titulo}</h1><p class="muted">Atlas Bíblico · Edição consolidada de 14 de novembro de 2026</p></section>
-  <div class="notice">Conteúdo importado do PDF fornecido, com a organização e o texto da edição consolidada. Não é transcrição literal do chat. As referências abaixo são <strong>paráfrases de estudo</strong>, não citações de uma tradução bíblica específica.</div>
+  <section class="intro"><span class="eyebrow">{a.categoria} · Aula {String(a.numero).padStart(2,'0')} de 24</span><h1>{a.titulo}</h1><p class="muted">Atlas Bíblico · Explicações e referências bíblicas</p></section>
+  <div class="notice">Esta aula reúne explicações, temas e referências para acompanhar sua leitura. Os resumos das passagens relacionadas são <strong>paráfrases de estudo</strong>; para ler o texto bíblico integral, abra a referência.</div>
   <div class="layout">
     <div class="body">
       <section id="explicacoes"><div class="section-heading"><h2>Explicações e análise</h2><span class="tag">{a.secoes.length} tópicos</span></div>
