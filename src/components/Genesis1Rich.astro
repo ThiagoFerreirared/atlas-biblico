@@ -1,0 +1,108 @@
+---
+const {detalhe,modulo,versiculo}=Astro.props;
+const fonte='Ampliação editorial · Aulas 06–15 do PDF consolidado';
+---
+<div class="deep-study">
+  <div class="deep-header">
+    <span class="deep-overline">{fonte}</span>
+    <h3>Gênesis 1:{versiculo} · {detalhe.tema}</h3>
+    <p>Esta explicação desenvolve os assuntos registrados no PDF, diferenciando texto bíblico, interpretação e limites das evidências. A redação ampliada é editorial, não transcrição literal da conversa original.</p>
+  </div>
+
+  {modulo==='textual'&&<>
+    <div class="deep-section-heading">Leitura explicada, passo a passo</div>
+    <div class="deep-steps">
+      {detalhe.passos.map(([titulo,texto],i)=><section class="deep-step">
+        <span class="deep-step-number">{String(i+1).padStart(2,'0')}</span>
+        <div><h4>{titulo}</h4><p>{texto}</p></div>
+      </section>)}
+    </div>
+    {Boolean(detalhe.termos?.length)&&<div class="deep-hebrew">
+      <div class="deep-section-heading">Palavras e expressões do hebraico</div>
+      <p class="deep-note">A escrita foi conferida com o texto hebraico de Gênesis 1. As notas explicam termos relevantes ao tema da aula, não traduzem todas as palavras do versículo.</p>
+      <div class="deep-glossary">
+        {detalhe.termos.map(([original,transliteracao,sentido])=><article class="deep-term">
+          <span class="deep-hebrew-word" lang="he" dir="rtl">{original}</span>
+          <div><strong>{transliteracao}</strong><p>{sentido}</p></div>
+        </article>)}
+      </div>
+    </div>}
+  </>}
+
+  {modulo==='historico'&&<>
+    <div class="deep-section-heading">Contexto literário e cultural</div>
+    {detalhe.historico.map((p,i)=><section class="deep-prose">
+      <span class="deep-step-number">{String(i+1).padStart(2,'0')}</span><p>{p}</p>
+    </section>)}
+    <p class="deep-aside">O contexto ajuda a interpretar, mas uma comparação com o antigo Oriente Próximo não é, por si só, prova de dependência literária ou verificação arqueológica do acontecimento.</p>
+  </>}
+
+  {modulo==='interpretacoes'&&<>
+    <div class="deep-section-heading">Leituras possíveis, com seus limites</div>
+    <div class="deep-perspectives">
+      {detalhe.leituras.map(([nome,descricao,limite],i)=><article class="deep-perspective">
+        <span class="deep-number">Leitura {i+1}</span>
+        <h4>{nome}</h4>
+        <p>{descricao}</p>
+        <div class="deep-limitation"><strong>Cuidado de interpretação</strong><span>{limite}</span></div>
+      </article>)}
+    </div>
+    {detalhe.quadro&&<section class="deep-chart">
+      <h4>{detalhe.quadro.titulo}</h4>
+      <div class="deep-table-wrap"><table>
+        <thead><tr>{detalhe.quadro.colunas.map(col=><th>{col}</th>)}</tr></thead>
+        <tbody>{detalhe.quadro.linhas.map(linha=><tr>{linha.map(celula=><td>{celula}</td>)}</tr>)}</tbody>
+      </table></div>
+    </section>}
+  </>}
+
+  {modulo==='arqueologia'&&<>
+    <div class="deep-section-heading">O que a pesquisa pode e não pode afirmar</div>
+    {detalhe.limites.map((p,i)=><section class="deep-caution">
+      <span class="deep-step-number">{String(i+1).padStart(2,'0')}</span><p>{p}</p>
+    </section>)}
+    <div class="deep-aside"><strong>Critério do Atlas:</strong> diferenciar observação do texto, hipótese interpretativa e evidência verificável. Não há motivo para inventar descobertas onde o PDF não apresenta estudos arqueológicos específicos.</div>
+  </>}
+
+  {modulo==='revisao'&&<>
+    <div class="deep-section-heading">O essencial para guardar desta passagem</div>
+    <ol class="deep-summary">
+      {detalhe.sintese.map(p=><li>{p}</li>)}
+    </ol>
+    <p class="deep-aside">Esta seção reúne ideias essenciais para retomar a leitura. Não há prova, nota ou pergunta obrigatória.</p>
+  </>}
+
+  <details class="deep-provenance">
+    <summary>Fontes e critérios desta ampliação</summary>
+    <p><strong>Base temática:</strong> Aulas 06–15 do PDF consolidado do Atlas Bíblico, disponibilizado pelo autor. O documento registra os debates, mas não contém a transcrição detalhada de todas as mensagens da outra conversa.</p>
+    {modulo==='textual'&&<p><strong>Escrita hebraica:</strong> <a href="https://mechon-mamre.org/p/pt/pt0101.htm" target="_blank" rel="noopener noreferrer">Gênesis 1 em hebraico — Mechon-Mamre</a>. Sentidos e controvérsias apresentados com base nos temas do PDF.</p>}
+    <p><strong>Texto bíblico em português:</strong> Bíblia Livre (BLIVRE), © 2018, licença CC BY 3.0 Brasil, identificada na página do versículo.</p>
+    <p>Leituras diferentes não significam consenso. A ampliação não acrescenta dados científicos específicos não apresentados na fonte.</p>
+  </details>
+</div>
+
+<style>
+.deep-study{color:var(--text);display:grid;gap:19px;margin-bottom:20px}
+.deep-header{border:1px solid #65513a;background:#292620;border-radius:12px;padding:19px}
+.deep-overline,.deep-section-heading{color:var(--gold);font:700 11px/1.6 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.deep-header h3{font-size:20px;margin:7px 0 10px}
+.deep-header p,.deep-note{font-size:13px;line-height:1.75;color:var(--muted)}
+.deep-steps{display:grid;gap:12px}.deep-step{display:flex;gap:14px;background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:17px 19px}.deep-step-number{font:700 12px/1.6 system-ui,sans-serif;color:var(--gold);flex-shrink:0}
+.deep-step h4,.deep-perspective h4{font-size:17px;margin:0 0 8px}.deep-step p,.deep-perspective p,.deep-prose p,.deep-caution p{line-height:1.83;font-size:15px;color:var(--text);margin:0}
+.deep-hebrew{display:grid;gap:12px}.deep-glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.deep-term{background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:15px;display:grid;gap:9px}
+.deep-hebrew-word{font:400 29px/1.4 Georgia,serif;unicode-bidi:isolate;color:var(--gold);text-align:right;display:block}
+.deep-term strong{color:var(--text);font-size:14px}.deep-term p{font-size:13px;line-height:1.65;color:var(--muted);margin-top:4px}
+.deep-prose,.deep-caution{display:flex;gap:12px;padding:17px 19px;border:1px solid var(--line);background:var(--card2);border-radius:11px}
+.deep-perspectives{display:grid;gap:12px}.deep-perspective{padding:17px 20px;border:1px solid var(--line);border-radius:11px;background:var(--card2)}
+.deep-number{color:var(--gold);font:700 11px/1.5 system-ui,sans-serif;letter-spacing:.08em;display:block;margin-bottom:8px}
+.deep-limitation{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:12px;margin-top:14px;font-size:13px;line-height:1.7}
+.deep-limitation strong{color:var(--gold)}.deep-limitation span{color:var(--muted)}
+.deep-chart{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:16px}.deep-chart h4{margin:0 0 13px;font-size:16px}
+.deep-table-wrap{overflow-x:auto}.deep-chart table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.6}
+.deep-chart th{text-align:left;color:var(--gold);font-weight:700;background:#292b2c}.deep-chart td,.deep-chart th{padding:11px 12px;border:1px solid var(--line);vertical-align:top}
+.deep-aside{font-size:13px;line-height:1.8;padding:14px 16px;border-left:3px solid var(--gold);background:#292720;border-radius:0 9px 9px 0;color:var(--muted)}
+.deep-summary{padding-left:25px;display:grid;gap:13px}.deep-summary li{padding-left:6px;line-height:1.85;font-size:16px}.deep-summary li::marker{color:var(--gold)}
+.deep-provenance{font-size:13px;line-height:1.75;border:1px solid var(--line);border-radius:10px;padding:13px 16px}.deep-provenance summary{color:var(--gold);font-weight:600;cursor:pointer}.deep-provenance p{margin:10px 0;color:var(--muted)}.deep-provenance a{color:var(--gold);text-decoration:underline}
+@media(max-width:650px){.deep-glossary{grid-template-columns:1fr}.deep-header,.deep-step,.deep-perspective,.deep-prose,.deep-caution{padding:14px}}
+</style>
