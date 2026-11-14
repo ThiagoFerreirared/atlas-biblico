@@ -18,6 +18,7 @@ const cobertura=capitulo===3?'1–13 de 24':versos.length+' de '+versos.length;
     <h1>Gênesis {capitulo}</h1>
     <p class="muted">Leia todos os {versos.length} versículos do capítulo. Toque no número de um versículo para ver o texto, as aulas relacionadas e os seis módulos de estudo.</p>
   </section>
+  <div class="controls" style="margin:0 0 22px"><a href="#conteudo-pdf" class="btn">Ver todos os tópicos do PDF ↓</a><a href="#chapter-reader" class="btn secondary">Ler o capítulo</a></div>
   <div class="reading-note"><span class="eyebrow">Texto bíblico</span><strong>{creditoTraducao.nome}</strong><span>{creditoTraducao.autores} · {creditoTraducao.ano} · <a href={creditoTraducao.licencaUrl} target="_blank" rel="noopener noreferrer">{creditoTraducao.licenca}</a></span></div>
   <div class="chapter-toolbar" data-chapter-id={capitulo}>
     <label for="reading-mode">Visualização</label>
