@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import { livros } from '../data/biblia.js';
+---
+<Base title="Biblioteca das Escrituras">
+  <section class="intro">
+    <span class="eyebrow">Biblioteca das Escrituras</span>
+    <h1>Cada versículo, um universo<br/>de conhecimento.</h1>
+    <p class="muted">Explore os livros da Bíblia, conheça seus contextos e aprofunde-se nos estudos. O Atlas cresce conforme cada conteúdo é pesquisado e revisado.</p>
+    <div><a class="btn" href="/livros/genesis/">Começar por Gênesis →</a></div>
+  </section>
+  <div class="controls" aria-label="Filtros da biblioteca">
+    <input class="field search" id="search" aria-label="Pesquisar livros" placeholder="Pesquisar livros..." type="search"/>
+    <select class="field" id="testamento" aria-label="Filtrar por testamento"><option value="todos">Todos os testamentos</option><option value="AT">Antigo Testamento</option><option value="NT">Novo Testamento</option></select>
+    <select class="field" id="modo" aria-label="Modo de visualização"><option value="categorias">Por categorias</option><option value="lista">Lista simples</option></select>
+    <select class="field" id="ordem" aria-label="Ordenação"><option value="biblica">Ordem bíblica</option><option value="alfabetica">Ordem alfabética</option></select>
+  </div>
+  <details class="options"><summary>Opções da biblioteca · Tradição canônica</summary><p>Organização protestante (66 livros). Outras tradições canônicas serão consideradas em versões futuras, com explicações sobre suas diferenças.</p></details>
+  <div id="catalog" class="catalog" aria-live="polite">
+    {livros.map(l=><article class="card book-item" data-name={l.nome} data-testament={l.testamento} data-category={l.categoria} data-order={l.indice}>
+      <span class="eyebrow">{l.categoria}</span><h3>{l.nome}</h3><p class="muted">{l.capitulos} capítulos</p>
+      {l.indice===0?<a class="text-link" href="/livros/genesis/">Explorar livro →</a>:<span class="status">Estrutura prevista</span>}
+    </article>)}
+  </div>
+  <p class="notice" style="margin-top:24px">Primeira versão: Gênesis possui uma amostra navegável. Os demais livros aparecem na biblioteca como estrutura de consulta futura.</p>
+</Base>
+<style>
+  .catalog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.book-item{display:flex;flex-direction:column;gap:9px;min-height:155px}.book-item h3{font-size:20px}.book-item .text-link,.book-item .status{margin-top:auto}.book-item .text-link{color:var(--gold);font-size:13px;font-weight:700}.options{border:1px solid var(--line);border-radius:9px;padding:13px 16px;margin-bottom:22px;color:var(--muted);font-size:13px}.options summary{cursor:pointer}.options p{padding-top:9px}
+  .category-title{grid-column:1/-1;color:var(--gold);margin:18px 0 0;font-size:16px}
+  @media(max-width:760px){.catalog{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:440px){.catalog{grid-template-columns:1fr}}
+</style>
+<script>
+  const catalog=document.getElementById('catalog');
+  const search=document.getElementById('search');
+  const testament=document.getElementById('testamento');
+  const mode=document.getElementById('modo');
+  const order=document.getElementById('ordem');
+  const entries=[...catalog.querySelectorAll('.book-item')];
+  const normalize=(v)=>v.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  function render(){
+    const filtered=entries.filter(el=>(testament.value==='todos'||el.dataset.testament===testament.value)&&normalize(el.dataset.name).includes(normalize(search.value)));
+    filtered.sort((a,b)=>order.value==='alfabetica'?a.dataset.name.localeCompare(b.dataset.name,'pt-BR'):Number(a.dataset.order)-Number(b.dataset.order));
+    catalog.replaceChildren();
+    let last='';
+    for(const el of filtered){
+      const group=el.dataset.testament+'|'+el.dataset.category;
+      if(mode.value==='categorias'&&group!==last){
+        const h=document.createElement('h2');h.className='category-title';h.textContent=(el.dataset.testament==='AT'?'Antigo Testamento':'Novo Testamento')+' · '+el.dataset.category;catalog.append(h);last=group;
+      }
+      catalog.append(el);
+    }
+    if(!filtered.length){const p=document.createElement('p');p.className='muted';p.textContent='Nenhum livro encontrado.';catalog.append(p);}
+  }
+  [search,testament,mode,order].forEach(el=>el.addEventListener('input',render));
+  render();
+</script>
