@@ -2,6 +2,7 @@
 // Estes temas NÃO são testes. Permanecem em aberto mesmo quando parcialmente
 // abordados em aulas já publicadas; nenhuma conclusão é inventada pelo site.
 import { debates, aulas } from './aulas.js';
+import { debatesNovos } from './debates-novos.js';
 
 const referencias={
   'DB-003':[[1,24],[1,25],[2,18],[2,19],[2,20],[2,21],[2,22]],
@@ -49,11 +50,12 @@ const andamento={
   'DB-030':{estado:'Aprofundamento iniciado'}
 };
 
-export const questoesAbertas=debates.map(d=>{
+export const questoesOriginais=debates.map(d=>{
   const passagens=referencias[d.id]||[];
   const origem=aulas.filter(a=>a.registro.includes(d.id)).map(a=>a.numero);
   return {...d,passagens,origem,estado:andamento[d.id]?.estado||'Em aberto',nota:andamento[d.id]?.nota||null};
 });
+export const questoesAbertas=[...questoesOriginais.map(q=>q.id==='DB-025'?{...q,passagens:[...q.passagens,[3,14],[3,15]],estado:'Retomada na Aula 25'}:q),...debatesNovos];
 export function questoesDoVersiculo(capitulo,versiculo){
   return questoesAbertas.filter(q=>q.passagens.some(([c,v])=>c===Number(capitulo)&&v===Number(versiculo)));
 }

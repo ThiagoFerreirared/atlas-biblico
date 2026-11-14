@@ -89,5 +89,6 @@ export const mapaEditorial={
     referencias:[[1,[8]],[2,[9]],[3,[9]],[4,[13]],[5,[10,13]]],
     perguntas:[[0,[9]],[1,[12,13]]]
   }
+  ,25:{secoes:[[0,[14],"textual"],[1,[14],"historico"],[2,[14],"arqueologia"],[3,[15],"textual"],[4,[15],"textual"],[5,[15],"interpretacoes"],[6,[15],"historico"],[7,[14,15],"arqueologia"]],referencias:[[1,[14]],[2,[14]],[3,[14]],[4,[15]],[5,[15]],[6,[15]],[7,[15]],[8,[15]],[9,[15]]],perguntas:[]}
 };
 export const versiculosRelacionados=(aula,versiculo,tipo)=>mapaEditorial[aula]?.[tipo]?.filter(([,versos])=>versos.includes(Number(versiculo)))||[];

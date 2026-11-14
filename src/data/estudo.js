@@ -1,4 +1,4 @@
-import { aulas } from './aulas.js';
+import { aulas } from './catalogo-aulas.js';
 import { coberturaGenesis } from './cobertura.js';
 import { textoGenesis } from './texto-genesis.js';
 import { modulos } from './biblia.js';
@@ -6,7 +6,7 @@ import { estudoGenesisInicial } from './curadoria-genesis-1.js';
 import { mapaEditorial } from './mapa-editorial.js';
 
 export { modulos };
-export const TOTAL_ESTUDADOS = 69; // Gn 1:1–31 (31), 2:1–25 (25), 3:1–13 (13).
+export const TOTAL_ESTUDADOS = 71; // Gn 1:1–31 (31), 2:1–25 (25), 3:1–13 (13).
 export const TOTAL_LIDOS_DISPONIVEIS = 80; // Gênesis 1–3 em Bíblia Livre.
 export const totalVersosPorCapitulo = { 1:31, 2:25, 3:24 };
 
