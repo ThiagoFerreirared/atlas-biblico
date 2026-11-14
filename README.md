@@ -12,7 +12,7 @@ A edição consolidada do PDF **Atlas Bíblico — Aulas 1 a 24** está importad
 - 31 temas de debates registrados;
 - texto bíblico integral de Gênesis 1 (31 versículos), 2 (25) e 3 (24) — **80 versículos**;
 - **69 versículos com cobertura inicial dos estudos:** Gênesis 1:1–31, 2:1–25 e 3:1–13;
-- seis módulos de estudo em cada um desses 69 versículos (414 módulos possíveis), contextualizados pelos trechos originais das aulas;
+- seis módulos de explicações em cada um desses 69 versículos (414 módulos possíveis), contextualizados pelos trechos originais das aulas; o sexto módulo é **Síntese do estudo**;
 - versículos 3:14–24 disponíveis **para leitura**, sem atribuição indevida de comentário que o PDF não possui. Gênesis 4–50 permanece em preparação.
 
 ### Precisão da fonte
@@ -32,15 +32,14 @@ Não são atribuídas automaticamente pontuações de exercícios anteriores: ap
 - `/livros/genesis/` — Gênesis e capítulos com estudos disponíveis
 - `/livros/genesis/1/` a `/livros/genesis/3/` — Leitura contínua ou por versículos, prévia e aulas ligadas
 - `/livros/genesis/{capitulo}/{versiculo}/` — Versículo e seis módulos, conexões e retorno ao capítulo
-- `/livros/genesis/{capitulo}/avaliacao/` — Simulado corrigido automaticamente e reflexão escrita autoavaliada
-- `/progresso/` — Indicadores separados de leitura, estudo, exercícios e revisão espaçada
+- `/progresso/` — Indicadores de leitura, estudo e revisão espaçada
 - `/busca/` — Pesquisa estática em livros, aulas, conexões e Gênesis 1–3
 
 ## Funcionalidade
 
 Sem login ou banco de dados no MVP. O progresso individual (leitura, módulos abertos/concluídos, notas, simulado, revisão em 1/7/30 dias) é registrado no `localStorage` do navegador. Isso **não sincroniza entre aparelhos** e será perdido se os dados locais forem apagados.
 
-Os exercícios de múltipla escolha foram elaborados editorialmente a partir das aulas e contam com correção e explicações. As perguntas abertas permanecem autoavaliadas, sem fingir correção automática.
+**Decisão editorial:** a experiência principal do Atlas não exibe questões, provas, simulados ou notas. Os seis módulos apresentam explicações e uma síntese final. Os questionários originais permanecem guardados no arquivo estruturado das aulas, sem aparecer na navegação ou interromper a leitura. A fonte integral de cada aula continua disponível em um link discreto, separado dos módulos.
 
 ## Fonte e licenciamento
 
