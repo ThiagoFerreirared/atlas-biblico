@@ -1,0 +1,29 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import { aulas } from '../../../../data/aulas.js';
+import { aulasDoCapitulo } from '../../../../data/cobertura.js';
+export function getStaticPaths(){return [2,3].map(n=>({params:{capitulo:String(n)},props:{numero:n}}));}
+const {numero}=Astro.props;
+const blocos=aulasDoCapitulo(numero);
+const maximo=numero===2?25:24;
+---
+<Base title={'Gênesis '+numero+' — Estudos'}>
+  <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/livros/genesis/">Gênesis</a> / <span class="gold">Capítulo {numero}</span></div>
+  <section class="intro"><span class="eyebrow">Gênesis · Capítulo {numero}</span><h1>Estudos do capítulo {numero}</h1><p class="muted">Navegue pelas aulas consolidadas correspondentes aos trechos estudados neste capítulo.</p></section>
+  <p class="notice">O PDF contém uma cobertura inicial das passagens, organizada em aulas por trechos. Não inclui uma edição bíblica integral, por isso não apresentamos versículos não transcritos como se estivessem completos.</p>
+  <div class="section-heading"><h2>Aulas disponíveis</h2><span class="tag">{blocos.length} aulas</span></div>
+  <div class="grid two">
+    {blocos.map(item=><a href={'/estudos/'+item.aula+'/'} class="card lesson"><span class="eyebrow">Aula {String(item.aula).padStart(2,'0')} · Gênesis {item.faixa}</span><h3>{aulas[item.aula-1].titulo}</h3><p class="muted">{item.tema}</p><span class="gold">Ler estudo →</span></a>)}
+  </div>
+  <div class="section-heading"><h2>Mapa dos versículos</h2><span class="tag">{numero===2?'25/25':'13/24'} com cobertura inicial</span></div>
+  <div class="verses">
+    {Array.from({length:maximo},(_,i)=>i+1).map(n=>{
+      const a=blocos.find(b=>n>=b.de&&n<=b.ate);
+      return a?<a href={'/estudos/'+a.aula+'/'} class="verse available" title={'Estudo na aula '+a.aula}>{n}</a>:<span class="verse pending" title="Ainda não estudado">{n}</span>;
+    })}
+  </div>
+  <div class="controls"><a href="/livros/genesis/" class="btn secondary">← Voltar ao livro</a><a href="/estudos/" class="btn">Ver as 24 aulas →</a></div>
+</Base>
+<style>
+  .lesson{display:flex;flex-direction:column;gap:8px}.lesson h3{font-size:19px}.lesson .gold{font-size:13px;margin-top:auto}.verses{display:grid;grid-template-columns:repeat(12,1fr);gap:8px}.verse{min-height:50px;display:flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--line);border-radius:9px;font-weight:700}.available{color:var(--gold);border-color:#5b4c39}.available:hover{background:#39342a}.pending{opacity:.3}@media(max-width:700px){.verses{grid-template-columns:repeat(6,1fr)}}
+</style>
