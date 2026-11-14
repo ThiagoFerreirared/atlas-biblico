@@ -1,0 +1,91 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import {amostra,modulos} from '../../../../data/biblia.js';
+export function getStaticPaths(){
+  return amostra.versos.map(v=>({params:{verso:String(v.numero)},props:{v}}));
+}
+const {v}=Astro.props;
+const prev=v.numero>1?v.numero-1:null;
+const next=v.numero<amostra.versos.length?v.numero+1:null;
+---
+<Base title={`Gênesis 1:${v.numero} — Estudo`}>
+  <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/livros/genesis/">Gênesis</a> / <a href="/livros/genesis/1/">Capítulo 1</a> / <span class="gold">Versículo {v.numero}</span></div>
+  <section class="intro"><span class="eyebrow">Gênesis · Capítulo 1</span><h1>Gênesis 1:{v.numero}</h1><p class="muted">Explore os módulos e acompanhe o seu progresso no estudo.</p></section>
+  <div class="verse-box">“{v.texto}”</div><p class="muted" style="font-size:12px;margin:12px 0 24px">Trecho apresentado como demonstração. A seleção de traduções e suas permissões de publicação será revisada antes do lançamento definitivo.</p>
+  <div class="section-heading"><h2>Explorar o estudo</h2><span class="tag" id="progress-label">0 de 6 concluídos</span></div>
+  <div class="bar"><div id="progress-bar"></div></div>
+  <div class="grid two modules">
+    {modulos.map((m,i)=><button class="card module" data-index={i} type="button"><div class="module-top"><span class="module-icon">{m.icone}</span><span class="module-check" data-check={i}>○</span></div><h3>{m.titulo}</h3><p class="muted">{m.descricao}</p></button>)}
+  </div>
+  <p id="complete-message" class="notice hidden" style="margin-top:18px">✓ Versículo concluído! Todos os seis módulos foram marcados. Você pode revisitá-los quando quiser.</p>
+  <div class="section-heading"><h2>Conexões bíblicas</h2><span class="tag">Amostra</span></div>
+  <p class="muted" style="margin-bottom:14px">Selecione uma passagem para ler a explicação sem perder seu lugar.</p>
+  <div class="grid two">
+    {amostra.conexoes.map((c,i)=><button class="card connection" data-connection={i}><span class="eyebrow">{c.tipo}</span><h3>{c.referencia}</h3><p>“{c.texto}”</p><span class="gold">Explorar conexão →</span></button>)}
+  </div>
+  <div class="controls bottomnav"><a class="btn secondary" href={prev?'/livros/genesis/1/'+prev+'/':'/livros/genesis/1/'}>← {prev?'Versículo anterior':'Voltar ao capítulo'}</a><a class="btn" href={next?'/livros/genesis/1/'+next+'/':'/livros/genesis/1/'}>{next?'Próximo versículo':'Voltar ao capítulo'} →</a></div>
+  <dialog id="module-dialog" aria-labelledby="module-title">
+    <div class="dialog-header"><div><span class="eyebrow" id="module-label">GÊNESIS 1:{v.numero}</span><h2 id="module-title"></h2></div><button class="btn secondary small" id="module-close" aria-label="Fechar painel">✕ Fechar</button></div>
+    <p class="muted" id="module-desc"></p>
+    <div id="module-content"></div>
+    <p class="notice" style="margin-top:16px">Conteúdo ilustrativo: a versão enciclopédica será inserida após revisão dos estudos originais.</p>
+    <div class="modal-actions"><button class="btn" id="finish">✓ Concluir e fechar</button><button class="btn secondary" id="next-section">Próxima seção →</button></div>
+  </dialog>
+  <dialog id="connection-dialog" aria-labelledby="connection-title">
+    <div class="dialog-header"><div><span class="eyebrow">Conexão bíblica</span><h2 id="connection-title"></h2></div><button class="btn secondary small" id="connection-close" aria-label="Fechar conexão">✕ Fechar</button></div>
+    <div class="verse-box" id="connection-text"></div>
+    <h3 style="margin-top:18px">Por que está conectado?</h3><p class="muted" id="connection-reason"></p>
+    <div class="modal-actions"><button class="btn secondary" id="connection-return">← Voltar a Gênesis 1:{v.numero}</button></div>
+  </dialog>
+</Base>
+<style>
+  .bar{height:6px;border-radius:10px;background:#393e41;overflow:hidden;margin-bottom:17px}.bar>div{height:100%;background:var(--gold);width:0;transition:width .2s}
+  .module,.connection{text-align:left;color:inherit;display:flex;flex-direction:column;gap:10px;min-height:145px}.module p,.connection p{font-size:13px}.module-top{display:flex;justify-content:space-between}.module-icon{color:var(--gold);font-size:21px}.module-check{color:#85898c;font-size:22px}.module.done{border-color:#4a8b64}.module.done .module-check{color:var(--green)}.connection .gold{font-size:13px;margin-top:auto}.bottomnav{justify-content:space-between;margin-top:40px}
+  dialog{width:min(790px,calc(100vw - 24px));max-height:90vh;overflow:auto;background:var(--card);border:1px solid #685638;border-radius:15px;color:var(--text);padding:28px;box-shadow:0 20px 100px #000c}dialog::backdrop{background:#000c}.dialog-header{display:flex;align-items:start;justify-content:space-between;gap:10px;margin-bottom:18px}.dialog-header h2{margin-top:5px}#module-desc{margin-bottom:18px}#module-content{display:grid;gap:14px}.subsection{border:1px solid var(--line);background:var(--card2);padding:18px;border-radius:11px}.subsection h3{color:var(--gold);margin-bottom:7px}.subsection p{line-height:1.8}.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}#connection-reason{line-height:1.8;margin-top:6px}@media(max-width:650px){dialog{width:100vw;height:100dvh;max-height:100dvh;border-radius:0;padding:18px;margin:0;max-width:none}.modal-actions .btn{width:100%}}
+</style>
+<script define:vars={{verseNumber:v.numero,modules:modulos,content:amostra.conteudos,connections:amostra.conexoes}}>
+  const key='atlas:genesis:1:'+verseNumber+':modules';
+  const dialog=document.getElementById('module-dialog');
+  const cdialog=document.getElementById('connection-dialog');
+  let active=0;
+  let completed=[];
+  try{const stored=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(stored))completed=stored.filter(i=>Number.isInteger(i)&&i>=0&&i<modules.length);}catch{}
+  function renderProgress(){
+    document.getElementById('progress-label').textContent=completed.length+' de '+modules.length+' concluídos';
+    document.getElementById('progress-bar').style.width=(100*completed.length/modules.length)+'%';
+    document.getElementById('complete-message').classList.toggle('hidden',completed.length!==modules.length);
+    document.querySelectorAll('[data-index]').forEach(btn=>{const yes=completed.includes(Number(btn.dataset.index));btn.classList.toggle('done',yes);btn.querySelector('.module-check').textContent=yes?'✓':'○'});
+  }
+  function showModule(index){
+    active=index;const mod=modules[index];
+    document.getElementById('module-title').textContent=mod.titulo;
+    document.getElementById('module-label').textContent='GÊNESIS 1:'+verseNumber+' · ETAPA '+(index+1)+'/'+modules.length;
+    document.getElementById('module-desc').textContent=mod.descricao;
+    const area=document.getElementById('module-content');area.replaceChildren();
+    for(const part of content[mod.id]||[{titulo:'Material em preparação',texto:'Este módulo será publicado após revisão.'}]){
+      const box=document.createElement('section');box.className='subsection';
+      const h=document.createElement('h3');h.textContent=part.titulo;const p=document.createElement('p');p.textContent=part.texto;
+      box.append(h,p);area.append(box);
+    }
+    document.getElementById('next-section').disabled=index===modules.length-1;
+    if(!dialog.open)dialog.showModal();
+  }
+  document.querySelectorAll('[data-index]').forEach(btn=>btn.addEventListener('click',()=>showModule(Number(btn.dataset.index))));
+  document.getElementById('module-close').addEventListener('click',()=>dialog.close());
+  document.getElementById('finish').addEventListener('click',()=>{
+    if(!completed.includes(active))completed.push(active);
+    try{localStorage.setItem(key,JSON.stringify(completed));}catch{}
+    renderProgress();dialog.close();
+  });
+  document.getElementById('next-section').addEventListener('click',()=>{if(active<modules.length-1)showModule(active+1)});
+  document.querySelectorAll('[data-connection]').forEach(btn=>btn.addEventListener('click',()=>{
+    const c=connections[Number(btn.dataset.connection)];
+    document.getElementById('connection-title').textContent=c.referencia;
+    document.getElementById('connection-text').textContent='“'+c.texto+'”';
+    document.getElementById('connection-reason').textContent=c.explicacao;
+    cdialog.showModal();
+  }));
+  document.getElementById('connection-close').addEventListener('click',()=>cdialog.close());
+  document.getElementById('connection-return').addEventListener('click',()=>cdialog.close());
+  renderProgress();
+</script>
