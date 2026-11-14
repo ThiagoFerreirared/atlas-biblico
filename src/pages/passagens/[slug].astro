@@ -43,7 +43,7 @@ const studyAvailable=Boolean(refMatch && possuiEstudo(Number(refMatch[1]),Number
   </div>
 
   <div class="section-heading"><h2>Por que esta passagem aparece no Atlas?</h2></div>
-  <p class="muted" style="margin-bottom:18px">Explicações registradas nas aulas do PDF consolidado. A relação pode ser temática, literária ou interpretativa; ela não implica necessariamente uma citação direta.</p>
+  <p class="muted" style="margin-bottom:18px">As relações entre as passagens podem ser temáticas, literárias ou interpretativas. Uma conexão não significa necessariamente que uma passagem cite diretamente a outra.</p>
   <div class="connections">
     {contextos.map(c=><article class="card reason">
       <span class="eyebrow">Aula {String(c.aula).padStart(2,'0')}</span>
@@ -52,7 +52,7 @@ const studyAvailable=Boolean(refMatch && possuiEstudo(Number(refMatch[1]),Number
       <a class="text-link gold" href={'/estudos/'+c.aula+'/'}>Ler a aula de origem →</a>
     </article>)}
   </div>
-  <p class="notice" style="margin-top:24px">O PDF original acompanha Gênesis até 3:13. Para referências fora dessa cobertura, esta página permite ler a passagem completa e consultar sua relação com o estudo, sem inventar módulos aprofundados que ainda não foram produzidos.</p>
+  <p class="notice" style="margin-top:24px">Os estudos aprofundados chegam até Gênesis 3:13. Outras passagens podem ser consultadas aqui, mesmo quando seus módulos individuais ainda não foram publicados.</p>
 </Base>
 <style>
 .passage{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:24px 28px;font:21px/1.9 Georgia,serif}
