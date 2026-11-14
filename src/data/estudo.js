@@ -2,6 +2,7 @@ import { aulas } from './aulas.js';
 import { coberturaGenesis } from './cobertura.js';
 import { textoGenesis } from './texto-genesis.js';
 import { modulos } from './biblia.js';
+import { estudoGenesisInicial } from './curadoria-genesis-1.js';
 
 export { modulos };
 export const TOTAL_ESTUDADOS = 69; // Gn 1:1–31 (31), 2:1–25 (25), 3:1–13 (13).
@@ -27,48 +28,56 @@ export function ligaReferencia(referencia){
     ?urlVerso(Number(r[1]),Number(r[2])):null;
 }
 
-function entry(titulo,texto,origem='',tipo='texto'){
-  return {titulo,texto,origem,tipo};
-}
-const textoOriginal=`Texto bíblico: Bíblia Livre (BLIVRE, 2018), CC BY 3.0 Brasil. Análises: Atlas Bíblico, Aulas 1–24, edição consolidada (14/11/2026).`;
-const lingual=/hebraic|aramaic|greg|termo|palavra|verbo|expressão|vocábul|significa|traduz|linguagem|plural|vocabulário|raiz|sentido|nome|pron[uú]ncia|etimolog|narrativa/i;
-const historico=/hist[oó]r|mesopot|cana[aã]|egip|antig|costume|context|orient|sociedade|cultura|patriarc|arqueolog|ambiente|autoria|composi|tradi[cç][aã]o/i;
-const empirico=/arqueolog|cient[ií]f|geolog|astronom|evid[eê]nc|comprov|geograf|cronolog|dil[uú]v|f[ií]sic|taxonomia|biolog|cidade|inscri[cç][aã]o/i;
+function entry(titulo,texto,origem='',tipo='texto'){return {titulo,texto,origem,tipo};}
+const lexica=/hebraic|aramaic|grego|palavr[ao]s? [a-zà-ú]* em hebraico|tradu[zç]|termo (?:hebraico|grego)|etimolog|vocábulo|sentido da express[aã]o|express[aã]o hebraic/i;
+const contexto=/contexto hist[oó]rico|hist[oó]ria|antigo oriente|mesopot[aâ]m|cultural|costume|origem hist[oó]rica|localiza[cç][aã]o|autor[ií]a|composi[cç][aã]o/i;
+const evidencia=/arqueolog|ci[eê]nci[ai]|evid[eê]ncia (?:hist[oó]rica|arqueol[oó]gica)|astronom[ií]a|geologia/i;
 
 export function gerarConteudoDoVersiculo(capitulo,versiculo){
   const blocos=aulasDoVersiculo(capitulo,versiculo);
   if(!blocos.length)return null;
   const verse=textoVerso(capitulo,versiculo);
+  if(Number(capitulo)===1&&Number(versiculo)<=3){
+    const c=estudoGenesisInicial(Number(versiculo),aulas,verse);
+    return {...c,aulas:blocos};
+  }
   const secoes=blocos.flatMap(b=>b.aula.secoes.map(s=>({...s,origem:'Aula '+String(b.aula.numero).padStart(2,'0')+' · Gênesis '+b.faixa})));
   const refs=blocos.flatMap(b=>b.aula.referencias.map(r=>({...r,origem:'Aula '+String(b.aula.numero).padStart(2,'0')})));
-  const questions=blocos.flatMap(b=>b.aula.perguntas.map(q=>entry('Pergunta da aula',q,'Aula '+String(b.aula.numero).padStart(2,'0'))));
-  const records=blocos.filter(b=>b.aula.registro).map(b=>entry('Registro e debates',b.aula.registro,'Aula '+String(b.aula.numero).padStart(2,'0')));
-  const lexical=secoes.filter(s=>lingual.test(s.titulo+' '+s.texto));
-  const context=secoes.filter(s=>historico.test(s.titulo+' '+s.texto));
-  const evidence=secoes.filter(s=>empirico.test(s.titulo+' '+s.texto));
-  const rangeInfo='Os comentários abaixo foram originalmente escritos para o trecho da aula, e não como uma análise exclusiva deste versículo.';
+  const questions=blocos.flatMap(b=>b.aula.perguntas.map((q,i)=>entry('Pergunta '+(i+1)+' da aula',q,'Aula '+String(b.aula.numero).padStart(2,'0'))));
+  const records=blocos.filter(b=>b.aula.registro).map(b=>entry('Questões em aberto',b.aula.registro,'Aula '+String(b.aula.numero).padStart(2,'0')));
+  const lexical=secoes.filter(s=>lexica.test(s.titulo+' '+s.texto));
+  const historical=secoes.filter(s=>contexto.test(s.titulo));
+  const evidence=secoes.filter(s=>evidencia.test(s.titulo));
+  const used=new Set([...lexical,...historical,...evidence].map(s=>s.origem+'|'+s.titulo));
+  const other=secoes.filter(s=>!used.has(s.origem+'|'+s.titulo));
+  const section=(s)=>entry(s.titulo,s.texto,s.origem);
+  const note='Esta aula original analisa o trecho Gênesis '+blocos.map(b=>b.faixa).join(' e Gênesis ')+'. Algumas explicações são compartilhadas pelos versículos desse trecho, não comentários individuais.';
   return {
-    nota:rangeInfo,
+    nota:note,
     textual:[
-      entry('Gênesis '+capitulo+':'+versiculo+' · texto integral',verse?.texto||'',textoOriginal),
-      ...(lexical.length?lexical.map(s=>entry(s.titulo,s.texto,s.origem)):
-        [entry('Análise lexical na fonte','O PDF consolidado não registra uma análise específica das palavras deste versículo. A consulta ao texto bíblico integral continua disponível acima.','Estado da fonte')])
+      entry('O versículo na Bíblia Livre',verse?.texto||'','Bíblia Livre (2018) · CC BY 3.0 Brasil'),
+      ...(lexical.length?lexical.map(section):[
+        entry('Palavras e tradução','A edição consolidada não traz uma análise linguística isolada para este versículo. Consulte as explicações gerais do trecho no módulo Interpretações e na página da aula.','Limite do PDF')
+      ])
     ],
-    historico: (context.length?context:secoes.slice(0,1)).map(s=>entry(s.titulo,s.texto,s.origem)),
-    conexoes: refs.map(r=>entry(r.referencia,r.texto+'\n\nPor que está conectado? '+r.conexao,r.origem,'referencia')),
-    interpretacoes: [
-      entry('Abordagem da aula','As explicações a seguir pertencem à análise consolidada do trecho. O PDF pode apresentar perspectivas em debate sem chegar a uma conclusão única.','Nota editorial'),
-      ...secoes.map(s=>entry(s.titulo,s.texto,s.origem))
+    historico: historical.length?historical.map(section):[
+      entry('Contexto da aula','O PDF consolidado não separou um comentário de contexto histórico específico para este versículo. A análise do trecho está reunida nas outras seções e na aula original.','Limite do PDF')
     ],
-    arqueologia: evidence.length
-      ? evidence.map(s=>entry(s.titulo,s.texto,s.origem))
-      : [entry('Limites das evidências','Esta aula não apresenta evidência arqueológica ou científica específica para este versículo. O Atlas não tratará a ausência de material como comprovação nem inventará achados.','Estado da fonte')],
+    conexoes:[
+      entry('Como ler estas relações','As referências foram registradas pela aula que abrange o trecho completo, não necessariamente como conexão exclusiva deste versículo.','Nota editorial'),
+      ...refs.map(r=>entry(r.referencia,r.texto+'\n\nRelação registrada: '+r.conexao,r.origem,'referencia'))
+    ],
+    interpretacoes:[
+      entry('Explicações da aula sobre este trecho','As seções abaixo pertencem à análise consolidada de um conjunto de versículos. Leia-as em conjunto com o texto do capítulo para não confundir o assunto de cada frase.','Como usar'),
+      ...((other.length?other:secoes).map(section))
+    ],
+    arqueologia: evidence.length?evidence.map(section):[
+      entry('O que foi documentado','Não há um estudo arqueológico ou científico específico e verificável neste trecho da edição consolidada. Não apresentamos hipótese como se fosse achado comprovado.','Limite do PDF')
+    ],
     revisao:[
-      ...questions,
-      ...records,
-      entry('Como revisar','Responda às perguntas usando o texto bíblico e as explicações da aula. Questões abertas não recebem correção automática; você pode registrar e avaliar sua compreensão.','Método Atlas')
+      ...questions,...records,
+      entry('Revise o que aprendeu','Você pode responder às perguntas da aula e registrar suas anotações. Questões abertas exigem reflexão própria e não têm correção automática.','Método Atlas')
     ],
-    referencias:refs,
-    aulas:blocos
+    referencias:refs,aulas:blocos
   };
 }
