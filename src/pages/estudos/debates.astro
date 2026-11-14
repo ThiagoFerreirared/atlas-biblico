@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import {debates,estadoDoPdf} from '../../data/aulas.js';
+---
+<Base title="Questões abertas e progresso">
+  <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/estudos/">Aulas</a> / <span class="gold">Questões abertas</span></div>
+  <section class="intro"><span class="eyebrow">Apêndices do PDF consolidado</span><h1>Questões e progresso</h1><p class="muted">Registro dos debates que continuam em aberto e da cobertura de leitura documentada ao final da Aula 24.</p></section>
+  <div class="summary">
+    <div class="card"><strong>{estadoDoPdf.aulas}</strong><span>Aulas apresentadas</span></div>
+    <div class="card"><strong>31/31</strong><span>Gênesis 1 · leitura inicial</span></div>
+    <div class="card"><strong>25/25</strong><span>Gênesis 2 · leitura inicial</span></div>
+    <div class="card"><strong>12/24</strong><span>Gênesis 3 · progresso declarado no PDF</span></div>
+  </div>
+  <p class="notice" style="margin:20px 0">Os números representam cobertura inicial de estudo registrada no PDF, não notas de avaliação nem checks de módulos realizados neste navegador. A Aula 1 tem registro histórico de avaliação 4/4; as notas individuais das demais aulas não estão suficientemente documentadas.</p>
+  <div class="section-heading"><h2>Índice de questões debatidas</h2><span class="tag">{debates.length} temas</span></div>
+  <div class="grid two">
+    {debates.map(d=><div class="card issue"><span class="eyebrow">{d.id}</span><h3>{d.titulo}</h3><p class="muted">Questão registrada no índice do PDF · tema para aprofundamento</p></div>)}
+  </div>
+  <div class="card" style="margin-top:25px"><span class="eyebrow">Próxima etapa</span><h3 style="margin:8px 0">Aula 25 — Gênesis 3:14–15</h3><p class="muted">Ainda não consta na edição importada. Assuntos previstos: sentença contra a serpente, descendência da mulher e interpretações judaicas, cristãs e histórico-acadêmicas.</p></div>
+  <div class="controls"><a href="/estudos/" class="btn secondary">← Todas as aulas</a></div>
+</Base>
+<style>
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.summary .card{display:grid;gap:8px}.summary strong{font-size:25px;color:var(--gold)}.summary span,.issue p{color:var(--muted);font-size:12px}.issue{display:grid;gap:8px}.issue h3{font-size:17px}@media(max-width:700px){.summary{grid-template-columns:repeat(2,1fr)}}@media(max-width:420px){.summary{grid-template-columns:1fr}}
+</style>
