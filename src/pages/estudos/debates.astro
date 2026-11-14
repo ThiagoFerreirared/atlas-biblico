@@ -1,24 +1,57 @@
 ---
 import Base from '../../layouts/Base.astro';
-import {debates,estadoDoPdf} from '../../data/aulas.js';
+import { questoesAbertas, urlPassagemPrincipal } from '../../data/questoes-abertas.js';
 ---
-<Base title="Questões abertas e progresso">
-  <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/estudos/">Aulas</a> / <span class="gold">Debates em aberto</span></div>
-  <section class="intro"><span class="eyebrow">Apêndices do PDF consolidado</span><h1>Temas em discussão e progresso</h1><p class="muted">Registro dos debates que continuam em aberto e da cobertura de leitura documentada ao final da Aula 24.</p></section>
-  <div class="summary">
-    <div class="card"><strong>{estadoDoPdf.aulas}</strong><span>Aulas apresentadas</span></div>
-    <div class="card"><strong>31/31</strong><span>Gênesis 1 · leitura inicial</span></div>
-    <div class="card"><strong>25/25</strong><span>Gênesis 2 · leitura inicial</span></div>
-    <div class="card"><strong>12/24</strong><span>Gênesis 3 · progresso declarado no PDF</span></div>
+<Base title="Questões em aberto — Atlas Bíblico">
+  <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/estudos/">Acervo</a> / <span class="gold">Questões em aberto</span></div>
+  <section class="intro">
+    <span class="eyebrow">Caderno de investigação · Apêndice B</span>
+    <h1>Questões em aberto</h1>
+    <p class="muted">Assuntos que apareceram durante o estudo de Gênesis e ficaram registrados para pesquisa posterior. Eles acompanham a leitura, sem funcionar como provas ou exercícios.</p>
+  </section>
+  <div class="compact-stats">
+    <div class="card small-stat"><strong>{questoesAbertas.length}</strong><span>temas registrados no PDF</span></div>
+    <div class="card small-stat"><strong>3</strong><span>capítulos relacionados</span></div>
+    <div class="card small-stat"><strong>3:14–15</strong><span>próximo trecho previsto</span></div>
   </div>
-  <p class="notice" style="margin:20px 0">Os números representam cobertura inicial de estudo registrada no PDF, não notas de avaliação nem checks de módulos realizados neste navegador. A Aula 1 tem registro histórico de avaliação 4/4; as notas individuais das demais aulas não estão suficientemente documentadas.</p>
-  <div class="section-heading"><h2>Índice de questões debatidas</h2><span class="tag">{debates.length} temas</span></div>
-  <div class="grid two">
-    {debates.map(d=><div class="card issue"><span class="eyebrow">{d.id}</span><h3>{d.titulo}</h3><p class="muted">Questão registrada no índice do PDF · tema para aprofundamento</p></div>)}
+  <p class="notice" style="margin:21px 0">A lista vem do Apêndice B do PDF consolidado (Aulas 1–24). “Aprofundamento iniciado” não significa tema resolvido. As atualizações sobre DB-016, DB-017, DB-024, DB-028, DB-029 e DB-030 seguem o registro adicional feito pelo estudante. Nenhuma resposta definitiva foi acrescentada sem nova fonte.</p>
+  <div class="filters" aria-label="Filtrar questões por capítulo">
+    <label for="chapter-filter">Filtrar por capítulo</label>
+    <select id="chapter-filter" class="field">
+      <option value="todos">Todos os capítulos</option>
+      <option value="1">Gênesis 1</option>
+      <option value="2">Gênesis 2</option>
+      <option value="3">Gênesis 3</option>
+    </select>
+    <span id="question-count" class="muted" aria-live="polite">{questoesAbertas.length} questões</span>
   </div>
-  <div class="card" style="margin-top:25px"><span class="eyebrow">Próxima etapa</span><h3 style="margin:8px 0">Aula 25 — Gênesis 3:14–15</h3><p class="muted">Ainda não consta na edição importada. Assuntos previstos: sentença contra a serpente, descendência da mulher e interpretações judaicas, cristãs e histórico-acadêmicas.</p></div>
-  <div class="controls"><a href="/estudos/" class="btn secondary">← Todas as aulas</a></div>
+  <div class="question-list">
+    {questoesAbertas.map(q=><article class="card question-item" id={q.id} data-chapters={[...new Set(q.passagens.map(([c])=>c))].join(',')}>
+      <div class="question-head"><span class="eyebrow">{q.id} · Caderno de debates</span><span class="state-label">{q.estado}</span></div>
+      <h3>{q.titulo}</h3>
+      {q.nota&&<p class="muted">{q.nota}</p>}
+      <div class="passage-links">
+        <span class="meta-label">Passagens relacionadas</span>
+        {q.passagens.length
+          ? q.passagens.map(([cap,verso])=><a href={'/livros/genesis/'+cap+'/'+verso+'/'}>Gênesis {cap}:{verso}</a>)
+          : <span class="muted">Ainda sem passagem específica mapeada</span>}
+      </div>
+      {q.origem.length>0&&<div class="origin"><span class="meta-label">Registros na fonte</span>{q.origem.map(n=><a href={'/estudos/'+n+'/'}>Aula {String(n).padStart(2,'0')} →</a>)}</div>}
+    </article>)}
+  </div>
+  <p class="notice" style="margin-top:24px">As questões não precisam ser resolvidas imediatamente. Quando uma nova aula aprofundar um tema, seu registro poderá ser atualizado, mantendo o histórico e as conexões com os versículos anteriores.</p>
+  <div class="controls"><a href="/livros/genesis/3/" class="btn secondary">← Voltar a Gênesis</a><a href="/progresso/" class="btn secondary">Meu progresso</a></div>
 </Base>
 <style>
-.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.summary .card{display:grid;gap:8px}.summary strong{font-size:25px;color:var(--gold)}.summary span,.issue p{color:var(--muted);font-size:12px}.issue{display:grid;gap:8px}.issue h3{font-size:17px}@media(max-width:700px){.summary{grid-template-columns:repeat(2,1fr)}}@media(max-width:420px){.summary{grid-template-columns:1fr}}
+.compact-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.small-stat{display:grid;gap:4px}.small-stat strong{font-size:26px;color:var(--gold)}.small-stat span{font-size:12px;color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:27px 0 18px}.filters label{color:var(--muted);font-size:13px}.filters select{max-width:215px}.filters .muted{font-size:12px}
+.question-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.question-item{scroll-margin-top:94px;display:flex;flex-direction:column;gap:11px}.question-head{display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px}.state-label{font-size:11px;color:var(--gold)}.question-item h3{font-size:18px;margin:0}.question-item p{font-size:13px;line-height:1.7}.passage-links,.origin{display:flex;flex-wrap:wrap;align-items:center;gap:7px}.meta-label{font-size:11px;color:var(--muted);width:100%}.passage-links a,.origin a{border:1px solid var(--line);border-radius:7px;padding:5px 8px;font-size:12px;color:var(--gold)}.passage-links a:hover,.origin a:hover{border-color:var(--gold)}.question-item:target{border-color:var(--gold)}@media(max-width:650px){.compact-stats{grid-template-columns:1fr 1fr}.compact-stats .small-stat:last-child{grid-column:span 2}.question-list{grid-template-columns:1fr}}
 </style>
+<script>
+const filter=document.getElementById('chapter-filter'),cards=[...document.querySelectorAll('.question-item')],count=document.getElementById('question-count');
+filter.addEventListener('change',()=>{
+ let visible=0;
+ for(const card of cards){const matches=filter.value==='todos'||card.dataset.chapters.split(',').includes(filter.value);card.classList.toggle('hidden',!matches);if(matches)visible++;}
+ count.textContent=visible+' questões';
+});
+</script>
