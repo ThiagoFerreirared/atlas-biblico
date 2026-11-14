@@ -13,11 +13,12 @@ A edição consolidada do PDF **Atlas Bíblico — Aulas 1 a 24** está importad
 - texto bíblico integral de Gênesis 1 (31 versículos), 2 (25) e 3 (24) — **80 versículos**;
 - **69 versículos com cobertura inicial dos estudos:** Gênesis 1:1–31, 2:1–25 e 3:1–13;
 - seis módulos de explicações em cada um desses 69 versículos (414 módulos possíveis), contextualizados pelos trechos originais das aulas; o sexto módulo é **Síntese do estudo**;
+- **Gênesis 1:1–31 recebeu um piloto editorial aprofundado** com explicações passo a passo por versículo, termos hebraicos quando relevantes, comparação de interpretações, quadros de leitura e limites da pesquisa, sem criar provas;
 - versículos 3:14–24 disponíveis **para leitura**, sem atribuição indevida de comentário que o PDF não possui. Gênesis 4–50 permanece em preparação.
 
 ### Precisão da fonte
 
-O PDF consolidado não é a transcrição literal do chat de estudo. Em várias aulas, uma análise abrange **mais de um versículo**. As páginas de versículos mostram o conteúdo da aula do trecho, explicitando essa origem em vez de criar explicações não presentes no PDF.
+O PDF consolidado não é a transcrição literal do chat de estudo. Em várias aulas, uma análise abrange **mais de um versículo**. Gênesis 2 e 3 continuam respeitando os tópicos que o PDF contém. Em **Gênesis 1**, o Atlas passou a incluir uma **ampliação editorial** derivada das Aulas 06–15, claramente rotulada como elaboração nova, não como transcrição literal da outra conversa. Ela aprofunda a lógica, limites e exemplos já presentes na fonte. A escrita hebraica usada nesses estudos foi confrontada com o [texto hebraico de Gênesis 1 no Mechon-Mamre](https://mechon-mamre.org/p/pt/pt0101.htm). Se uma informação não puder ser sustentada por essas fontes, não deve aparecer como fato verificado.
 
 **Discrepância identificada no PDF:** o apêndice afirma que o estudo terminou em Gênesis 3:13, mas também conta 12 versículos do capítulo 3 e 68 versículos ao todo. A contagem inclusiva de 3:1–13 é 13, e 31 + 25 + 13 = **69**. O site adota os limites de passagens descritos nas aulas, sem ocultar a divergência.
 
@@ -37,7 +38,7 @@ Não são atribuídas automaticamente pontuações de exercícios anteriores: ap
 
 ## Funcionalidade
 
-Sem login ou banco de dados no MVP. O progresso individual (leitura, módulos abertos/concluídos, notas, simulado, revisão em 1/7/30 dias) é registrado no `localStorage` do navegador. Isso **não sincroniza entre aparelhos** e será perdido se os dados locais forem apagados.
+Sem login ou banco de dados no MVP. O progresso individual (leitura, módulos abertos/concluídos e revisão em 1/7/30 dias) é registrado no `localStorage` do navegador. Isso **não sincroniza entre aparelhos** e será perdido se os dados locais forem apagados.
 
 **Decisão editorial:** a experiência principal do Atlas não exibe questões, provas, simulados ou notas. Os seis módulos apresentam explicações e uma síntese final. Os questionários originais permanecem guardados no arquivo estruturado das aulas, sem aparecer na navegação ou interromper a leitura. A fonte integral de cada aula continua disponível em um link discreto, separado dos módulos.
 
