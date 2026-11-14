@@ -13,12 +13,16 @@ A edição consolidada do PDF **Atlas Bíblico — Aulas 1 a 24** está importad
 - texto bíblico integral de Gênesis 1 (31 versículos), 2 (25) e 3 (24) — **80 versículos**;
 - **69 versículos com cobertura inicial dos estudos:** Gênesis 1:1–31, 2:1–25 e 3:1–13;
 - seis módulos de explicações em cada um desses 69 versículos (414 módulos possíveis), contextualizados pelos trechos originais das aulas; o sexto módulo é **Síntese do estudo**;
-- **Gênesis 1:1–31 recebeu um piloto editorial aprofundado** com explicações passo a passo por versículo, termos hebraicos quando relevantes, comparação de interpretações, quadros de leitura e limites da pesquisa, sem criar provas;
+- **Gênesis 1:1–31, Gênesis 2:1–25 e Gênesis 3:1–13 possuem aprofundamento editorial individual** com explicações passo a passo, termos hebraicos quando relevantes, interpretações comparadas, limites das evidências e sínteses. Os 24 estudos originais seguem preservados no acervo sem provas obrigatórias;
 - versículos 3:14–24 disponíveis **para leitura**, sem atribuição indevida de comentário que o PDF não possui. Gênesis 4–50 permanece em preparação.
+
+### Situação de publicação
+
+**Código e compilação:** os 69 estudos aprofundados foram adicionados à branch `main`, e o GitHub Actions concluiu todos os testes e build com sucesso. **Vercel:** publicação bloqueada por limite de builds da equipe, sem relação direta com o código. Quando a quota permitir, a versão mais recente deverá ser publicada/reativada no projeto.
 
 ### Precisão da fonte
 
-O PDF consolidado não é a transcrição literal do chat de estudo. Em várias aulas, uma análise abrange **mais de um versículo**. Gênesis 2 e 3 continuam respeitando os tópicos que o PDF contém. Em **Gênesis 1**, o Atlas passou a incluir uma **ampliação editorial** derivada das Aulas 06–15, claramente rotulada como elaboração nova, não como transcrição literal da outra conversa. Ela aprofunda a lógica, limites e exemplos já presentes na fonte. A escrita hebraica usada nesses estudos foi confrontada com o [texto hebraico de Gênesis 1 no Mechon-Mamre](https://mechon-mamre.org/p/pt/pt0101.htm). Se uma informação não puder ser sustentada por essas fontes, não deve aparecer como fato verificado.
+O PDF consolidado não é a transcrição literal do chat de estudo. Em várias aulas, uma análise abrange **mais de um versículo**. Gênesis 2 e 3 continuam respeitando os tópicos que o PDF contém. Em **Gênesis 1–3 até 3:13**, o Atlas inclui uma ampliação editorial dos temas presentes nas Aulas 06–24, sem alegar que ela seja transcrição literal da conversa anterior. Ela aprofunda a lógica, limites e exemplos já presentes na fonte. A escrita hebraica usada nesses estudos foi confrontada com o [texto hebraico de Gênesis 1 no Mechon-Mamre](https://mechon-mamre.org/p/pt/pt0101.htm). Se uma informação não puder ser sustentada por essas fontes, não deve aparecer como fato verificado.
 
 **Discrepância identificada no PDF:** o apêndice afirma que o estudo terminou em Gênesis 3:13, mas também conta 12 versículos do capítulo 3 e 68 versículos ao todo. A contagem inclusiva de 3:1–13 é 13, e 31 + 25 + 13 = **69**. O site adota os limites de passagens descritos nas aulas, sem ocultar a divergência.
 
@@ -58,7 +62,7 @@ npm run dev
 npm run build
 ```
 
-O GitHub Actions executa um build e valida páginas essenciais. A Vercel faz a implantação automática da branch `main`; o status de publicação deve ser verificado no painel da Vercel. O build bem-sucedido não dispensa testes das interações no navegador.
+O GitHub Actions valida a curadoria dos 69 versículos, a presença dos 24 registros de aula, o conteúdo aprofundado de Gênesis 1–3, o build Astro e as páginas essenciais. A Vercel está conectada à branch `main`, **mas a publicação da versão completa está temporariamente bloqueada pelo limite de builds da equipe** (status GitHub/Vercel: `build-rate-limit`, em 14/11/2026). A última versão online pode estar atrasada em relação ao GitHub; é necessário verificar o painel da Vercel após o restabelecimento da quota. Testes automatizados de build não substituem inspeção interativa no navegador.
 
 ## Próximos estudos
 
