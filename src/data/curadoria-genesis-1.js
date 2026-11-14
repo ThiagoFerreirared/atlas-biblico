@@ -9,13 +9,11 @@ export function estudoGenesisInicial(versiculo, aulas, verse) {
   const extrair=(aula,titulo)=>aula.secoes.find(s=>s.titulo===titulo);
   const bloco=(aula,titulo)=>{const s=extrair(aula,titulo);return texto(s.titulo,s.texto,'Aula '+String(aula.numero).padStart(2,'0'));};
   const refs=(versiculo===1
-    ? [aula6.referencias[0],aula6.referencias[1],aula6.referencias[2],aula7.referencias[2]]
+    ? [aula6.referencias[1],aula6.referencias[2],aula7.referencias[2]]
     : versiculo===2
-      ? [aula7.referencias[0],aula7.referencias[3]]
-      : [aula7.referencias[1],aula7.referencias[4]]
+      ? [aula7.referencias[3]]
+      : [aula7.referencias[4]]
   ).map(r=>({...r,origem:r===aula7.referencias[2]||r===aula7.referencias[0]||r===aula7.referencias[1]||r===aula7.referencias[3]||r===aula7.referencias[4]?'Aula 07':'Aula 06'}));
-  const fonte='Bíblia Livre (BLIVRE), texto integral, CC BY 3.0 Brasil';
-  const passagem=texto('Leia Gênesis 1:'+versiculo,verse.texto,fonte);
   const semEvidencia=texto('O que o documento permite afirmar','As Aulas 6–7 não apresentam uma descoberta arqueológica específica que comprove este versículo. O texto é estudado como narrativa antiga; comparações científicas exigem evidências próprias.','Limite das fontes');
   const conexoes=refs.map(r=>texto(r.referencia,r.texto+'\n\nRelação registrada: '+r.conexao,r.origem,'referencia'));
   const encerramento=texto('Para continuar estudando','Consulte o texto bíblico, compare as passagens relacionadas e registre sua compreensão. As perguntas são abertas: não há correção automática de redação.','Orientação do Atlas');
@@ -24,7 +22,6 @@ export function estudoGenesisInicial(versiculo, aulas, verse) {
     ...comuns,
     nota:'Gênesis 1:1 possui uma análise própria na Aula 06. A Aula 07 trata principalmente dos versículos 2 e 3; esses assuntos aparecem nas respectivas páginas.',
     textual:[
-      passagem,
       texto('A expressão hebraica bereshit','Bereshit é a palavra de abertura do relato, normalmente traduzida por “no princípio”. A Aula 06 registra que sua construção gramatical é discutida.','Aula 06 · O primeiro versículo')
     ],
     historico:[bloco(aula6,'Estrutura do livro')],
@@ -34,7 +31,7 @@ export function estudoGenesisInicial(versiculo, aulas, verse) {
       texto('Criação a partir do nada','A edição consolidada alerta que a doutrina teológica da criação a partir do nada não deve ser atribuída de modo simplista a Gênesis 1:1 isoladamente.','Aula 06 · O primeiro versículo')
     ],
     revisao:[
-      ...aula6.perguntas.map((p,i)=>texto('Pergunta '+(i+1),p,'Aula 06')),
+      texto('Pergunta da aula',aula6.perguntas[1],'Aula 06'),
       texto('Debate em aberto','Que conclusões dependem do próprio versículo, da tradução e de desenvolvimentos teológicos posteriores?','Orientação editorial para revisão'),
       encerramento
     ]
@@ -43,7 +40,6 @@ export function estudoGenesisInicial(versiculo, aulas, verse) {
     ...comuns,
     nota:'Os assuntos sobre a terra e o espírito/vento de Deus foram extraídos das seções específicas da Aula 07 sobre Gênesis 1:2.',
     textual:[
-      passagem,
       texto('Tohu va-vohu','A Aula 07 descreve a terra como tohu va-vohu, “sem forma e vazia”, com trevas e águas profundas.','Aula 07 · A terra sem forma e vazia'),
       texto('Ruach Elohim','Ruach Elohim pode ser traduzido como “Espírito de Deus” ou “vento vindo de Deus”.','Aula 07 · Espírito ou vento de Deus')
     ],
@@ -62,7 +58,6 @@ export function estudoGenesisInicial(versiculo, aulas, verse) {
     ...comuns,
     nota:'Os comentários sobre “Haja luz” foram separados da análise da terra e do espírito/vento, para evitar misturar Gênesis 1:2 com 1:3.',
     textual:[
-      passagem,
       texto('A primeira ordem criadora descrita','A Aula 07 registra a ordem divina pela existência da luz e a resposta narrativa: a luz apareceu.','Aula 07 · Haja luz')
     ],
     historico:[
