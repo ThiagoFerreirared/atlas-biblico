@@ -49,7 +49,7 @@ export function gerarConteudoDoVersiculo(capitulo,versiculo){
     return {...c,aulas:blocos};
   }
   const secoes={textual:[],historico:[],interpretacoes:[],arqueologia:[]};
-  const refs=[],perguntas=[],origens=[];
+  const refs=[],origens=[];
   for(const bloco of blocos){
     const aula=bloco.aula,meta=mapaEditorial[aula.numero];
     if(!meta)continue;
@@ -65,11 +65,6 @@ export function gerarConteudoDoVersiculo(capitulo,versiculo){
       const ref=aula.referencias[idx];
       if(ref)refs.push({...ref,origem});
     }
-    for(const [idx,versos] of meta.perguntas){
-      if(!versos.includes(Number(versiculo)))continue;
-      const pergunta=aula.perguntas[idx];
-      if(pergunta)perguntas.push(entrada('Pergunta para reflexão',pergunta,origem));
-    }
   }
   const origem=origens.join(' · ');
   const conexoes=refs.map(r=>entrada(r.referencia,r.texto+'\n\nTipo de conexão registrado: '+r.conexao,r.origem,'referencia'));
@@ -80,9 +75,13 @@ export function gerarConteudoDoVersiculo(capitulo,versiculo){
     conexoes:conexoes.length?conexoes:[entrada('Sem referências específicas no PDF','A aula de origem não registra uma referência cruzada específica para este versículo; outras referências do mesmo trecho permanecem na página da aula.','Limite das fontes')],
     interpretacoes:preencher('interpretacoes',secoes.interpretacoes,origem),
     arqueologia:preencher('arqueologia',secoes.arqueologia,origem),
+    // Síntese da explicação importada, não uma nova prova.
     revisao:[
-      ...(perguntas.length?perguntas:[entrada('Perguntas do trecho','A aula não atribui uma pergunta exclusiva a este versículo. Use as questões na página completa da aula para revisar o tema do trecho.','Limite das fontes')]),
-      entrada('Conferir aprendizagem','Após a leitura, registre sua própria compreensão e anotações. As perguntas abertas não recebem nota automática.','Método Atlas')
+      ...([secoes.textual[0],secoes.interpretacoes[0],secoes.historico[0],secoes.arqueologia[0]]
+          .filter(Boolean).slice(0,2).map(s=>entrada(s.titulo,s.texto,s.origem))),
+      ...(!secoes.textual.length&&!secoes.interpretacoes.length&&!secoes.historico.length&&!secoes.arqueologia.length
+        ?[entrada('Leitura do trecho','Este versículo faz parte do trecho estudado em '+origem+'. Consulte os módulos anteriores e o texto bíblico para reunir as informações apresentadas.','Organização editorial')]
+        :[])
     ],
     referencias:refs,aulas:blocos
   };
