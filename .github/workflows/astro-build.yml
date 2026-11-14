@@ -23,6 +23,8 @@ jobs:
         run: node scripts/validar-todos-estudos.mjs
       - name: Gerar site
         run: npm run build
+      - name: Conferir todas as páginas e módulos gerados
+        run: node scripts/validar-paginas-geradas.mjs
       - name: Conferir páginas geradas
         run: |
           test -f dist/index.html
