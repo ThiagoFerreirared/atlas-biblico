@@ -1,12 +1,12 @@
 ---
-const {detalhe,modulo,versiculo}=Astro.props;
-const fonte='Ampliação editorial · Aulas 06–15 do PDF consolidado';
+const {detalhe,modulo,versiculo,capitulo}=Astro.props;
+const fonte='Estudo aprofundado · Gênesis '+capitulo;
 ---
 <div class="deep-study">
   <div class="deep-header">
     <span class="deep-overline">{fonte}</span>
-    <h3>Gênesis 1:{versiculo} · {detalhe.tema}</h3>
-    <p>Esta explicação desenvolve os assuntos registrados no PDF, diferenciando texto bíblico, interpretação e limites das evidências. A redação ampliada é editorial, não transcrição literal da conversa original.</p>
+    <h3>Gênesis {capitulo}:{versiculo} · {detalhe.tema}</h3>
+    <p>Explore o significado do texto em etapas, compare possibilidades de interpretação e observe os limites de cada explicação.</p>
   </div>
 
   {modulo==='textual'&&<>
@@ -19,7 +19,7 @@ const fonte='Ampliação editorial · Aulas 06–15 do PDF consolidado';
     </div>
     {Boolean(detalhe.termos?.length)&&<div class="deep-hebrew">
       <div class="deep-section-heading">Palavras e expressões do hebraico</div>
-      <p class="deep-note">A escrita foi conferida com o texto hebraico de Gênesis 1. As notas explicam termos relevantes ao tema da aula, não traduzem todas as palavras do versículo.</p>
+      <p class="deep-note">Expressões relevantes em hebraico, com transliteração e significado. A seleção não substitui uma tradução palavra por palavra do versículo.</p>
       <div class="deep-glossary">
         {detalhe.termos.map(([original,transliteracao,sentido])=><article class="deep-term">
           <span class="deep-hebrew-word" lang="he" dir="rtl">{original}</span>
@@ -34,7 +34,7 @@ const fonte='Ampliação editorial · Aulas 06–15 do PDF consolidado';
     {detalhe.historico.map((p,i)=><section class="deep-prose">
       <span class="deep-step-number">{String(i+1).padStart(2,'0')}</span><p>{p}</p>
     </section>)}
-    <p class="deep-aside">O contexto ajuda a interpretar, mas uma comparação com o antigo Oriente Próximo não é, por si só, prova de dependência literária ou verificação arqueológica do acontecimento.</p>
+    <p class="deep-aside">Contexto histórico e leitura literária ajudam a compreender a passagem. Comparações culturais não provam automaticamente dependência entre textos ou a ocorrência dos acontecimentos.</p>
   </>}
 
   {modulo==='interpretacoes'&&<>
@@ -61,7 +61,7 @@ const fonte='Ampliação editorial · Aulas 06–15 do PDF consolidado';
     {detalhe.limites.map((p,i)=><section class="deep-caution">
       <span class="deep-step-number">{String(i+1).padStart(2,'0')}</span><p>{p}</p>
     </section>)}
-    <div class="deep-aside"><strong>Critério do Atlas:</strong> diferenciar observação do texto, hipótese interpretativa e evidência verificável. Não há motivo para inventar descobertas onde o PDF não apresenta estudos arqueológicos específicos.</div>
+    <div class="deep-aside"><strong>Critério do Atlas:</strong> diferenciar observação do texto, hipótese interpretativa e evidência verificável. Quando uma afirmação não dispõe de evidência específica, ela deve ser apresentada como interpretação ou hipótese, não como descoberta comprovada.</div>
   </>}
 
   {modulo==='revisao'&&<>
@@ -73,9 +73,9 @@ const fonte='Ampliação editorial · Aulas 06–15 do PDF consolidado';
   </>}
 
   <details class="deep-provenance">
-    <summary>Fontes e critérios desta ampliação</summary>
-    <p><strong>Base temática:</strong> Aulas 06–15 do PDF consolidado do Atlas Bíblico, disponibilizado pelo autor. O documento registra os debates, mas não contém a transcrição detalhada de todas as mensagens da outra conversa.</p>
-    {modulo==='textual'&&<p><strong>Escrita hebraica:</strong> <a href="https://mechon-mamre.org/p/pt/pt0101.htm" target="_blank" rel="noopener noreferrer">Gênesis 1 em hebraico — Mechon-Mamre</a>. Sentidos e controvérsias apresentados com base nos temas do PDF.</p>}
+    <summary>Fontes e metodologia</summary>
+    <p><strong>Pesquisa:</strong> organização dos temas do Atlas Bíblico, com distinção entre afirmações do versículo, hipóteses interpretativas e evidências documentadas. O estudo pode ser atualizado conforme novas fontes forem analisadas.</p>
+    {modulo==='textual'&&<p><strong>Escrita hebraica:</strong> <a href={'https://mechon-mamre.org/i/t/x/x010'+capitulo+'.htm'} target="_blank" rel="noopener noreferrer">Texto hebraico de Gênesis {capitulo} — Mechon-Mamre</a>. As alternativas de tradução exigem consideração do contexto.</p>}
     <p><strong>Texto bíblico em português:</strong> Bíblia Livre (BLIVRE), © 2018, licença CC BY 3.0 Brasil, identificada na página do versículo.</p>
     <p>Leituras diferentes não significam consenso. A ampliação não acrescenta dados científicos específicos não apresentados na fonte.</p>
   </details>
