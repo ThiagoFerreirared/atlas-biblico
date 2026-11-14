@@ -23,7 +23,7 @@ export const livros = [
 export const amostra = {
   livro: 'Gênesis', capitulo: 1,
   versos: [
-    { numero: 1, texto: 'No princípio criou Deus os céus e a terra.' },
+    { numero: 1, texto: 'No princípio, Deus criou os céus e a terra.' },
     { numero: 2, texto: 'E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.' },
     { numero: 3, texto: 'E disse Deus: Haja luz. E houve luz.' }
   ],
