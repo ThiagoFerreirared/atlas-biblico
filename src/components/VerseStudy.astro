@@ -5,7 +5,7 @@ import { textoDaReferencia } from '../data/referencias.js';
 import { urlReferencia } from '../data/rotas-referencias.js';
 import { questoesDoVersiculo, urlQuestao } from '../data/questoes-abertas.js';
 import Genesis1Rich from './Genesis1Rich.astro';
-import { aprofundamentoGenesis1 } from '../data/genesis1-profundo.js';
+import { obterAprofundamento } from '../data/estudos-aprofundados.js';
 const { capitulo, versiculo }=Astro.props;
 const verse=textoVerso(capitulo,versiculo);
 const study=gerarConteudoDoVersiculo(capitulo,versiculo);
@@ -21,7 +21,7 @@ const prev=versiculo>1?{c:capitulo,v:versiculo-1}:capitulo>1?{c:capitulo-1,v:tot
 const next=versiculo<totalVersosPorCapitulo[capitulo]?{c:capitulo,v:versiculo+1}:capitulo<3?{c:capitulo+1,v:1}:null;
 const title='Gênesis '+capitulo+':'+versiculo;
 const questoes=questoesDoVersiculo(capitulo,versiculo);
-const aprofundamento=Number(capitulo)===1?aprofundamentoGenesis1[Number(versiculo)]:null;
+const aprofundamento=obterAprofundamento(capitulo,versiculo);
 ---
 <Base title={title+' — Atlas Bíblico'}>
   <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/livros/genesis/">Gênesis</a> / <a href={'/livros/genesis/'+capitulo+'/'}>Capítulo {capitulo}</a> / <span class="gold">Versículo {versiculo}</span></div>
@@ -31,7 +31,7 @@ const aprofundamento=Number(capitulo)===1?aprofundamentoGenesis1[Number(versicul
   <div class="verse-actions"><a class="btn secondary small" href={'/livros/genesis/'+capitulo+'/#v-'+versiculo}>← Voltar ao capítulo, versículo {versiculo}</a><a id="back-to-connection" class="btn secondary small hidden" href="/livros/genesis/1/1/">← Voltar ao estudo de origem</a><button class="btn secondary small" id="mark-read" type="button">Marcar como lido</button><a class="btn secondary small" href="/progresso/">Meu progresso</a></div>
 
   {has ? <>
-    <div class="notice module-guide"><strong>Seu estudo de {title}:</strong> {aprofundamento ? 'Gênesis 1 recebeu uma ampliação editorial baseada nas aulas do PDF, com explicações passo a passo, hebraico, quadros e interpretações comparadas. A versão consolidada original permanece preservada.' : 'O material das aulas do PDF foi organizado por tema nos módulos abaixo. Abra um assunto para ler a explicação. Não há provas nem perguntas obrigatórias.'}</div>
+    <div class="notice module-guide"><strong>Explore {title}:</strong> {aprofundamento ? 'Estudo aprofundado com explicações passo a passo, termos originais quando relevantes, interpretações comparadas e conexões bíblicas. Escolha um módulo para começar.' : 'Abra um dos módulos para explorar as explicações deste versículo. Não há provas nem perguntas obrigatórias.'}</div>
     <div class="section-heading"><h2>Seis módulos de estudo</h2><span class="tag" id="progress-label">0 de 6 concluídos</span></div>
     <div class="progress-line"><div id="progress-fill"></div></div>
     <div class="grid two module-grid" data-expanded={aprofundamento?'1':'0'}>
@@ -43,13 +43,13 @@ const aprofundamento=Number(capitulo)===1?aprofundamentoGenesis1[Number(versicul
       : m.id==='interpretacoes' ? aprofundamento.leituras.length+' leituras e comparações'
       : m.id==='arqueologia' ? 'Limites históricos e científicos'
       : aprofundamento.sintese.length+' pontos essenciais')
-    : (study[m.id]?.[0]?.titulo==='Sem estudo específico no PDF' ? 'O PDF não traz um tópico específico aqui' : study[m.id]?.[0]?.titulo || m.descricao))}</p><span class="gold">Ler explicação →</span></button>)}
+    : (study[m.id]?.[0]?.titulo==='Sem estudo específico no PDF' ? 'Este tema ainda não possui uma explicação específica' : study[m.id]?.[0]?.titulo || m.descricao))}</p><span class="gold">Ler explicação →</span></button>)}
     </div>
     <p class="notice hidden" id="verse-complete" style="margin-top:20px">✓ Todos os seis módulos concluídos! Este versículo entrou no ciclo opcional de revisão espaçada.</p>
 
     <section class="future-questions" id="questoes-em-aberto">
-      <div class="section-heading"><h2>Questões para estudos futuros</h2><span class="tag">{questoes.length} ligadas ao versículo</span></div>
-      <p class="muted" style="margin-bottom:14px">São temas que surgiram durante o estudo e podem ser retomados nas próximas passagens. Não são provas nem perguntas obrigatórias.</p>
+      <div class="section-heading"><h2>Questões para aprofundar</h2><span class="tag">{questoes.length} ligadas ao versículo</span></div>
+      <p class="muted" style="margin-bottom:14px">Temas que podem ser retomados nos próximos versículos e capítulos, sem avaliações ou exercícios obrigatórios.</p>
       {questoes.length>0
         ? <div class="open-questions">
             {questoes.map(q=><a href={urlQuestao(q.id)} class="open-question card">
@@ -59,16 +59,16 @@ const aprofundamento=Number(capitulo)===1?aprofundamentoGenesis1[Number(versicul
               <span class="gold">Consultar investigação →</span>
             </a>)}
           </div>
-        : <div class="open-question-empty">Nenhuma questão do apêndice foi vinculada diretamente a este versículo. <a href="/estudos/debates/">Ver todos os temas em aberto →</a></div>}
+        : <div class="open-question-empty">Nenhum tema de investigação foi relacionado diretamente a este versículo. <a href="/estudos/debates/">Ver todos os temas em aberto →</a></div>}
       <a class="future-questions-all" href="/estudos/debates/">Ver o arquivo completo de questões em aberto →</a>
     </section>
     <details class="source-details">
       <summary>Consultar o material original deste estudo</summary>
-      <p>{study.nota} O conteúdo integral do PDF permanece preservado no acervo.</p>
+      <p>Os assuntos desta passagem também integram as aulas completas do acervo. Você pode consultar o material de referência, se quiser.</p>
       {study.aulas.map(t=><a href={'/estudos/'+t.aula.numero+'/'} class="source-link">Aula {String(t.aula.numero).padStart(2,'0')} · Gênesis {t.faixa} · consultar original →</a>)}
     </details>
   </> : <>
-    <div class="notice" style="margin-top:22px">Este versículo tem texto completo para leitura, mas ainda não possui análise nas 24 aulas importadas. O estudo consolidado termina em Gênesis 3:13; a Aula 25 começará em 3:14–15. Os seis módulos serão disponibilizados somente quando houver material correspondente.</div>
+    <div class="notice" style="margin-top:22px">Este versículo tem texto completo para leitura, mas ainda não possui análise nas 24 aulas importadas. Os estudos publicados chegam até Gênesis 3:13; a próxima etapa é Gênesis 3:14–15. Os seis módulos serão disponibilizados somente quando houver material correspondente.</div>
     <a href="/estudos/24/" class="btn secondary" style="margin-top:18px">Consultar a última aula publicada →</a>
   </>}
   <div class="chapter-nav">
@@ -97,20 +97,20 @@ const aprofundamento=Number(capitulo)===1?aprofundamentoGenesis1[Number(versicul
               <details class="connection-context"><summary>Entender por que os textos estão relacionados</summary><p>{r.conexao}</p></details>
               <a class="btn secondary small connection-open" href={r.pagina}>{r.estudo?'Estudar este versículo no Atlas →':'Ir para esta passagem no Atlas →'}</a>
             </section>)
-          : <section class="study-part" id="part-0"><h3>Sem conexão específica registrada</h3><p>O PDF não traz uma conexão bíblica atribuída diretamente a este versículo. Consulte a aula completa para conferir as referências do trecho.</p></section>)
+          : <section class="study-part" id="part-0"><h3>Sem conexão específica registrada</h3><p>Ainda não há conexões registradas diretamente para este versículo. Consulte os demais estudos relacionados.</p></section>)
         : aprofundamento
           ? <>
-            <Genesis1Rich detalhe={aprofundamento} modulo={m.id} versiculo={versiculo}/>
-            <details class="deep-original"><summary>Conferir trecho original do PDF consolidado</summary>
-              {(study[m.id]||[]).map((section,i)=><section class="study-part" id={'source-'+i}><span class="part-origin">{section.origem}</span><h3>{section.titulo}</h3><p>{section.texto}</p></section>)}
+            <Genesis1Rich detalhe={aprofundamento} modulo={m.id} capitulo={capitulo} versiculo={versiculo}/>
+            <details class="deep-original"><summary>Ver também as notas da aula</summary>
+              {(study[m.id]||[]).map((section,i)=><section class="study-part" id={'source-'+i}><span class="part-origin">Nota de estudo · {title}</span><h3>{section.titulo}</h3><p>{section.texto}</p></section>)}
             </details>
           </>
-          : (study[m.id]||[]).map((section,i)=><section class="study-part" id={'part-'+i}><span class="part-origin">{section.origem}</span><h3>{section.titulo}</h3><p>{section.texto}</p></section>)}
+          : (study[m.id]||[]).map((section,i)=><section class="study-part" id={'part-'+i}><span class="part-origin">Nota de estudo · {title}</span><h3>{section.titulo}</h3><p>{section.texto}</p></section>)}
     </template>)}
     <dialog id="module-dialog" aria-labelledby="module-heading">
       <header class="modal-header"><div><span id="modal-step" class="eyebrow"></span><h2 id="module-heading"></h2></div><button type="button" id="module-close" class="btn secondary small">✕ Fechar</button></header>
       <div class="module-scripture"><span class="eyebrow">{title} · texto bíblico</span><p>{verse.texto}</p></div>
-      <p id="modal-description" class="muted" style="margin-top:14px"></p><p class="modal-guide" id="module-guide">{aprofundamento ? 'Aprofundamento editorial baseado nas aulas 06–15 do PDF; a escrita hebraica foi conferida em fonte textual externa. Não é uma transcrição literal da outra conversa.' : 'As explicações abaixo vêm dos estudos consolidados do PDF. Ao terminar, você pode marcar este módulo como lido.'}</p>
+      <p id="modal-description" class="muted" style="margin-top:14px"></p><p class="modal-guide" id="module-guide">{aprofundamento ? 'Explore a passagem em etapas. As interpretações são apresentadas com seus limites para ajudar a distinguir texto bíblico e leitura teológica.' : 'As explicações estão organizadas pelos assuntos deste versículo. Ao terminar, marque o módulo como concluído.'}</p>
       <div class="panel-index-title">EXPLICAÇÕES DESTE VERSÍCULO</div><nav class="panel-index" id="panel-index" aria-label="Índice dos assuntos deste módulo"></nav>
       <div id="module-body"></div>
       <div class="modal-bottom"><button type="button" class="btn" id="module-done">✓ Concluir e fechar</button><button type="button" class="btn secondary" id="module-next">✓ Concluir e próximo módulo →</button></div>
@@ -185,7 +185,7 @@ if(headline){
      ?'Interpretações compara possibilidades de leitura e seus limites. Distinguimos o que o versículo afirma de conclusões teológicas ou científicas adicionais.'
      :isExpanded
        ?'Esta é uma ampliação editorial baseada nas aulas 06–15 do PDF consolidado. A transcrição do hebraico foi conferida em fonte textual. O trecho original da aula pode ser consultado ao final.'
-       :'As explicações abaixo vêm do PDF consolidado e estão organizadas por assunto. Ao terminar, você pode marcar este módulo como lido.';
+       :'Leia as explicações organizadas por assunto. Ao terminar, você pode marcar este módulo como lido.';
    const tpl=document.getElementById('template-'+id);
    const body=document.getElementById('module-body');body.replaceChildren(tpl.content.cloneNode(true));
    const nav=document.getElementById('panel-index');nav.replaceChildren();
