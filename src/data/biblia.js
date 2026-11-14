@@ -1,0 +1,45 @@
+export const modulos = [
+  { id: 'textual', titulo: 'Análise textual', icone: '✍', descricao: 'Idiomas originais, termos e traduções' },
+  { id: 'historico', titulo: 'Contexto histórico', icone: '⌛', descricao: 'Mundo antigo, cultura e literatura' },
+  { id: 'conexoes', titulo: 'Conexões bíblicas', icone: '◇', descricao: 'Passagens relacionadas e explicadas' },
+  { id: 'interpretacoes', titulo: 'Interpretações', icone: '⚖', descricao: 'Leituras e debates teológicos' },
+  { id: 'arqueologia', titulo: 'Arqueologia e ciência', icone: '⌕', descricao: 'Pesquisas, evidências e limites' },
+  { id: 'revisao', titulo: 'Reflexão e revisão', icone: '✓', descricao: 'Síntese e compreensão' },
+];
+
+export const livros = [
+  ['Gênesis',50,'Pentateuco'],['Êxodo',40,'Pentateuco'],['Levítico',27,'Pentateuco'],['Números',36,'Pentateuco'],['Deuteronômio',34,'Pentateuco'],
+  ['Josué',24,'Históricos'],['Juízes',21,'Históricos'],['Rute',4,'Históricos'],['1 Samuel',31,'Históricos'],['2 Samuel',24,'Históricos'],['1 Reis',22,'Históricos'],['2 Reis',25,'Históricos'],['1 Crônicas',29,'Históricos'],['2 Crônicas',36,'Históricos'],['Esdras',10,'Históricos'],['Neemias',13,'Históricos'],['Ester',10,'Históricos'],
+  ['Jó',42,'Poéticos e sapienciais'],['Salmos',150,'Poéticos e sapienciais'],['Provérbios',31,'Poéticos e sapienciais'],['Eclesiastes',12,'Poéticos e sapienciais'],['Cânticos',8,'Poéticos e sapienciais'],
+  ['Isaías',66,'Profetas maiores'],['Jeremias',52,'Profetas maiores'],['Lamentações',5,'Profetas maiores'],['Ezequiel',48,'Profetas maiores'],['Daniel',12,'Profetas maiores'],
+  ['Oséias',14,'Profetas menores'],['Joel',3,'Profetas menores'],['Amós',9,'Profetas menores'],['Obadias',1,'Profetas menores'],['Jonas',4,'Profetas menores'],['Miqueias',7,'Profetas menores'],['Naum',3,'Profetas menores'],['Habacuque',3,'Profetas menores'],['Sofonias',3,'Profetas menores'],['Ageu',2,'Profetas menores'],['Zacarias',14,'Profetas menores'],['Malaquias',4,'Profetas menores'],
+  ['Mateus',28,'Evangelhos'],['Marcos',16,'Evangelhos'],['Lucas',24,'Evangelhos'],['João',21,'Evangelhos'],['Atos',28,'História'],
+  ['Romanos',16,'Cartas paulinas'],['1 Coríntios',16,'Cartas paulinas'],['2 Coríntios',13,'Cartas paulinas'],['Gálatas',6,'Cartas paulinas'],['Efésios',6,'Cartas paulinas'],['Filipenses',4,'Cartas paulinas'],['Colossenses',4,'Cartas paulinas'],['1 Tessalonicenses',5,'Cartas paulinas'],['2 Tessalonicenses',3,'Cartas paulinas'],['1 Timóteo',6,'Cartas paulinas'],['2 Timóteo',4,'Cartas paulinas'],['Tito',3,'Cartas paulinas'],['Filemom',1,'Cartas paulinas'],
+  ['Hebreus',13,'Cartas gerais'],['Tiago',5,'Cartas gerais'],['1 Pedro',5,'Cartas gerais'],['2 Pedro',3,'Cartas gerais'],['1 João',5,'Cartas gerais'],['2 João',1,'Cartas gerais'],['3 João',1,'Cartas gerais'],['Judas',1,'Cartas gerais'],['Apocalipse',22,'Literatura apocalíptica'],
+].map(([nome, capitulos, categoria], indice) => ({ nome, capitulos, categoria, indice, testamento: indice < 39 ? 'AT' : 'NT' }));
+
+// Somente os versículos abaixo são conteúdo ilustrativo da primeira versão.
+// Evitar publicar capítulos ou comentários não conferidos como se estivessem completos.
+export const amostra = {
+  livro: 'Gênesis', capitulo: 1,
+  versos: [
+    { numero: 1, texto: 'No princípio criou Deus os céus e a terra.' },
+    { numero: 2, texto: 'E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.' },
+    { numero: 3, texto: 'E disse Deus: Haja luz. E houve luz.' }
+  ],
+  conexoes: [
+    { referencia: 'João 1:1', texto: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.', tipo: 'Temática e literária', explicacao: 'O prólogo de João retoma a linguagem do princípio e relaciona o Verbo com a criação.' },
+    { referencia: 'Salmos 33:6', texto: 'Pela palavra do SENHOR foram feitos os céus, e todo o exército deles, pelo espírito da sua boca.', tipo: 'Paralelo temático', explicacao: 'Ambos os textos associam a criação à ação de Deus.' }
+  ],
+  conteudos: {
+    textual: [
+      { titulo: 'Texto original', texto: 'בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ' },
+      { titulo: 'Primeira palavra', texto: 'Bereshit (בְּרֵאשִׁית) costuma ser traduzido como “No princípio”. Uma análise completa deverá discutir gramática, tradução e fontes.' }
+    ],
+    historico: [{ titulo: 'Contexto geral', texto: 'A análise aprofundada será publicada conforme o estudo original for revisado e incorporado ao Atlas.' }],
+    conexoes: [{ titulo: 'Referências relacionadas', texto: 'As conexões aparecem na página do versículo, com texto e explicação da relação.' }],
+    interpretacoes: [{ titulo: 'Perspectivas interpretativas', texto: 'Esta seção apresentará leituras distintas e seus fundamentos, depois da revisão editorial.' }],
+    arqueologia: [{ titulo: 'Pesquisa e evidências', texto: 'Esta seção distinguirá evidências documentais, hipóteses e interpretação teológica.' }],
+    revisao: [{ titulo: 'Revisão', texto: 'Perguntas e sínteses serão adicionadas a partir do estudo original.' }]
+  }
+};
