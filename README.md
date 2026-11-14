@@ -16,9 +16,9 @@ A edição consolidada do PDF **Atlas Bíblico — Aulas 1 a 24** está importad
 - **Gênesis 1:1–31, Gênesis 2:1–25 e Gênesis 3:1–13 possuem aprofundamento editorial individual** com explicações passo a passo, termos hebraicos quando relevantes, interpretações comparadas, limites das evidências e sínteses. Os 24 estudos originais seguem preservados no acervo sem provas obrigatórias;
 - versículos 3:14–24 disponíveis **para leitura**, sem atribuição indevida de comentário que o PDF não possui. Gênesis 4–50 permanece em preparação.
 
-### Situação de publicação
+### Estado do repositório
 
-**Código e compilação:** os 69 estudos aprofundados foram adicionados à branch `main`, e o GitHub Actions concluiu todos os testes e build com sucesso. **Vercel:** publicação bloqueada por limite de builds da equipe, sem relação direta com o código. Quando a quota permitir, a versão mais recente deverá ser publicada/reativada no projeto.
+A branch `main` contém as 24 aulas, 69 estudos aprofundados e os roteiros dos capítulos 1, 2 e 3. GitHub Actions valida o conteúdo e compila o site. A publicação externa é administrada exclusivamente pelo mantenedor, fora deste fluxo de edição.
 
 ### Precisão da fonte
 
@@ -54,7 +54,7 @@ Sem login ou banco de dados no MVP. O progresso individual (leitura, módulos ab
 
 ## Desenvolvimento e publicação
 
-Astro 5, exportação estática para Vercel. Conteúdo em JS versionado, sem CMS.
+Astro 5, exportação estática e conteúdo em JS versionado, sem CMS.
 
 ```bash
 npm install
@@ -62,7 +62,7 @@ npm run dev
 npm run build
 ```
 
-O GitHub Actions valida a curadoria dos 69 versículos, a presença dos 24 registros de aula, o conteúdo aprofundado de Gênesis 1–3, o build Astro e as páginas essenciais. A Vercel está conectada à branch `main`, **mas a publicação da versão completa está temporariamente bloqueada pelo limite de builds da equipe** (status GitHub/Vercel: `build-rate-limit`, em 14/11/2026). A última versão online pode estar atrasada em relação ao GitHub; é necessário verificar o painel da Vercel após o restabelecimento da quota. Testes automatizados de build não substituem inspeção interativa no navegador.
+O GitHub Actions valida a curadoria dos 69 versículos, os registros das 24 aulas, as análises aprofundadas, os roteiros de Gênesis 1–3, os 80 versículos de leitura, as 116 passagens cruzadas e a compilação completa. Os testes do repositório não substituem a verificação visual no computador. **Publicação e hospedagem ficam por conta do mantenedor; este projeto não executa nenhuma operação nelas.**
 
 ## Próximos estudos
 
