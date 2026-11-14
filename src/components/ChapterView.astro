@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import { textoGenesis, creditoTraducao } from '../data/texto-genesis.js';
+import { aulasDoCapitulo } from '../data/cobertura.js';
+import { trechoDoVersiculo, possuiEstudo, urlVerso } from '../data/estudo.js';
+
+const { capitulo } = Astro.props;
+const versos=textoGenesis[capitulo]||[];
+const aulas=aulasDoCapitulo(capitulo);
+const cobertura=capitulo===3?'1–13 de 24':versos.length+' de '+versos.length;
+---
+<Base title={'Gênesis '+capitulo+' — Leitura e estudos'}>
+  <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/livros/genesis/">Gênesis</a> / <span class="gold">Capítulo {capitulo}</span></div>
+  <section class="intro">
+    <span class="eyebrow">Gênesis · Leitura integral</span>
+    <h1>Gênesis {capitulo}</h1>
+    <p class="muted">Leia todos os {versos.length} versículos do capítulo. Toque no número de um versículo para ver o texto, as aulas relacionadas e os seis módulos de estudo.</p>
+  </section>
+  <div class="reading-note"><span class="eyebrow">Texto bíblico</span><strong>{creditoTraducao.nome}</strong><span>{creditoTraducao.autores} · {creditoTraducao.ano} · <a href={creditoTraducao.licencaUrl} target="_blank" rel="noopener noreferrer">{creditoTraducao.licenca}</a></span></div>
+  <div class="chapter-toolbar" data-chapter-id={capitulo}>
+    <label for="reading-mode">Visualização</label>
+    <select class="field" id="reading-mode"><option value="continua">Leitura contínua</option><option value="separada">Versículos separados</option></select>
+    <a class="btn secondary small" href="/progresso/">Meu progresso</a>
+    <span class="read-status" id="read-status">0 de {versos.length} lidos neste navegador</span>
+  </div>
+  <div class="chapter-reader" id="chapter-reader" aria-label={'Leitura de Gênesis '+capitulo}>
+    {versos.map(v=>{
+      const blocos=trechoDoVersiculo(capitulo,v.numero);
+      const studied=possuiEstudo(capitulo,v.numero);
+      const label=blocos.map(b=>'Aula '+String(b.aula).padStart(2,'0')+' · Gênesis '+b.faixa).join(' | ');
+      return <button type="button" class="read-verse" id={'v-'+v.numero} data-verse={v.numero} data-studied={studied?'1':'0'} data-lesson={label} aria-label={'Abrir Gênesis '+capitulo+':'+v.numero}>
+        <span class="v-num">{v.numero}</span><span class="v-text" data-verse-text>{v.texto}</span><span class="read-indicator" aria-hidden="true"></span>
+      </button>;
+    })}
+  </div>
+  <p class="muted" style="font-size:12px;margin-top:12px">O texto bíblico acima é da Bíblia Livre, sob licença CC BY 3.0 Brasil. O conteúdo das aulas do PDF está organizado separadamente e permanece identificado como edição consolidada.</p>
+  <div class="section-heading"><h2>Aulas relacionadas</h2><span class="tag">{aulas.length} aulas · {cobertura} versículos com estudo inicial</span></div>
+  <p class="muted" style="margin-bottom:14px">Cada aula cobre um trecho; a análise original não foi dividida artificialmente em comentários exclusivos de cada versículo.</p>
+  <div class="grid two">
+    {aulas.map(a=><a class="card lesson" href={'/estudos/'+a.aula+'/'}><span class="eyebrow">Aula {String(a.aula).padStart(2,'0')} · Gênesis {a.faixa}</span><h3>{a.tema}</h3><span class="gold">Abrir estudo completo da aula →</span></a>)}
+  </div>
+  {capitulo===3&&<div class="notice" style="margin-top:22px">Gênesis 3:14–24 já pode ser lido no site, mas o PDF termina em 3:13. A próxima aula prevista é Gênesis 3:14–15; os módulos de estudo desses versículos ainda não estão publicados.</div>}
+  <div class="chapter-navigation">
+    {capitulo>1?<a href={'/livros/genesis/'+(capitulo-1)+'/'} class="btn secondary">← Capítulo {capitulo-1}</a>:<a href="/livros/genesis/" class="btn secondary">← Livro de Gênesis</a>}
+    {capitulo<3?<a href={'/livros/genesis/'+(capitulo+1)+'/'} class="btn">Capítulo {capitulo+1} →</a>:<a href="/estudos/debates/" class="btn">Questões em aberto →</a>}
+  </div>
+
+  <dialog id="verse-preview" aria-labelledby="preview-heading">
+    <div class="modal-head"><div><span class="eyebrow">Prévia do versículo</span><h2 id="preview-heading">Gênesis</h2></div><button class="btn secondary small" type="button" id="preview-close">✕ Fechar</button></div>
+    <div class="verse-box" id="preview-text"></div>
+    <p class="muted" id="preview-lessons" style="margin-top:15px"></p>
+    <div class="controls"><a class="btn" id="preview-study" href="#">Abrir estudo completo →</a><button class="btn secondary" id="preview-read" type="button">✓ Marcar como lido</button></div>
+    <p class="muted" style="font-size:12px">Seu progresso é salvo apenas neste navegador.</p>
+  </dialog>
+</Base>
+<style>
+.reading-note{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 16px;font-size:12px;color:var(--muted)}.reading-note strong{color:var(--text)}.reading-note a{color:var(--gold);text-decoration:underline}
+.chapter-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:11px;margin:23px 0}.chapter-toolbar label{font-size:13px;color:var(--muted)}.read-status{margin-left:auto;font-size:12px;color:var(--muted)}
+.chapter-reader{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:30px 28px;font-family:Georgia,serif;font-size:21px;line-height:2.06}.read-verse{display:inline;background:transparent;border:0;padding:2px 3px;margin:0;color:var(--text);font:inherit;text-align:left;white-space:normal;line-height:inherit}.read-verse:hover,.read-verse:focus-visible{background:#3a3127;border-radius:4px;outline:1px solid var(--gold)}.read-verse .v-num{display:inline;color:var(--gold);font:700 12px Inter,system-ui,sans-serif;vertical-align:super;margin-right:6px}.v-text{display:inline}.read-indicator{font-size:12px;color:var(--green);margin-left:3px}.read-verse.read-marked .read-indicator::after{content:'✓'}
+.chapter-reader.separated{display:grid;gap:11px;background:transparent;border:0;padding:0}.separated .read-verse{display:block;border:1px solid var(--line);background:var(--card);padding:16px 20px;border-radius:11px}.separated .read-verse:hover{border-color:var(--gold)}.lesson{display:flex;flex-direction:column;gap:9px}.lesson .gold{margin-top:auto;font-size:13px}.chapter-navigation{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:32px}
+dialog{width:min(670px,calc(100vw - 24px));max-height:90vh;overflow:auto;padding:25px;border:1px solid #705d43;border-radius:15px;color:var(--text);background:var(--card);box-shadow:0 25px 90px #000b}dialog::backdrop{background:#000b}.modal-head{display:flex;justify-content:space-between;gap:15px;align-items:start;margin-bottom:17px}.modal-head h2{margin-top:5px}
+@media(max-width:700px){.chapter-reader{padding:15px;font-size:18px}.read-status{width:100%;margin-left:0}.chapter-navigation .btn{flex:1}dialog{padding:18px}}@media(max-width:430px){.chapter-navigation{flex-direction:column}}
+</style>
+<script>
+import { getVerse, markRead } from '../scripts/progresso.js';
+const root=document.querySelector('[data-chapter-id]');
+if(root){
+ const cap=Number(root.dataset.chapterId),reader=document.getElementById('chapter-reader');
+ const mode=document.getElementById('reading-mode');
+ const modal=document.getElementById('verse-preview');
+ const all=[...reader.querySelectorAll('[data-verse]')];let active=1;
+ try{mode.value=localStorage.getItem('atlas:mode:genesis')||'continua';}catch{}
+ function renderMode(){reader.classList.toggle('separated',mode.value==='separada');}
+ mode.addEventListener('change',()=>{renderMode();try{localStorage.setItem('atlas:mode:genesis',mode.value);}catch{}});renderMode();
+ function renderRead(){
+   let count=0;
+   for(const b of all){const yes=getVerse(cap,Number(b.dataset.verse)).read;b.classList.toggle('read-marked',yes);if(yes)count++;}
+   document.getElementById('read-status').textContent=count+' de '+all.length+' lidos neste navegador';
+ }
+ function close(){modal.close();}
+ for(const button of all)button.addEventListener('click',()=>{
+   active=Number(button.dataset.verse);
+   document.getElementById('preview-heading').textContent='Gênesis '+cap+':'+active;
+   document.getElementById('preview-text').textContent=button.querySelector('[data-verse-text]').textContent;
+   document.getElementById('preview-lessons').textContent=button.dataset.studied==='1'
+     ?'Análise consolidada do trecho: '+button.dataset.lesson+'.'
+     :'O texto bíblico está disponível, mas o PDF ainda não inclui estudo para este versículo.';
+   const study=document.getElementById('preview-study');
+   study.href='/livros/genesis/'+cap+'/'+active+'/';
+   study.textContent=button.dataset.studied==='1'?'Abrir seis módulos →':'Abrir página do versículo →';
+   document.getElementById('preview-read').textContent=getVerse(cap,active).read?'✓ Já marcado como lido':'✓ Marcar como lido';
+   modal.showModal();
+ });
+ document.getElementById('preview-read').addEventListener('click',()=>{
+   markRead(cap,active);renderRead();
+   document.getElementById('preview-read').textContent='✓ Já marcado como lido';
+ });
+ document.getElementById('preview-close').addEventListener('click',close);
+ modal.addEventListener('click',e=>{if(e.target===modal)close();});
+ renderRead();
+}
+</script>
