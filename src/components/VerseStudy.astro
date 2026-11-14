@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import { textoVerso, possuiEstudo, gerarConteudoDoVersiculo, modulos, ligaReferencia, urlVerso, totalVersosPorCapitulo } from '../data/estudo.js';
 import { textoDaReferencia } from '../data/referencias.js';
 import { urlReferencia } from '../data/rotas-referencias.js';
+import { questoesDoVersiculo, urlQuestao } from '../data/questoes-abertas.js';
 const { capitulo, versiculo }=Astro.props;
 const verse=textoVerso(capitulo,versiculo);
 const study=gerarConteudoDoVersiculo(capitulo,versiculo);
@@ -17,6 +18,7 @@ const refs=study?.referencias.map((r,i)=>{
 const prev=versiculo>1?{c:capitulo,v:versiculo-1}:capitulo>1?{c:capitulo-1,v:totalVersosPorCapitulo[capitulo-1]}:null;
 const next=versiculo<totalVersosPorCapitulo[capitulo]?{c:capitulo,v:versiculo+1}:capitulo<3?{c:capitulo+1,v:1}:null;
 const title='Gênesis '+capitulo+':'+versiculo;
+const questoes=questoesDoVersiculo(capitulo,versiculo);
 ---
 <Base title={title+' — Atlas Bíblico'}>
   <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/livros/genesis/">Gênesis</a> / <a href={'/livros/genesis/'+capitulo+'/'}>Capítulo {capitulo}</a> / <span class="gold">Versículo {versiculo}</span></div>
@@ -34,6 +36,21 @@ const title='Gênesis '+capitulo+':'+versiculo;
     </div>
     <p class="notice hidden" id="verse-complete" style="margin-top:20px">✓ Todos os seis módulos concluídos! Este versículo entrou no ciclo opcional de revisão espaçada.</p>
 
+    <section class="future-questions" id="questoes-em-aberto">
+      <div class="section-heading"><h2>Questões para estudos futuros</h2><span class="tag">{questoes.length} ligadas ao versículo</span></div>
+      <p class="muted" style="margin-bottom:14px">São temas que surgiram durante o estudo e podem ser retomados nas próximas passagens. Não são provas nem perguntas obrigatórias.</p>
+      {questoes.length>0
+        ? <div class="open-questions">
+            {questoes.map(q=><a href={urlQuestao(q.id)} class="open-question card">
+              <span class="eyebrow">{q.id} · {q.estado}</span>
+              <strong>{q.titulo}</strong>
+              {q.nota&&<p>{q.nota}</p>}
+              <span class="gold">Consultar investigação →</span>
+            </a>)}
+          </div>
+        : <div class="open-question-empty">Nenhuma questão do apêndice foi vinculada diretamente a este versículo. <a href="/estudos/debates/">Ver todos os temas em aberto →</a></div>}
+      <a class="future-questions-all" href="/estudos/debates/">Ver o arquivo completo de questões em aberto →</a>
+    </section>
     <details class="private-notes">
       <summary>Minhas anotações (opcional)</summary>
       <label class="label" for="verse-note">Observações pessoais sobre {title} · salvas no navegador</label>
@@ -89,6 +106,7 @@ const title='Gênesis '+capitulo+':'+versiculo;
 </Base>
 <style is:global>
 .main-verse{margin-bottom:10px}.source{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px}.source a{color:var(--gold);text-decoration:underline}.verse-actions,.lesson-links,.chapter-nav{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:18px 0 25px}
+.future-questions{margin-top:30px}.open-questions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.open-question{display:flex;flex-direction:column;gap:7px;min-height:130px}.open-question strong{font-size:16px}.open-question p{font-size:12px;color:var(--muted);line-height:1.6}.open-question .gold{font-size:12px;margin-top:auto}.open-question:hover{border-color:var(--gold)}.open-question-empty{border:1px solid var(--line);border-radius:10px;padding:15px;color:var(--muted);font-size:13px}.open-question-empty a,.future-questions-all{color:var(--gold);font-size:13px}.future-questions-all{display:inline-block;margin-top:14px}.future-questions-all:hover{text-decoration:underline}@media(max-width:650px){.open-questions{grid-template-columns:1fr}}
 .module-scripture{background:#1b1e21;border-left:3px solid var(--gold);border-radius:8px;padding:14px 17px}.module-scripture p{font:18px/1.75 Georgia,serif;margin:7px 0 0}.private-notes,.source-details{margin-top:18px;border:1px solid var(--line);border-radius:11px;padding:15px 18px;background:var(--card2)}.private-notes summary,.source-details summary{cursor:pointer;color:var(--gold);font-size:14px;font-weight:600}.private-notes label{margin:15px 0 8px}.source-details p{font-size:13px;color:var(--muted);padding:12px 0}.source-link{display:block;padding:8px 0;color:var(--gold);font-size:13px}.source-link:hover{text-decoration:underline}
 .progress-line{height:7px;background:#33383d;border-radius:12px;margin:0 0 17px;overflow:hidden}.progress-line>div{height:100%;width:0;background:var(--gold);transition:width .2s}
 .module{text-align:left;color:var(--text);display:flex;flex-direction:column;gap:8px}.module{min-height:170px}.module h3{font-size:17px}.module p{font-size:13px}.module .gold{font-size:12px;margin-top:auto;font-weight:650}.module-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.module-symbol{font-size:23px;color:var(--gold)}.module-status{font-size:11px;color:var(--muted)}.module[data-state="in-progress"] .module-status{color:var(--gold)}.module[data-state="done"]{border-color:#47775b}.module[data-state="done"] .module-status{color:var(--green)}.module[data-state="done"] .module-status::before{content:'✓ ';color:var(--green)}
