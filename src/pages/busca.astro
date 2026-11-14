@@ -3,10 +3,11 @@ import Base from '../layouts/Base.astro';
 import { livros } from '../data/biblia.js';
 import { aulas } from '../data/aulas.js';
 import { textoGenesis } from '../data/texto-genesis.js';
+import { obterAprofundamento } from '../data/estudos-aprofundados.js';
 const results=[
   ...livros.map(l=>({tipo:'Livro bíblico',titulo:l.nome,descricao:l.categoria+' · '+l.capitulos+' capítulos',conteudo:l.nome+' '+l.categoria,href:l.nome==='Gênesis'?'/livros/genesis/':'/'})),
   ...aulas.map(a=>({tipo:'Aula '+String(a.numero).padStart(2,'0'),titulo:a.titulo,descricao:a.categoria+' · '+a.secoes.length+' tópicos · '+a.referencias.length+' referências',conteudo:[a.titulo,...a.secoes.map(s=>s.titulo+' '+s.texto),...a.referencias.map(r=>r.referencia+' '+r.texto+' '+r.conexao),...a.perguntas].join(' '),href:'/estudos/'+a.numero+'/'})),
-  ...[1,2,3].flatMap(c=>textoGenesis[c].map(v=>({tipo:'Texto bíblico · Gênesis '+c,titulo:'Gênesis '+c+':'+v.numero,descricao:'Bíblia Livre (BLIVRE)',conteudo:'Gênesis '+c+':'+v.numero+' '+v.texto,href:'/livros/genesis/'+c+'/'+v.numero+'/'})))
+  ...[1,2,3].flatMap(c=>textoGenesis[c].map(v=>({tipo:'Texto bíblico · Gênesis '+c,titulo:'Gênesis '+c+':'+v.numero,descricao:'Bíblia Livre (BLIVRE)',conteudo:['Gênesis '+c+':'+v.numero,v.texto,...(obterAprofundamento(c,v.numero) ? [obterAprofundamento(c,v.numero).tema,...obterAprofundamento(c,v.numero).passos.flat(),...obterAprofundamento(c,v.numero).leituras.flat(),...obterAprofundamento(c,v.numero).termos?.flat()||[],...obterAprofundamento(c,v.numero).sintese] : [])].join(' '),href:'/livros/genesis/'+c+'/'+v.numero+'/'})))
 ];
 const json=JSON.stringify(results).replace(/</g,'\\u003c');
 ---
