@@ -31,14 +31,14 @@ export function ligaReferencia(referencia){
 
 function entrada(titulo,texto,origem='',tipo='texto'){return {titulo,texto,origem,tipo};}
 const semInformacao={
-  textual:'A edição consolidada não apresenta uma observação lexical específica para este versículo. O texto integral está acima; nenhuma análise de hebraico foi inventada.',
-  historico:'Não há um contexto histórico específico atribuído a este versículo nas Aulas 1–24. Consulte a aula completa para o contexto do trecho.',
-  interpretacoes:'O PDF não registrou uma interpretação específica para este versículo isolado; a aula de origem estuda um trecho mais amplo.',
-  arqueologia:'A edição consolidada não registra evidências arqueológicas ou científicas específicas relacionadas a este versículo. Ausência de estudo não significa confirmação ou refutação.'
+  textual:'O acervo ainda não apresenta uma observação lexical específica para este versículo. O texto integral está acima; nenhuma análise de hebraico foi inventada.',
+  historico:'Não há um contexto histórico específico registrado para este versículo. Consulte a aula completa para o contexto do trecho.',
+  interpretacoes:'Ainda não há interpretação específica registrada para este versículo isolado; o estudo relacionado abrange um trecho mais amplo.',
+  arqueologia:'Ainda não há evidências arqueológicas ou científicas específicas registradas para este versículo. Ausência de estudo não significa confirmação ou refutação.'
 };
 const rotulos={textual:'Análise textual',historico:'Contexto histórico',interpretacoes:'Interpretações',arqueologia:'Arqueologia e ciência'};
 function preencher(module,partes,origem){
-  return partes.length?partes:[entrada('Sem estudo específico no PDF',semInformacao[module],origem)];
+  return partes.length?partes:[entrada('Sem explicação específica registrada',semInformacao[module],origem)];
 }
 export function gerarConteudoDoVersiculo(capitulo,versiculo){
   const blocos=aulasDoVersiculo(capitulo,versiculo);
