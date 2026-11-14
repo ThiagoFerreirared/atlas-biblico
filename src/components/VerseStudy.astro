@@ -19,7 +19,7 @@ const title='Gênesis '+capitulo+':'+versiculo;
   <div class="verse-actions"><a class="btn secondary small" href={'/livros/genesis/'+capitulo+'/#v-'+versiculo}>← Voltar ao capítulo, versículo {versiculo}</a><button class="btn secondary small" id="mark-read" type="button">Marcar como lido</button><a class="btn secondary small" href="/progresso/">Meu progresso</a></div>
 
   {has ? <>
-    <div class="notice">**Origem do estudo:** Atlas Bíblico — Aulas 1–24, edição consolidada de 14/11/2026. {study.nota} O conteúdo permanece integralmente disponível nas páginas das aulas.</div>
+    <div class="notice"><strong>Origem do estudo:</strong> Atlas Bíblico — Aulas 1–24, edição consolidada de 14/11/2026. {study.nota} O conteúdo permanece integralmente disponível nas páginas das aulas.</div>
     <div class="lesson-links">{study.aulas.map(t=><a class="lesson-link" href={'/estudos/'+t.aula.numero+'/'}><span class="eyebrow">Aula {String(t.aula.numero).padStart(2,'0')}</span><strong>Gênesis {t.faixa}</strong><span class="gold">Ler aula completa →</span></a>)}</div>
     <div class="section-heading"><h2>Seis módulos de estudo</h2><span class="tag" id="progress-label">0 de 6 concluídos</span></div>
     <div class="progress-line"><div id="progress-fill"></div></div>
