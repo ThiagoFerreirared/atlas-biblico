@@ -6,6 +6,19 @@ import { estudoGenesisInicial } from '../src/data/curadoria-genesis-1.js';
 import { gerarConteudoDoVersiculo, possuiEstudo } from '../src/data/estudo.js';
 import { questoesAbertas } from '../src/data/questoes-abertas.js';
 
+// Instantâneo de integridade do acervo comparado com as 42 páginas da edição
+// consolidada em 14/11/2026. O hash cobre títulos, textos, referências,
+// explicações de conexão, questões, registros e os 31 debates.
+function hashIntegridade(v){
+  let h=0xcbf29ce484222325n;
+  const s=JSON.stringify(v);
+  for(let i=0;i<s.length;i++){
+    h^=BigInt(s.charCodeAt(i));
+    h=(h*0x100000001b3n)&0xffffffffffffffffn;
+  }
+  return h.toString(16).padStart(16,'0');
+}
+assert.equal(hashIntegridade({aulas,debates}),'cd0b54813642c1c9','O acervo original foi modificado desde a auditoria integral do PDF; conferir diferenças na fonte antes de aprovar.');
 const stats={aulas:0,topicos:0,referencias:0,conexoes:0,perguntas:0,registros:0,debates:0,versiculos:0};
 const cobertas=new Set();
 for(const aula of aulas){
