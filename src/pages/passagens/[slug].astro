@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import { textosDasReferencias } from '../../data/referencias.js';
+import { slugReferencia } from '../../data/rotas-referencias.js';
+import { aulas } from '../../data/aulas.js';
+import { ligaReferencia, possuiEstudo } from '../../data/estudo.js';
+
+export function getStaticPaths() {
+  return Object.entries(textosDasReferencias).map(([referencia, passagem]) => ({
+    params: {slug: slugReferencia(referencia)},
+    props: {referencia, passagem}
+  }));
+}
+const {referencia, passagem}=Astro.props;
+const contextos=aulas.flatMap(a=>
+  a.referencias.filter(r=>r.referencia===referencia).map(r=>({
+    aula:a.numero,titulo:a.titulo,explicacao:r.conexao
+  }))
+);
+const direct=ligaReferencia(referencia);
+const refMatch=referencia.match(/^G[eê]nesis\s+(\d+):(\d+)/i);
+const studyAvailable=Boolean(refMatch && possuiEstudo(Number(refMatch[1]),Number(refMatch[2])));
+---
+<Base title={referencia+' — Passagem relacionada'}>
+  <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/estudos/">Estudos</a> / <span class="gold">Passagem relacionada</span></div>
+  <section class="intro">
+    <span class="eyebrow">Texto bíblico · Bíblia Livre</span>
+    <h1>{referencia}</h1>
+    <p class="muted">Leia a passagem e consulte por que ela foi relacionada aos estudos do Atlas Bíblico.</p>
+  </section>
+
+  <div class="passage">
+    {passagem.versiculos.map(v=><p><span class="number">{v.numero}</span>{v.texto}</p>)}
+  </div>
+  <p class="attribution">Fonte: Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018. <a href="https://creativecommons.org/licenses/by/3.0/br/" target="_blank" rel="noopener noreferrer">Licença CC BY 3.0 Brasil</a>.</p>
+
+  <div class="controls">
+    {studyAvailable && direct
+      ? <a class="btn" href={direct}>Estudar com os seis módulos →</a>
+      : <span class="tag">Estudo individual aprofundado ainda não publicado</span>}
+    <a class="btn secondary" href="/estudos/">Ver as 24 aulas</a>
+    <a class="btn secondary" id="return-origin" href="/estudos/">← Voltar ao estudo de origem</a>
+  </div>
+
+  <div class="section-heading"><h2>Por que esta passagem aparece no Atlas?</h2></div>
+  <p class="muted" style="margin-bottom:18px">Explicações registradas nas aulas do PDF consolidado. A relação pode ser temática, literária ou interpretativa; ela não implica necessariamente uma citação direta.</p>
+  <div class="connections">
+    {contextos.map(c=><article class="card reason">
+      <span class="eyebrow">Aula {String(c.aula).padStart(2,'0')}</span>
+      <h3>{c.titulo}</h3>
+      <p>{c.explicacao}</p>
+      <a class="text-link gold" href={'/estudos/'+c.aula+'/'}>Ler a aula de origem →</a>
+    </article>)}
+  </div>
+  <p class="notice" style="margin-top:24px">O PDF original acompanha Gênesis até 3:13. Para referências fora dessa cobertura, esta página permite ler a passagem completa e consultar sua relação com o estudo, sem inventar módulos aprofundados que ainda não foram produzidos.</p>
+</Base>
+<style>
+.passage{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:24px 28px;font:21px/1.9 Georgia,serif}
+.passage p+p{margin-top:10px}.number{color:var(--gold);display:inline-block;min-width:24px;font:700 13px/1.7 system-ui,sans-serif;vertical-align:baseline;margin-right:7px}
+.attribution{color:var(--muted);font-size:12px;margin-top:12px;line-height:1.75}.attribution a{color:var(--gold);text-decoration:underline}
+.connections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.reason{display:flex;flex-direction:column;gap:10px}.reason h3{font-size:18px}.reason p{line-height:1.75}.reason .text-link{margin-top:auto;font-size:13px}
+@media(max-width:700px){.connections{grid-template-columns:1fr}.passage{font-size:18px;padding:17px}.controls .btn{flex:1}}
+</style>
+<script>
+const back=document.getElementById('return-origin');
+const origin=new URLSearchParams(window.location.search).get('origem');
+const match=origin?.match(/^([123])-([1-9]\d?)$/);
+if(match&&back){
+ const c=Number(match[1]),v=Number(match[2]);
+ if((c===1&&v<=31)||(c===2&&v<=25)||(c===3&&v<=24)){
+   back.href='/livros/genesis/'+c+'/'+v+'/';
+   back.textContent='← Voltar a Gênesis '+c+':'+v;
+ }
+}
+</script>
