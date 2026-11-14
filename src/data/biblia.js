@@ -4,7 +4,7 @@ export const modulos = [
   { id: 'conexoes', titulo: 'Conexões bíblicas', icone: '◇', descricao: 'Passagens relacionadas e explicadas' },
   { id: 'interpretacoes', titulo: 'Interpretações', icone: '⚖', descricao: 'Leituras e debates teológicos' },
   { id: 'arqueologia', titulo: 'Arqueologia e ciência', icone: '⌕', descricao: 'Pesquisas, evidências e limites' },
-  { id: 'revisao', titulo: 'Reflexão e revisão', icone: '✓', descricao: 'Síntese e compreensão' },
+  { id: 'revisao', titulo: 'Síntese do estudo', icone: '✓', descricao: 'O essencial da explicação deste versículo' },
 ];
 
 export const livros = [
