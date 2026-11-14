@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import { aulas, estadoDoPdf } from '../../data/aulas.js';
+const fundamentos=aulas.filter(a=>a.categoria==='Fundamentos');
+const genesis=aulas.filter(a=>a.categoria==='Gênesis');
+---
+<Base title="Todas as aulas — Atlas Bíblico">
+  <div class="breadcrumbs"><a href="/">Biblioteca</a> / <span class="gold">Aulas</span></div>
+  <section class="intro"><span class="eyebrow">Acervo de estudos · PDF consolidado</span><h1>24 aulas. Um caminho<br/>de investigação.</h1><p class="muted">Material importado do Atlas Bíblico — edição consolidada de 14 de novembro de 2026. Conteúdo estruturado com explicações, referências bíblicas comentadas, revisão e questões em aberto.</p></section>
+  <div class="summary-cards">
+    <div class="card"><strong>24</strong><span>Aulas importadas</span></div>
+    <div class="card"><strong>5</strong><span>Aulas de fundamentos</span></div>
+    <div class="card"><strong>3:13</strong><span>Último versículo abordado</span></div>
+  </div>
+  <p class="notice" style="margin:24px 0">Este acervo reproduz a edição <strong>consolidada</strong> do estudo, não o histórico literal completo da conversa. A cobertura é inicial, e alguns temas e avaliações permanecem em aberto. Os textos de passagens relacionados são paráfrases de estudo.</p>
+  <div class="controls"><input id="lesson-search" class="field search" type="search" placeholder="Buscar aula, assunto ou referência..." aria-label="Pesquisar aulas"/><a class="btn secondary" href="/livros/genesis/">Ver Gênesis →</a></div>
+  <div id="lessons">
+    <section class="group"><div class="section-heading"><h2>Fundamentos bíblicos</h2><span class="tag">Aulas 01–05</span></div><div class="grid two">
+      {fundamentos.map(a=><a class="card lesson" data-search={[a.titulo,...a.secoes.map(s=>s.titulo),...a.referencias.map(r=>r.referencia)].join(' ').toLowerCase()} href={'/estudos/'+a.numero+'/'}><span class="eyebrow">AULA {String(a.numero).padStart(2,'0')}</span><h3>{a.titulo}</h3><p class="muted">{a.secoes.length} tópicos · {a.referencias.length} referências</p><span class="gold">Ler aula →</span></a>)}
+    </div></section>
+    <section class="group"><div class="section-heading"><h2>Estudos de Gênesis</h2><span class="tag">Aulas 06–24</span></div><div class="grid two">
+      {genesis.map(a=><a class="card lesson" data-search={[a.titulo,...a.secoes.map(s=>s.titulo),...a.referencias.map(r=>r.referencia)].join(' ').toLowerCase()} href={'/estudos/'+a.numero+'/'}><span class="eyebrow">AULA {String(a.numero).padStart(2,'0')}</span><h3>{a.titulo}</h3><p class="muted">{a.secoes.length} tópicos · {a.referencias.length} referências</p><span class="gold">Ler aula →</span></a>)}
+    </div></section>
+  </div>
+  <div class="card" style="margin-top:28px"><span class="eyebrow">Continuação do estudo</span><h3 style="margin:6px 0">Próxima aula: {estadoDoPdf.proximaAula}</h3><p class="muted">{estadoDoPdf.nota}</p></div>
+</Base>
+<style>
+  .summary-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.summary-cards .card{display:grid;gap:5px}.summary-cards strong{font-size:29px;color:var(--gold)}.summary-cards span{font-size:12px;color:var(--muted)}.lesson{display:flex;flex-direction:column;gap:8px;min-height:155px}.lesson h3{font-size:18px}.lesson .gold{margin-top:auto;font-size:13px;font-weight:700}.group{margin-top:27px}.group:has(.lesson:not(.hidden)){}.group:has(.lesson:not(:not(.hidden))){display:none}@media(max-width:600px){.summary-cards{grid-template-columns:1fr 1fr}.summary-cards .card:last-child{grid-column:span 2}}
+</style>
+<script>
+  const search=document.getElementById('lesson-search');
+  const norm=(s)=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  search.addEventListener('input',()=>{
+    for(const el of document.querySelectorAll('.lesson'))el.classList.toggle('hidden',!norm(el.dataset.search).includes(norm(search.value)));
+    for(const group of document.querySelectorAll('.group'))group.classList.toggle('hidden',!group.querySelector('.lesson:not(.hidden)'));
+  });
+</script>
