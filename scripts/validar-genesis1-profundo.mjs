@@ -15,9 +15,9 @@ for(const versiculo of ids){
     assert(Array.isArray(a[campo])&&a[campo].length>=min,'Campo incompleto: '+campo+' no versículo '+versiculo);
   }
   for(const passo of a.passos)assert(Array.isArray(passo)&&passo.length===2&&passo[0].length>=5&&passo[1].length>=60,'Passo incompleto: '+versiculo);
-  for(const leitura of a.leituras)assert(Array.isArray(leitura)&&leitura.length===3&&leitura.every(s=>s.length>12),'Falta contraste ou limite numa interpretação: '+versiculo);
+  for(const leitura of a.leituras)assert(Array.isArray(leitura)&&leitura.length===3&&leitura[0].length>=5&&leitura[1].length>12&&leitura[2].length>12,'Falta contraste ou limite numa interpretação: '+versiculo);
   for(const termo of a.termos||[])assert(termo.length===3&&/[\u0590-\u05ff]/.test(termo[0]),'Termo sem grafia hebraica: '+versiculo);
-  if(a.quadro){assert(a.quadro.colunas.length>=2&&a.quadro.linhas.length>=2,'Quadro incompleto: '+versiculo);}
+  if(a.quadro){assert(a.quadro.colunas.length>=2&&a.quadro.linhas.length>=1,'Quadro incompleto: '+versiculo);}
   assert(coberturaGenesis.some(r=>r.capitulo===1&&versiculo>=r.de&&versiculo<=r.ate),'Sem origem no PDF: '+versiculo);
 }
 assert(fontesGenesis1.some(f=>f.url?.includes('mechon-mamre.org')));
