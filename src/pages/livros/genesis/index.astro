@@ -1,0 +1,23 @@
+---
+import Base from '../../../layouts/Base.astro';
+---
+<Base title="Gênesis — Livro">
+  <div class="breadcrumbs"><a href="/">Biblioteca</a> / Antigo Testamento / Pentateuco / <span class="gold">Gênesis</span></div>
+  <section class="intro">
+    <span class="eyebrow">Pentateuco · 50 capítulos</span>
+    <h1>Gênesis</h1>
+    <p class="muted">O livro das origens: criação, humanidade, patriarcas e promessas. Explore os capítulos e acompanhe a publicação progressiva dos estudos.</p>
+  </section>
+  <div class="card prose"><span class="eyebrow">Apresentação</span><h2 style="margin:8px 0">Conheça o livro</h2>
+    <p>Gênesis abre o Pentateuco e reúne narrativas sobre as origens e os antepassados de Israel. Questões de autoria, composição e contexto histórico receberão estudos específicos à medida que o material for revisado.</p>
+    <p class="muted">Esta introdução é provisória. Não substitui o estudo enciclopédico completo.</p>
+  </div>
+  <div class="section-heading"><h2>Selecionar capítulo</h2><span class="tag">50 capítulos</span></div>
+  <div class="chapters">
+    {Array.from({length:50},(_,i)=>i+1).map(n=>n===1?<a href="/livros/genesis/1/" class="chapter available" aria-label="Abrir Gênesis capítulo 1">{n}<span>Ver estudo</span></a>:<div class="chapter pending" title="Estudo ainda não publicado">{n}<span>Em preparação</span></div>)}
+  </div>
+  <p class="notice" style="margin-top:25px">O capítulo 1 está disponível como demonstração, com os três primeiros versículos. Os demais serão adicionados progressivamente.</p>
+</Base>
+<style>
+  .chapters{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:10px}.chapter{background:var(--card);border:1px solid var(--line);border-radius:10px;min-height:78px;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:750;font-size:18px}.chapter span{font-size:9px;font-weight:400;color:var(--muted)}.available{border-color:#997a50;color:var(--gold)}.available:hover{background:#39342b}.pending{opacity:.55}@media(max-width:720px){.chapters{grid-template-columns:repeat(5,minmax(0,1fr))}.chapter{min-height:66px}}
+</style>
