@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import { aulas } from '../../data/aulas.js';
+export function getStaticPaths(){
+  return aulas.map(a=>({params:{numero:String(a.numero)},props:{a}}));
+}
+const {a}=Astro.props;
+const prev=a.numero>1?a.numero-1:null;
+const next=a.numero<24?a.numero+1:null;
+---
+<Base title={'Aula '+String(a.numero).padStart(2,'0')+' — '+a.titulo}>
+  <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/estudos/">Aulas</a> / <span class="gold">Aula {String(a.numero).padStart(2,'0')}</span></div>
+  <section class="intro"><span class="eyebrow">{a.categoria} · Aula {String(a.numero).padStart(2,'0')} de 24</span><h1>{a.titulo}</h1><p class="muted">Atlas Bíblico · Edição consolidada de 14 de novembro de 2026</p></section>
+  <div class="notice">Conteúdo importado do PDF fornecido, com a organização e o texto da edição consolidada. Não é transcrição literal do chat. As referências abaixo são <strong>paráfrases de estudo</strong>, não citações de uma tradução bíblica específica.</div>
+  <div class="layout">
+    <div class="body">
+      <section id="explicacoes"><div class="section-heading"><h2>Explicações e análise</h2><span class="tag">{a.secoes.length} tópicos</span></div>
+        {a.secoes.map((s,i)=><article class="card paragraph" id={'topico-'+(i+1)}><span class="eyebrow">Tópico {String(i+1).padStart(2,'0')}</span><h3>{s.titulo}</h3><p>{s.texto}</p></article>)}
+      </section>
+      <section id="referencias"><div class="section-heading"><h2>Referências cruzadas</h2><span class="tag">{a.referencias.length} passagens</span></div>
+        {a.referencias.map(r=><article class="card ref"><div class="ref-head"><h3>{r.referencia}</h3><span class="chip">Paráfrase</span></div><blockquote>“{r.texto}”</blockquote><p><strong class="gold">Conexão:</strong> {r.conexao}</p></article>)}
+      </section>
+      <section id="revisao"><div class="section-heading"><h2>Perguntas para revisão</h2><span class="tag">{a.perguntas.length} questões</span></div>
+        <div class="card">
+          {a.perguntas.map((q,i)=><div class="question"><span class="eyebrow">Questão {i+1}</span><p>{q}</p><label class="label" for={'answer-'+i}>Sua reflexão (salva neste navegador)</label><textarea class="field answer" id={'answer-'+i} data-answer={i} rows="3" placeholder="Escreva sua resposta..."></textarea></div>)}
+        </div>
+      </section>
+      <section id="registro"><div class="section-heading"><h2>Registros e questões abertas</h2></div><div class="card"><p>{a.registro}</p></div></section>
+      <div class="controls bottom"><a class="btn secondary" href={prev?'/estudos/'+prev+'/':'/estudos/'}>← {prev?'Aula anterior':'Todas as aulas'}</a><a class="btn" href={next?'/estudos/'+next+'/':'/estudos/'}>{next?'Próxima aula':'Todas as aulas'} →</a></div>
+    </div>
+    <aside><div class="card aside"><span class="eyebrow">Nesta aula</span><a href="#explicacoes">Explicações e análise</a><a href="#referencias">Referências cruzadas</a><a href="#revisao">Perguntas para revisão</a><a href="#registro">Registros e debates</a><hr/><a href="/estudos/">← Índice das aulas</a>{a.numero>=6&&<a href="/livros/genesis/">↗ Livro de Gênesis</a>}</div></aside>
+  </div>
+</Base>
+<style>
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:28px;margin-top:24px;align-items:start}.paragraph{margin-bottom:13px}.paragraph h3{margin:9px 0;font-size:19px;color:var(--text)}.paragraph p{line-height:1.85}.ref{margin-bottom:13px}.ref-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.ref-head h3{color:var(--gold)}.ref blockquote{margin:12px 0;font-family:Georgia,serif;font-size:18px;line-height:1.7;border-left:2px solid var(--gold);padding-left:16px}.ref p{font-size:14px;color:var(--muted)}.question{padding:16px 0;border-bottom:1px solid var(--line)}.question:first-child{padding-top:0}.question:last-child{border-bottom:0;padding-bottom:0}.question p{margin:8px 0 14px}.answer{display:block;width:100%;resize:vertical;font-size:14px}.aside{position:sticky;top:95px;display:flex;flex-direction:column;gap:12px;font-size:13px}.aside a{color:var(--muted)}.aside a:hover{color:var(--gold)}.aside hr{width:100%;border:0;border-top:1px solid var(--line)}.bottom{justify-content:space-between;margin-top:30px}@media(max-width:850px){.layout{display:block}aside{display:none}}@media(max-width:600px){.bottom{display:grid;grid-template-columns:1fr}.bottom .btn{width:100%}}
+</style>
+<script define:vars={{lessonNumber:a.numero}}>
+  for(const field of document.querySelectorAll('[data-answer]')){
+    const key='atlas:aula:'+lessonNumber+':resposta:'+field.dataset.answer;
+    try{field.value=localStorage.getItem(key)||'';}catch{}
+    field.addEventListener('input',()=>{try{localStorage.setItem(key,field.value);}catch{}});
+  }
+</script>
