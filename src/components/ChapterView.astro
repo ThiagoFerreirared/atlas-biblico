@@ -18,9 +18,9 @@ const temasPendentes=questoesDoCapitulo(capitulo);
   <section class="intro">
     <span class="eyebrow">Gênesis · Leitura integral</span>
     <h1>Gênesis {capitulo}</h1>
-    <p class="muted">Leia todos os {versos.length} versículos do capítulo. Toque no número de um versículo para ver o texto, as aulas relacionadas e os seis módulos de estudo.</p>
+    <p class="muted">Leia todos os {versos.length} versículos do capítulo. Toque no número de um versículo para ver o texto, os assuntos relacionados e os seis módulos de estudo.</p>
   </section>
-  <div class="controls" style="margin:0 0 22px"><a href="#conteudo-pdf" class="btn">Ver todos os tópicos do PDF ↓</a><a href="#chapter-reader" class="btn secondary">Ler o capítulo</a></div>
+  <div class="controls" style="margin:0 0 22px"><a href="#conteudo-pdf" class="btn">Explorar os temas do capítulo ↓</a><a href="#chapter-reader" class="btn secondary">Ler o capítulo</a></div>
   <div class="reading-note"><span class="eyebrow">Texto bíblico</span><strong>{creditoTraducao.nome}</strong><span>{creditoTraducao.autores} · {creditoTraducao.ano} · <a href={creditoTraducao.licencaUrl} target="_blank" rel="noopener noreferrer">{creditoTraducao.licenca}</a></span></div>
   <div class="chapter-toolbar" data-chapter-id={capitulo}>
     <label for="reading-mode">Visualização</label>
@@ -38,7 +38,7 @@ const temasPendentes=questoesDoCapitulo(capitulo);
       </button>;
     })}
   </div>
-  <p class="muted" style="font-size:12px;margin-top:12px">O texto bíblico acima é da Bíblia Livre, sob licença CC BY 3.0 Brasil. {capitulo===1?'Os módulos dos 31 versículos incluem uma ampliação editorial identificada, baseada nas aulas do PDF.':'Os comentários permanecem identificados como material da edição consolidada do PDF.'}</p>
+  <p class="muted" style="font-size:12px;margin-top:12px">O texto bíblico acima é da Bíblia Livre, sob licença CC BY 3.0 Brasil. {capitulo===1?'Os estudos apresentam explicações passo a passo, hebraico, comparações e diferentes interpretações.':'Os estudos estão organizados por versículo e assunto.'}</p>
   {capitulo===1&&<section class="genesis1-route" id="roteiro">
     <div class="section-heading"><h2>Roteiro aprofundado de Gênesis 1</h2><span class="tag">31 versículos · aulas 06–15</span></div>
     <p class="muted" style="margin-bottom:16px">Escolha uma etapa para abrir as explicações do versículo, com hebraico quando documentado, comparações e diferentes interpretações.</p>
@@ -57,14 +57,14 @@ const temasPendentes=questoesDoCapitulo(capitulo);
         <span class="gold">Estudar passagem →</span>
       </a>)}
     </div>
-    <p class="muted genesis1-route-note">Este roteiro organiza o conteúdo documentado nas Aulas 06–15. A redação aprofundada é editorial; para conferir as notas originais, utilize o acervo consolidado abaixo.</p>
+    <p class="muted genesis1-route-note">Percorra os temas principais do capítulo ou selecione diretamente o versículo desejado. As notas de estudo adicionais aparecem no acervo abaixo.</p>
   </section>}
 
   <div class="controls"><a class="btn secondary" href="/progresso/">Acompanhar minha leitura →</a></div>
   <div class="section-heading"><h2>Assuntos estudados neste capítulo</h2><span class="tag">{aulas.length} aulas · {cobertura} versículos com estudo inicial</span></div>
-  <p class="muted" style="margin-bottom:14px">Cada aula cobre um trecho; a análise original não foi dividida artificialmente em comentários exclusivos de cada versículo.</p>
+  <p class="muted" style="margin-bottom:14px">Explore os temas das passagens e acesse o aprofundamento correspondente em cada versículo.</p>
   <div class="grid two">
-    {aulas.map(a=><a class="card lesson" href={'/estudos/'+a.aula+'/'}><span class="eyebrow">Aula {String(a.aula).padStart(2,'0')} · Gênesis {a.faixa}</span><h3>{a.tema}</h3><span class="gold">Consultar estudo original →</span></a>)}
+    {aulas.map(a=><a class="card lesson" href={'/estudos/'+a.aula+'/'}><span class="eyebrow">Aula {String(a.aula).padStart(2,'0')} · Gênesis {a.faixa}</span><h3>{a.tema}</h3><span class="gold">Ler estudo completo →</span></a>)}
   </div>
   <section class="chapter-debates" id="questoes-em-aberto">
     <div class="section-heading"><h2>Questões para estudos futuros</h2><span class="tag">{temasPendentes.length} temas relacionados</span></div>
@@ -82,22 +82,22 @@ const temasPendentes=questoesDoCapitulo(capitulo);
     </details>
   </section>
   <section class="pdf-studies" id="conteudo-pdf">
-    <div class="section-heading"><h2>Conteúdo do PDF, por tópicos</h2><span class="tag">Texto consolidado completo</span></div>
-    <p class="muted" style="margin-bottom:18px">As explicações do PDF estão integradas aos módulos de cada versículo. Aqui você também pode consultar as aulas originais completas, com os títulos e as referências conforme a edição consolidada.</p>
+    <div class="section-heading"><h2>Aprofundamentos e notas por assunto</h2><span class="tag">Acervo de estudos</span></div>
+    <p class="muted" style="margin-bottom:18px">As explicações estão organizadas nos módulos de cada versículo. Aqui você encontra também os assuntos de cada aula, com as referências bíblicas e o histórico da investigação.</p>
     {aulasOriginais.map((entrada,i)=><details class="pdf-aula" id={'aula-'+entrada.aula} open={i===0}>
       <summary><span class="pdf-aula-name"><span class="eyebrow">AULA {String(entrada.aula).padStart(2,'0')} · GÊNESIS {entrada.faixa}</span><strong>{entrada.original.titulo}</strong></span><span class="pdf-aula-open">Ver conteúdo</span></summary>
       <div class="pdf-aula-body">
-        <span class="eyebrow">Explicações conforme o PDF</span>
+        <span class="eyebrow">Explicações e contexto</span>
         {entrada.original.secoes.map((s,j)=><section class="pdf-topic" id={'aula-'+entrada.aula+'-topico-'+(j+1)}><h3>{s.titulo}</h3><p>{s.texto}</p></section>)}
         <h3 class="pdf-part-heading">Referências cruzadas com o conteúdo das passagens</h3>
-        {entrada.original.referencias.map(r=><div class="pdf-ref"><strong>{r.referencia}</strong><small>Paráfrase de estudo do PDF</small><blockquote>“{r.texto}”</blockquote><p><span class="gold">Conexão:</span> {r.conexao}</p></div>)}
+        {entrada.original.referencias.map(r=><div class="pdf-ref"><strong>{r.referencia}</strong><small>Resumo da referência bíblica</small><blockquote>“{r.texto}”</blockquote><p><span class="gold">Conexão:</span> {r.conexao}</p></div>)}
         <h3 class="pdf-part-heading">Notas do material de origem</h3>
         <p>{entrada.original.registro}</p>
         <div class="controls"><a class="btn secondary small" href={'/estudos/'+entrada.aula+'/'}>Abrir página da Aula {String(entrada.aula).padStart(2,'0')} →</a></div>
       </div>
     </details>)}
   </section>
-  {capitulo===3&&<div class="notice" style="margin-top:22px">Gênesis 3:14–24 já pode ser lido no site, mas o PDF termina em 3:13. A próxima aula prevista é Gênesis 3:14–15; os módulos de estudo desses versículos ainda não estão publicados.</div>}
+  {capitulo===3&&<div class="notice" style="margin-top:22px">Gênesis 3:14–24 já pode ser lido no site, mas o PDF termina em 3:13. A próxima etapa será Gênesis 3:14–15, cujos módulos serão publicados após o estudo da passagem.</div>}
   <div class="chapter-navigation">
     {capitulo>1?<a href={'/livros/genesis/'+(capitulo-1)+'/'} class="btn secondary">← Capítulo {capitulo-1}</a>:<a href="/livros/genesis/" class="btn secondary">← Livro de Gênesis</a>}
     {capitulo<3?<a href={'/livros/genesis/'+(capitulo+1)+'/'} class="btn">Capítulo {capitulo+1} →</a>:<a href="/estudos/debates/" class="btn">Questões em aberto →</a>}
