@@ -1,0 +1,6 @@
+---
+import QuizView from '../../../../components/QuizView.astro';
+export function getStaticPaths(){return [1,2,3].map(n=>({params:{capitulo:String(n)},props:{n}}));}
+const {n}=Astro.props;
+---
+<QuizView capitulo={n} />
