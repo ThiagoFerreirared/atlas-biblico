@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { aulas } from '../../data/aulas.js';
+import { aulas } from '../../data/catalogo-aulas.js';
 import { textoDaReferencia } from '../../data/referencias.js';
 import { ligaReferencia } from '../../data/estudo.js';
 export function getStaticPaths(){
@@ -8,11 +8,11 @@ export function getStaticPaths(){
 }
 const {a}=Astro.props;
 const prev=a.numero>1?a.numero-1:null;
-const next=a.numero<24?a.numero+1:null;
+const next=a.numero<aulas.length?a.numero+1:null;
 ---
 <Base title={'Aula '+String(a.numero).padStart(2,'0')+' — '+a.titulo}>
   <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/estudos/">Aulas</a> / <span class="gold">Aula {String(a.numero).padStart(2,'0')}</span></div>
-  <section class="intro"><span class="eyebrow">{a.categoria} · Aula {String(a.numero).padStart(2,'0')} de 24</span><h1>{a.titulo}</h1><p class="muted">Atlas Bíblico · Explicações e referências bíblicas</p></section>
+  <section class="intro"><span class="eyebrow">{a.categoria} · Aula {String(a.numero).padStart(2,'0')} de {aulas.length}</span><h1>{a.titulo}</h1><p class="muted">Atlas Bíblico · Explicações e referências bíblicas</p></section>
   <div class="notice">Esta aula reúne explicações, temas e referências para acompanhar sua leitura. Os resumos das passagens relacionadas são <strong>paráfrases de estudo</strong>; para ler o texto bíblico integral, abra a referência.</div>
   <div class="layout">
     <div class="body">
@@ -24,12 +24,12 @@ const next=a.numero<24?a.numero+1:null;
           const biblia=textoDaReferencia(r.referencia);
           const link=ligaReferencia(r.referencia);
           return <article class="card ref">
-            <div class="ref-head"><h3>{r.referencia}</h3><span class="chip">Resumo da passagem</span></div>
+            <div class="ref-head"><h3>{r.referencia}</h3><span class="chip">Paráfrase de estudo</span></div>
             <blockquote>“{r.texto}”</blockquote>
             <p><strong class="gold">Conexão:</strong> {r.conexao}</p>
-            {biblia&&<details class="full-text"><summary>Ler texto bíblico integral · Bíblia Livre</summary>
+            {biblia&&<details class="full-text"><summary>Ler texto integral · {biblia.fonte||'Bíblia Livre'}</summary>
               <div class="biblical-text">{biblia.versiculos.map(v=><p><span class="gold">{v.numero}</span> {v.texto}</p>)}</div>
-              <p class="muted" style="font-size:11px">BLIVRE (2018), Diego Santos, Mario Sérgio e Marco Teles. CC BY 3.0 Brasil.</p>
+              <p class="muted" style="font-size:11px">{biblia.fonte||'BLIVRE (2018), Diego Santos, Mario Sérgio e Marco Teles. CC BY 3.0 Brasil.'}</p>
             </details>}
             {link&&<a href={link} class="text-link gold" style="font-size:13px">Estudar versículo no Atlas →</a>}
           </article>;

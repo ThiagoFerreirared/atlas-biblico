@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { aulas } from '../src/data/aulas.js';
+import { aulas } from '../src/data/catalogo-aulas.js';
 import { mapaEditorial } from '../src/data/mapa-editorial.js';
 import { coberturaGenesis } from '../src/data/cobertura.js';
 import { textoGenesis } from '../src/data/texto-genesis.js';
@@ -37,7 +37,7 @@ for(const [c,max] of [[1,31],[2,25],[3,24]]){
   assert.equal(textoGenesis[c].length,max,'Texto bíblico incompleto, capítulo '+c);
   for(let v=1;v<=max;v++){
     const analise=gerarConteudoDoVersiculo(c,v);
-    const esperado=c<3||v<=13;
+    const esperado=c<3||v<=15;
     assert.equal(Boolean(analise),esperado,`Cobertura incorreta Gênesis ${c}:${v}`);
     assert.equal(possuiEstudo(c,v),esperado);
     if(!analise)continue;
@@ -50,5 +50,5 @@ for(const [c,max] of [[1,31],[2,25],[3,24]]){
     verificados++;
   }
 }
-assert.equal(verificados,69);
+assert.equal(verificados,71);
 console.log('Curadoria validada: 69 versículos, '+totalSecoes+' seções, '+totalRefs+' referências e '+totalPerguntas+' perguntas em aulas 8–24.');

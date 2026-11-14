@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { textoGenesis, creditoTraducao } from '../data/texto-genesis.js';
 import { aulasDoCapitulo } from '../data/cobertura.js';
-import { aulas as aulasFonte } from '../data/aulas.js';
+import { aulas as aulasFonte } from '../data/catalogo-aulas.js';
 import { trechoDoVersiculo, possuiEstudo, urlVerso } from '../data/estudo.js';
 import { questoesDoCapitulo, urlQuestao } from '../data/questoes-abertas.js';
 
@@ -10,7 +10,7 @@ const { capitulo } = Astro.props;
 const versos=textoGenesis[capitulo]||[];
 const aulas=aulasDoCapitulo(capitulo);
 const aulasOriginais=aulas.map(bloco=>({...bloco, original:aulasFonte.find(item=>item.numero===bloco.aula)}));
-const cobertura=capitulo===3?'1–13 de 24':versos.length+' de '+versos.length;
+const cobertura=capitulo===3?'1–15 de 24':versos.length+' de '+versos.length;
 const temasPendentes=questoesDoCapitulo(capitulo);
 const roteiros={
   1:[
@@ -33,7 +33,8 @@ const roteiros={
   3:[
     {nome:'O diálogo',faixa:'3:1–5',topico:'A serpente, a ordem e o engano',verso:1},
     {nome:'A escolha',faixa:'3:6–7',topico:'A desobediência e a nudez',verso:6},
-    {nome:'O encontro',faixa:'3:8–13',topico:'O esconderijo e as respostas',verso:8}
+    {nome:'O encontro',faixa:'3:8–13',topico:'O esconderijo e as respostas',verso:8},
+    {nome:'A sentença',faixa:'3:14–15',topico:'A serpente e a descendência da mulher',verso:14}
   ]
 };
 const roteiro=roteiros[capitulo]||[];

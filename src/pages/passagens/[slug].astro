@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { textosDasReferencias } from '../../data/referencias.js';
 import { slugReferencia } from '../../data/rotas-referencias.js';
-import { aulas } from '../../data/aulas.js';
+import { aulas } from '../../data/catalogo-aulas.js';
 import { ligaReferencia, possuiEstudo } from '../../data/estudo.js';
 
 export function getStaticPaths() {
@@ -24,7 +24,7 @@ const studyAvailable=Boolean(refMatch && possuiEstudo(Number(refMatch[1]),Number
 <Base title={referencia+' — Passagem relacionada'}>
   <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/estudos/">Estudos</a> / <span class="gold">Passagem relacionada</span></div>
   <section class="intro">
-    <span class="eyebrow">Texto bíblico · Bíblia Livre</span>
+    <span class="eyebrow">Texto bíblico · {passagem.fonte||'Bíblia Livre'}</span>
     <h1>{referencia}</h1>
     <p class="muted">Leia a passagem e consulte por que ela foi relacionada aos estudos do Atlas Bíblico.</p>
   </section>
@@ -32,13 +32,13 @@ const studyAvailable=Boolean(refMatch && possuiEstudo(Number(refMatch[1]),Number
   <div class="passage">
     {passagem.versiculos.map(v=><p><span class="number">{v.numero}</span>{v.texto}</p>)}
   </div>
-  <p class="attribution">Fonte: Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018. <a href="https://creativecommons.org/licenses/by/3.0/br/" target="_blank" rel="noopener noreferrer">Licença CC BY 3.0 Brasil</a>.</p>
+  <p class="attribution">{passagem.fonte?'Fonte: '+passagem.fonte:'Fonte: Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018. Licença CC BY 3.0 Brasil.'}</p>
 
   <div class="controls">
     {studyAvailable && direct
       ? <a class="btn" href={direct}>Estudar com os seis módulos →</a>
       : <span class="tag">Estudo individual aprofundado ainda não publicado</span>}
-    <a class="btn secondary" href="/estudos/">Ver as 24 aulas</a>
+    <a class="btn secondary" href="/estudos/">Ver as 25 aulas</a>
     <a class="btn secondary" id="return-origin" href="/estudos/">← Voltar ao estudo de origem</a>
   </div>
 
@@ -52,7 +52,7 @@ const studyAvailable=Boolean(refMatch && possuiEstudo(Number(refMatch[1]),Number
       <a class="text-link gold" href={'/estudos/'+c.aula+'/'}>Ler a aula de origem →</a>
     </article>)}
   </div>
-  <p class="notice" style="margin-top:24px">Os estudos aprofundados chegam até Gênesis 3:13. Outras passagens podem ser consultadas aqui, mesmo quando seus módulos individuais ainda não foram publicados.</p>
+  <p class="notice" style="margin-top:24px">Os estudos aprofundados chegam até Gênesis 3:15. Outras passagens podem ser consultadas aqui, mesmo quando seus módulos individuais ainda não foram publicados.</p>
 </Base>
 <style>
 .passage{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:24px 28px;font:21px/1.9 Georgia,serif}
