@@ -26,7 +26,7 @@ import { livros } from '../data/biblia.js';
 </Base>
 <style>
   .catalog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.book-item{display:flex;flex-direction:column;gap:9px;min-height:155px}.book-item h3{font-size:20px}.book-item .text-link,.book-item .status{margin-top:auto}.book-item .text-link{color:var(--gold);font-size:13px;font-weight:700}.options{border:1px solid var(--line);border-radius:9px;padding:13px 16px;margin-bottom:22px;color:var(--muted);font-size:13px}.options summary{cursor:pointer}.options p{padding-top:9px}
-  .category-title{grid-column:1/-1;color:var(--gold);margin:18px 0 0;font-size:16px}
+  .catalog :global(.category-title){grid-column:1/-1;color:var(--gold);margin:18px 0 0;font-size:16px}
   @media(max-width:760px){.catalog{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:440px){.catalog{grid-template-columns:1fr}}
 </style>
 <script>
@@ -39,7 +39,7 @@ import { livros } from '../data/biblia.js';
   const normalize=(v)=>v.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
   function render(){
     const filtered=entries.filter(el=>(testament.value==='todos'||el.dataset.testament===testament.value)&&normalize(el.dataset.name).includes(normalize(search.value)));
-    filtered.sort((a,b)=>order.value==='alfabetica'?a.dataset.name.localeCompare(b.dataset.name,'pt-BR'):Number(a.dataset.order)-Number(b.dataset.order));
+    filtered.sort((a,b)=>{const ai=Number(a.dataset.order),bi=Number(b.dataset.order);if(mode.value==='categorias'){const ga=(Number(a.dataset.testament==='NT')*100)+Math.floor(ai/1);const gb=(Number(b.dataset.testament==='NT')*100)+Math.floor(bi/1);const firstOf=(el)=>entries.find(e=>e.dataset.testament===el.dataset.testament&&e.dataset.category===el.dataset.category);const catA=Number(firstOf(a).dataset.order),catB=Number(firstOf(b).dataset.order);if(catA!==catB)return catA-catB;}return order.value==='alfabetica'?a.dataset.name.localeCompare(b.dataset.name,'pt-BR'):ai-bi;});
     catalog.replaceChildren();
     let last='';
     for(const el of filtered){
