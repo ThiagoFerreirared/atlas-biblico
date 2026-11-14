@@ -2,11 +2,18 @@
 import Base from '../layouts/Base.astro';
 import { textoVerso, possuiEstudo, gerarConteudoDoVersiculo, modulos, ligaReferencia, urlVerso, totalVersosPorCapitulo } from '../data/estudo.js';
 import { textoDaReferencia } from '../data/referencias.js';
+import { urlReferencia } from '../data/rotas-referencias.js';
 const { capitulo, versiculo }=Astro.props;
 const verse=textoVerso(capitulo,versiculo);
 const study=gerarConteudoDoVersiculo(capitulo,versiculo);
 const has=possuiEstudo(capitulo,versiculo);
-const refs=study?.referencias.map((r,i)=>({...r,id:i,completo:textoDaReferencia(r.referencia),destino:ligaReferencia(r.referencia)}))||[];
+const refs=study?.referencias.map((r,i)=>{
+  const direto=ligaReferencia(r.referencia);
+  const match=r.referencia.match(/^G[eê]nesis\s+(\d+):(\d+)/i);
+  const estudo=Boolean(match && direto && possuiEstudo(Number(match[1]),Number(match[2])));
+  return {...r,id:i,completo:textoDaReferencia(r.referencia),estudo,
+    pagina:estudo?direto+'?voltar='+capitulo+'-'+versiculo:urlReferencia(r.referencia)+'?origem='+capitulo+'-'+versiculo};
+})||[];
 const prev=versiculo>1?{c:capitulo,v:versiculo-1}:capitulo>1?{c:capitulo-1,v:totalVersosPorCapitulo[capitulo-1]}:null;
 const next=versiculo<totalVersosPorCapitulo[capitulo]?{c:capitulo,v:versiculo+1}:capitulo<3?{c:capitulo+1,v:1}:null;
 const title='Gênesis '+capitulo+':'+versiculo;
@@ -16,7 +23,7 @@ const title='Gênesis '+capitulo+':'+versiculo;
   <section class="intro"><span class="eyebrow">Estudo versículo por versículo</span><h1>{title}</h1><p class="muted">{has?'Explore a análise das aulas consolidadas, conexões bíblicas e sua revisão pessoal.':'Texto bíblico disponível · Estudo ainda não incluído na edição consolidada.'}</p></section>
   <div class="verse-box main-verse">“{verse.texto}”</div>
   <p class="source">Texto: Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018. <a href="https://creativecommons.org/licenses/by/3.0/br/" target="_blank" rel="noopener noreferrer">CC BY 3.0 Brasil</a>.</p>
-  <div class="verse-actions"><a class="btn secondary small" href={'/livros/genesis/'+capitulo+'/#v-'+versiculo}>← Voltar ao capítulo, versículo {versiculo}</a><button class="btn secondary small" id="mark-read" type="button">Marcar como lido</button><a class="btn secondary small" href="/progresso/">Meu progresso</a></div>
+  <div class="verse-actions"><a class="btn secondary small" href={'/livros/genesis/'+capitulo+'/#v-'+versiculo}>← Voltar ao capítulo, versículo {versiculo}</a><a id="back-to-connection" class="btn secondary small hidden" href="/livros/genesis/1/1/">← Voltar ao estudo de origem</a><button class="btn secondary small" id="mark-read" type="button">Marcar como lido</button><a class="btn secondary small" href="/progresso/">Meu progresso</a></div>
 
   {has ? <>
     <div class="notice"><strong>Origem do estudo:</strong> Atlas Bíblico — Aulas 1–24, edição consolidada de 14/11/2026. {study.nota} O conteúdo permanece integralmente disponível nas páginas das aulas.</div>
@@ -47,7 +54,6 @@ const title='Gênesis '+capitulo+':'+versiculo;
       {m.id==='conexoes'
         ? (refs.length
           ? refs.map((r,i)=><section class="study-part connection-entry" id={'part-'+i}>
-              <span class="part-origin">{r.origem} · Referência bíblica</span>
               <h3>{r.referencia}</h3>
               {r.completo
                 ? <>
@@ -58,11 +64,9 @@ const title='Gênesis '+capitulo+':'+versiculo;
                       {r.completo.versiculos.slice(3).map(v=><p><span class="passage-number">{v.numero}</span>{v.texto}</p>)}
                     </details>}
                   </div>
-                  <p class="source">Texto bíblico: Bíblia Livre (BLIVRE), 2018 · CC BY 3.0 Brasil.</p>
                 </>
-                : <div class="connection-scripture"><p>“{r.texto}”</p><p class="muted" style="font:12px/1.5 system-ui">Paráfrase de estudo do PDF; texto integral indisponível nesta referência.</p></div>}
-              <div class="connection-reason"><span class="eyebrow">Por que esta passagem está conectada?</span><p>{r.conexao}</p></div>
-              {r.destino&&<a class="btn secondary small" href={r.destino}>Estudar este versículo no Atlas →</a>}
+                : <div class="connection-scripture"><p>“{r.texto}”</p><p class="muted" style="font:12px/1.5 system-ui">Paráfrase de estudo do PDF; o texto integral desta referência ainda não está disponível aqui.</p></div>}
+              <a class="btn secondary small connection-open" href={r.pagina}>{r.estudo?'Estudar este versículo no Atlas →':'Ir para esta passagem no Atlas →'}</a>
             </section>)
           : <section class="study-part" id="part-0"><h3>Sem conexão específica registrada</h3><p>O PDF não traz uma conexão bíblica atribuída diretamente a este versículo. Consulte a aula completa para conferir as referências do trecho.</p></section>)
         : (study[m.id]||[]).map((section,i)=><section class="study-part" id={'part-'+i}><span class="part-origin">{section.origem}</span><h3>{section.titulo}</h3><p>{section.texto}</p></section>)}
@@ -90,7 +94,7 @@ const title='Gênesis '+capitulo+':'+versiculo;
 .connection-scripture .passage-number{display:inline-block;min-width:22px;vertical-align:baseline;margin-right:6px}
 .connection-more{margin-top:13px;border-top:1px solid var(--line);padding-top:12px}
 .connection-more summary{font:600 13px/1.6 system-ui;color:var(--gold);cursor:pointer;margin-bottom:10px}
-.connection-entry .connection-reason{background:#272520;margin:15px 0}
+.connection-open{display:inline-flex;margin-top:14px}.connection-entry{padding:19px}.connection-entry h3{margin-top:0}.connection-entry .connection-scripture{margin-top:10px}
 .connection-entry .source{margin-top:8px;margin-bottom:0}
 .connection-reason{border-left:3px solid var(--gold);padding:13px 17px;margin:19px 0;background:#282722}.connection-reason p{margin-top:9px;line-height:1.7}
 @media(max-width:650px){#module-dialog{width:100vw;max-width:none;height:100dvh;max-height:100dvh;border-radius:0;padding:18px;margin:0}.modal-bottom .btn{flex:1}.chapter-nav .btn{flex:1}.lesson-link{width:100%}}
@@ -109,6 +113,17 @@ if(headline){
  document.getElementById('mark-read').textContent='✓ Lido';
  const notes=document.getElementById('verse-note');
  if(notes){const key='genesis:'+chapter+':'+number+':nota';notes.value=getDraft(key);notes.addEventListener('input',()=>saveDraft(key,notes.value));}
+ const backToSource=document.getElementById('back-to-connection');
+ const returnParam=new URLSearchParams(location.search).get('voltar');
+ const returnMatch=returnParam?.match(/^([123])-([1-9]\d?)$/);
+ if(backToSource&&returnMatch){
+   const origCap=Number(returnMatch[1]),origVerse=Number(returnMatch[2]);
+   if((origCap===1&&origVerse<=31)||(origCap===2&&origVerse<=25)||(origCap===3&&origVerse<=24)){
+     backToSource.href='/livros/genesis/'+origCap+'/'+origVerse+'/';
+     backToSource.textContent='← Voltar a Gênesis '+origCap+':'+origVerse;
+     backToSource.classList.remove('hidden');
+   }
+ }
  const tiles=[...document.querySelectorAll('[data-module]')];
  const modal=document.getElementById('module-dialog');
  let active=0;
