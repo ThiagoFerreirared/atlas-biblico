@@ -1,0 +1,30 @@
+name: Verificar build do Atlas Bíblico
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  astro-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Gerar site
+        run: npm run build
+      - name: Conferir páginas geradas
+        run: |
+          test -f dist/index.html
+          test -f dist/estudos/1/index.html
+          test -f dist/estudos/24/index.html
+          test -f dist/livros/genesis/1/index.html
+          test -f dist/livros/genesis/1/31/index.html
+          test -f dist/livros/genesis/2/25/index.html
+          test -f dist/livros/genesis/3/24/index.html
+          test -f dist/livros/genesis/1/avaliacao/index.html
+          test -f dist/progresso/index.html
