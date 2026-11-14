@@ -51,11 +51,6 @@ const questoes=questoesDoVersiculo(capitulo,versiculo);
         : <div class="open-question-empty">Nenhuma questão do apêndice foi vinculada diretamente a este versículo. <a href="/estudos/debates/">Ver todos os temas em aberto →</a></div>}
       <a class="future-questions-all" href="/estudos/debates/">Ver o arquivo completo de questões em aberto →</a>
     </section>
-    <details class="private-notes">
-      <summary>Minhas anotações (opcional)</summary>
-      <label class="label" for="verse-note">Observações pessoais sobre {title} · salvas no navegador</label>
-      <textarea class="field personal-notes" id="verse-note" rows="4" placeholder="Anote o que você achou importante neste versículo..."></textarea>
-    </details>
     <details class="source-details">
       <summary>Consultar o material original deste estudo</summary>
       <p>{study.nota} O conteúdo integral do PDF permanece preservado no acervo.</p>
@@ -96,10 +91,10 @@ const questoes=questoesDoVersiculo(capitulo,versiculo);
     <dialog id="module-dialog" aria-labelledby="module-heading">
       <header class="modal-header"><div><span id="modal-step" class="eyebrow"></span><h2 id="module-heading"></h2></div><button type="button" id="module-close" class="btn secondary small">✕ Fechar</button></header>
       <div class="module-scripture"><span class="eyebrow">{title} · texto bíblico</span><p>{verse.texto}</p></div>
-      <p id="modal-description" class="muted" style="margin-top:14px"></p><p class="modal-guide">As explicações abaixo vêm dos estudos do PDF e estão organizadas pelo assunto deste versículo. Ao terminar, você pode marcar este módulo como lido.</p>
+      <p id="modal-description" class="muted" style="margin-top:14px"></p><p class="modal-guide" id="module-guide">As explicações abaixo vêm dos estudos do PDF e estão organizadas pelo assunto deste versículo. Ao terminar, você pode marcar este módulo como lido.</p>
       <div class="panel-index-title">EXPLICAÇÕES DESTE VERSÍCULO</div><nav class="panel-index" id="panel-index" aria-label="Índice dos assuntos deste módulo"></nav>
       <div id="module-body"></div>
-      <div class="modal-bottom"><button type="button" class="btn" id="module-done">✓ Concluir e fechar</button><button type="button" class="btn secondary" id="module-next">Próximo módulo →</button></div>
+      <div class="modal-bottom"><button type="button" class="btn" id="module-done">✓ Concluir e fechar</button><button type="button" class="btn secondary" id="module-next">✓ Concluir e próximo módulo →</button></div>
     </dialog>
 
   </>}
@@ -107,10 +102,10 @@ const questoes=questoesDoVersiculo(capitulo,versiculo);
 <style is:global>
 .main-verse{margin-bottom:10px}.source{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px}.source a{color:var(--gold);text-decoration:underline}.verse-actions,.lesson-links,.chapter-nav{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:18px 0 25px}
 .future-questions{margin-top:30px}.open-questions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.open-question{display:flex;flex-direction:column;gap:7px;min-height:130px}.open-question strong{font-size:16px}.open-question p{font-size:12px;color:var(--muted);line-height:1.6}.open-question .gold{font-size:12px;margin-top:auto}.open-question:hover{border-color:var(--gold)}.open-question-empty{border:1px solid var(--line);border-radius:10px;padding:15px;color:var(--muted);font-size:13px}.open-question-empty a,.future-questions-all{color:var(--gold);font-size:13px}.future-questions-all{display:inline-block;margin-top:14px}.future-questions-all:hover{text-decoration:underline}@media(max-width:650px){.open-questions{grid-template-columns:1fr}}
-.module-scripture{background:#1b1e21;border-left:3px solid var(--gold);border-radius:8px;padding:14px 17px}.module-scripture p{font:18px/1.75 Georgia,serif;margin:7px 0 0}.private-notes,.source-details{margin-top:18px;border:1px solid var(--line);border-radius:11px;padding:15px 18px;background:var(--card2)}.private-notes summary,.source-details summary{cursor:pointer;color:var(--gold);font-size:14px;font-weight:600}.private-notes label{margin:15px 0 8px}.source-details p{font-size:13px;color:var(--muted);padding:12px 0}.source-link{display:block;padding:8px 0;color:var(--gold);font-size:13px}.source-link:hover{text-decoration:underline}
+.module-scripture{background:#1b1e21;border-left:3px solid var(--gold);border-radius:8px;padding:14px 17px}.module-scripture p{font:18px/1.75 Georgia,serif;margin:7px 0 0}.source-details{margin-top:18px;border:1px solid var(--line);border-radius:11px;padding:15px 18px;background:var(--card2)}.source-details summary{cursor:pointer;color:var(--gold);font-size:14px;font-weight:600}.source-details p{font-size:13px;color:var(--muted);padding:12px 0}.source-link{display:block;padding:8px 0;color:var(--gold);font-size:13px}.source-link:hover{text-decoration:underline}
 .progress-line{height:7px;background:#33383d;border-radius:12px;margin:0 0 17px;overflow:hidden}.progress-line>div{height:100%;width:0;background:var(--gold);transition:width .2s}
 .module{text-align:left;color:var(--text);display:flex;flex-direction:column;gap:8px}.module{min-height:170px}.module h3{font-size:17px}.module p{font-size:13px}.module .gold{font-size:12px;margin-top:auto;font-weight:650}.module-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.module-symbol{font-size:23px;color:var(--gold)}.module-status{font-size:11px;color:var(--muted)}.module[data-state="in-progress"] .module-status{color:var(--gold)}.module[data-state="done"]{border-color:#47775b}.module[data-state="done"] .module-status{color:var(--green)}.module[data-state="done"] .module-status::before{content:'✓ ';color:var(--green)}
-.module-guide{margin:14px 0 22px}.modal-guide{font-size:13px;color:var(--muted);border-left:2px solid var(--gold);padding:9px 12px;margin:15px 0;line-height:1.65}.modal-guide strong{color:var(--text)}.panel-index-title{font-size:10px;color:var(--muted);letter-spacing:.12em;font-weight:700;margin-top:18px}.personal-notes{display:block;width:100%;resize:vertical}.chapter-nav{justify-content:space-between;margin-top:38px}
+.module-guide{margin:14px 0 22px}.modal-guide{font-size:13px;color:var(--muted);border-left:2px solid var(--gold);padding:9px 12px;margin:15px 0;line-height:1.65}.modal-guide strong{color:var(--text)}.panel-index-title{font-size:10px;color:var(--muted);letter-spacing:.12em;font-weight:700;margin-top:18px}.chapter-nav{justify-content:space-between;margin-top:38px}
 #module-dialog{width:min(840px,calc(100vw - 26px));max-height:91dvh;overflow:auto;background:var(--card);border:1px solid #755e3e;border-radius:15px;color:var(--text);padding:26px;box-shadow:0 25px 90px #000b}#module-dialog::backdrop{background:#000c}
 .modal-header{display:flex;justify-content:space-between;gap:15px;align-items:start;margin-bottom:16px}.modal-header h2{margin-top:5px}.panel-index{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 18px;padding:13px;background:var(--card2);border:1px solid var(--line);border-radius:11px}.panel-index a{font-size:12px;padding:5px 9px;color:var(--gold);border:1px solid #524633;border-radius:7px}.study-part{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:13px;scroll-margin-top:25px}.study-part .part-origin{font-size:11px;color:var(--muted)}.study-part h3{font-size:19px;margin:6px 0 11px}.study-part p{white-space:pre-line;line-height:1.85}.modal-bottom{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.full-passage{padding:18px;background:var(--card2);border:1px solid var(--line);border-radius:12px;font:19px/1.85 Georgia,serif;margin:14px 0}.full-passage p+p{margin-top:7px}.passage-number{font:700 12px Inter,system-ui,sans-serif;color:var(--gold);margin-right:6px}.passage-name{font-size:22px;color:var(--text)}.connection-entry h3{font-size:20px;margin:6px 0 12px;color:var(--gold)}
 .connection-scripture{background:#1a1e20;border:1px solid var(--line);border-radius:10px;padding:16px 18px;font:18px/1.85 Georgia,serif;color:var(--text)}
@@ -124,7 +119,7 @@ const questoes=questoesDoVersiculo(capitulo,versiculo);
 @media(max-width:650px){#module-dialog{width:100vw;max-width:none;height:100dvh;max-height:100dvh;border-radius:0;padding:18px;margin:0}.modal-bottom .btn{flex:1}.chapter-nav .btn{flex:1}.lesson-link{width:100%}}
 </style>
 <script>
-import { getVerse, markRead, markOpened, markDone, saveDraft, getDraft } from '../scripts/progresso.js';
+import { getVerse, markRead, markOpened, markDone } from '../scripts/progresso.js';
 const headline=document.querySelector('.main-verse');
 if(headline){
  const back=document.querySelector('.breadcrumbs');
@@ -135,8 +130,6 @@ if(headline){
  markRead(chapter,number);
  document.getElementById('mark-read')?.addEventListener('click',()=>{markRead(chapter,number);document.getElementById('mark-read').textContent='✓ Lido';});
  document.getElementById('mark-read').textContent='✓ Lido';
- const notes=document.getElementById('verse-note');
- if(notes){const key='genesis:'+chapter+':'+number+':nota';notes.value=getDraft(key);notes.addEventListener('input',()=>saveDraft(key,notes.value));}
  const backToSource=document.getElementById('back-to-connection');
  const returnParam=new URLSearchParams(location.search).get('voltar');
  const returnMatch=returnParam?.match(/^([123])-([1-9]\d?)$/);
@@ -167,6 +160,9 @@ if(headline){
    document.getElementById('module-heading').textContent=title;
    document.getElementById('modal-step').textContent='LIVRO DE GÊNESIS · CAPÍTULO '+chapter+' · VERSÍCULO '+number+' · MÓDULO '+(index+1)+'/6';
    document.getElementById('modal-description').textContent=tiles[index].querySelector('p').textContent;
+   document.getElementById('module-guide').textContent=id==='interpretacoes'
+     ?'Interpretações explica como diferentes leitores e tradições compreendem este versículo. Aqui distinguimos o que o texto afirma diretamente das conclusões teológicas que vão além dele.'
+     :'As explicações abaixo vêm dos estudos do PDF e estão organizadas pelo assunto deste versículo. Ao terminar, você pode marcar este módulo como lido.';
    const tpl=document.getElementById('template-'+id);
    const body=document.getElementById('module-body');body.replaceChildren(tpl.content.cloneNode(true));
    const nav=document.getElementById('panel-index');nav.replaceChildren();
@@ -181,7 +177,7 @@ if(headline){
  tiles.forEach((t,i)=>t.addEventListener('click',()=>openModule(i)));
  document.getElementById('module-close')?.addEventListener('click',()=>modal.close());
  document.getElementById('module-done')?.addEventListener('click',()=>{markDone(chapter,number,ids[active]);modal.close();render();});
- document.getElementById('module-next')?.addEventListener('click',()=>{if(active<5)openModule(active+1);});
+ document.getElementById('module-next')?.addEventListener('click',()=>{if(active<5){const atual=active;markDone(chapter,number,ids[atual]);openModule(atual+1);}});
  modal?.addEventListener('click',e=>{if(e.target===modal)modal.close();});
  render();
 }
