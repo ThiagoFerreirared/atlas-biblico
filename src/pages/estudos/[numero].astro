@@ -24,7 +24,7 @@ const next=a.numero<24?a.numero+1:null;
           const biblia=textoDaReferencia(r.referencia);
           const link=ligaReferencia(r.referencia);
           return <article class="card ref">
-            <div class="ref-head"><h3>{r.referencia}</h3><span class="chip">Paráfrase do PDF</span></div>
+            <div class="ref-head"><h3>{r.referencia}</h3><span class="chip">Resumo da passagem</span></div>
             <blockquote>“{r.texto}”</blockquote>
             <p><strong class="gold">Conexão:</strong> {r.conexao}</p>
             {biblia&&<details class="full-text"><summary>Ler texto bíblico integral · Bíblia Livre</summary>
@@ -35,7 +35,7 @@ const next=a.numero<24?a.numero+1:null;
           </article>;
         })}
       </section>
-      <section id="registro"><div class="section-heading"><h2>Notas da edição consolidada</h2></div><div class="card"><p>{a.registro}</p></div></section>
+      <section id="registro"><div class="section-heading"><h2>Notas de investigação</h2></div><div class="card"><p>{a.registro}</p></div></section>
       <div class="controls bottom"><a class="btn secondary" href={prev?'/estudos/'+prev+'/':'/estudos/'}>← {prev?'Aula anterior':'Todas as aulas'}</a><a class="btn" href={next?'/estudos/'+next+'/':'/estudos/'}>{next?'Próxima aula':'Todas as aulas'} →</a></div>
     </div>
     <aside><div class="card aside"><span class="eyebrow">Nesta aula</span><a href="#explicacoes">Explicações e análise</a><a href="#referencias">Referências cruzadas</a><a href="#registro">Notas da edição</a><hr/><a href="/estudos/">← Índice das aulas</a>{a.numero>=6&&<a href="/livros/genesis/">↗ Livro de Gênesis</a>}</div></aside>
