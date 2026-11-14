@@ -4,12 +4,14 @@ import { textoGenesis, creditoTraducao } from '../data/texto-genesis.js';
 import { aulasDoCapitulo } from '../data/cobertura.js';
 import { aulas as aulasFonte } from '../data/aulas.js';
 import { trechoDoVersiculo, possuiEstudo, urlVerso } from '../data/estudo.js';
+import { questoesDoCapitulo, urlQuestao } from '../data/questoes-abertas.js';
 
 const { capitulo } = Astro.props;
 const versos=textoGenesis[capitulo]||[];
 const aulas=aulasDoCapitulo(capitulo);
 const aulasOriginais=aulas.map(bloco=>({...bloco, original:aulasFonte.find(item=>item.numero===bloco.aula)}));
 const cobertura=capitulo===3?'1–13 de 24':versos.length+' de '+versos.length;
+const temasPendentes=questoesDoCapitulo(capitulo);
 ---
 <Base title={'Gênesis '+capitulo+' — Leitura e estudos'}>
   <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/livros/genesis/">Gênesis</a> / <span class="gold">Capítulo {capitulo}</span></div>
@@ -43,6 +45,21 @@ const cobertura=capitulo===3?'1–13 de 24':versos.length+' de '+versos.length;
   <div class="grid two">
     {aulas.map(a=><a class="card lesson" href={'/estudos/'+a.aula+'/'}><span class="eyebrow">Aula {String(a.aula).padStart(2,'0')} · Gênesis {a.faixa}</span><h3>{a.tema}</h3><span class="gold">Consultar estudo original →</span></a>)}
   </div>
+  <section class="chapter-debates" id="questoes-em-aberto">
+    <div class="section-heading"><h2>Questões para estudos futuros</h2><span class="tag">{temasPendentes.length} temas relacionados</span></div>
+    <p class="muted" style="margin-bottom:16px">Debates que surgiram ao estudar este capítulo e podem ser aprofundados nas próximas aulas. Não são provas ou exercícios.</p>
+    <details class="debate-details">
+      <summary>Ver questões em aberto deste capítulo</summary>
+      <div class="debate-grid">
+        {temasPendentes.map(q=><a class="debate-link" href={urlQuestao(q.id)}>
+          <span class="eyebrow">{q.id} · {q.estado}</span>
+          <strong>{q.titulo}</strong>
+          <span class="gold">Consultar tema →</span>
+        </a>)}
+      </div>
+      <a class="all-debates-link" href="/estudos/debates/">Abrir o caderno completo de debates →</a>
+    </details>
+  </section>
   <section class="pdf-studies" id="conteudo-pdf">
     <div class="section-heading"><h2>Conteúdo do PDF, por tópicos</h2><span class="tag">Texto consolidado completo</span></div>
     <p class="muted" style="margin-bottom:18px">As explicações do PDF estão integradas aos módulos de cada versículo. Aqui você também pode consultar as aulas originais completas, com os títulos e as referências conforme a edição consolidada.</p>
@@ -78,6 +95,7 @@ const cobertura=capitulo===3?'1–13 de 24':versos.length+' de '+versos.length;
 .chapter-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:11px;margin:23px 0}.chapter-toolbar label{font-size:13px;color:var(--muted)}.read-status{margin-left:auto;font-size:12px;color:var(--muted)}
 .chapter-reader{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:30px 28px;font-family:Georgia,serif;font-size:21px;line-height:2.06}.read-verse{display:inline;background:transparent;border:0;padding:2px 3px;margin:0;color:var(--text);font:inherit;text-align:left;white-space:normal;line-height:inherit}.read-verse:hover,.read-verse:focus-visible{background:#3a3127;border-radius:4px;outline:1px solid var(--gold)}.read-verse .v-num{display:inline;color:var(--gold);font:700 12px Inter,system-ui,sans-serif;vertical-align:super;margin-right:6px}.v-text{display:inline}.read-indicator{font-size:12px;color:var(--green);margin-left:3px}.read-verse.read-marked .read-indicator::after{content:'✓'}
 .chapter-reader.separated{display:grid;gap:11px;background:transparent;border:0;padding:0}.separated .read-verse{display:block;border:1px solid var(--line);background:var(--card);padding:16px 20px;border-radius:11px}.separated .read-verse:hover{border-color:var(--gold)}.lesson{display:flex;flex-direction:column;gap:9px}
+.chapter-debates{margin-top:38px}.debate-details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px}.debate-details summary{color:var(--gold);font-size:14px;font-weight:600;cursor:pointer}.debate-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding-top:15px}.debate-link{border:1px solid var(--line);border-radius:9px;padding:13px;display:grid;gap:6px}.debate-link:hover{border-color:var(--gold)}.debate-link strong{font-size:14px}.debate-link .gold{font-size:12px}.all-debates-link{display:inline-block;color:var(--gold);font-size:13px;margin:16px 0 3px}@media(max-width:700px){.debate-grid{grid-template-columns:1fr}}
 .pdf-studies{margin-top:48px}.pdf-aula{margin:13px 0;background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden}.pdf-aula[open]{border-color:#796344}.pdf-aula summary{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px;cursor:pointer;list-style:none}.pdf-aula summary::-webkit-details-marker{display:none}.pdf-aula summary:hover{background:#2d302f}.pdf-aula-name{display:grid;gap:4px}.pdf-aula-name strong{font-size:18px}.pdf-aula-open{color:var(--gold);font-size:12px;white-space:nowrap}.pdf-aula[open] .pdf-aula-open{display:none}.pdf-aula-body{border-top:1px solid var(--line);padding:18px 22px 24px}.pdf-topic{margin:18px 0;padding:17px 20px;background:var(--card2);border:1px solid var(--line);border-radius:10px}.pdf-topic h3{color:var(--gold);margin-bottom:8px}.pdf-topic p{line-height:1.8;white-space:pre-line}.pdf-part-heading{font-size:18px;margin:26px 0 13px}.pdf-ref{padding:14px 0;border-bottom:1px solid var(--line)}.pdf-ref>strong{color:var(--text);display:block}.pdf-ref small{color:var(--muted);font-size:11px}.pdf-ref blockquote{font:17px/1.8 Georgia,serif;margin:9px 0;padding-left:14px;border-left:2px solid var(--gold)}.pdf-ref p{font-size:13px;color:var(--muted)}.lesson .gold{margin-top:auto;font-size:13px}.chapter-navigation{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:32px}
 dialog{width:min(670px,calc(100vw - 24px));max-height:90vh;overflow:auto;padding:25px;border:1px solid #705d43;border-radius:15px;color:var(--text);background:var(--card);box-shadow:0 25px 90px #000b}dialog::backdrop{background:#000b}.modal-head{display:flex;justify-content:space-between;gap:15px;align-items:start;margin-bottom:17px}.modal-head h2{margin-top:5px}
 @media(max-width:700px){.chapter-reader{padding:15px;font-size:18px}.read-status{width:100%;margin-left:0}.chapter-navigation .btn{flex:1}dialog{padding:18px}}@media(max-width:430px){.chapter-navigation{flex-direction:column}}
