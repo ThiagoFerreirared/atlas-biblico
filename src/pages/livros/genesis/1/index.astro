@@ -1,16 +1,21 @@
 ---
 import Base from '../../../../layouts/Base.astro';
 import {amostra} from '../../../../data/biblia.js';
+import {aulasDoCapitulo} from '../../../../data/cobertura.js';
 ---
 <Base title="Gênesis 1 — Capítulo">
   <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/livros/genesis/">Gênesis</a> / <span class="gold">Capítulo 1</span></div>
   <section class="intro"><span class="eyebrow">Gênesis · Capítulo 1</span><h1>O início da criação</h1><p class="muted">Leia o capítulo e selecione um versículo para explorar seus módulos de estudo.</p></section>
-  <div class="notice">Prévia: apenas os versículos 1 a 3 estão disponíveis nesta primeira versão. O restante do capítulo será incorporado após revisão.</div>
+  <div class="notice">Esta leitura contínua mostra apenas os três primeiros versículos. As aulas do PDF cobrem Gênesis 1:1–31. Consulte os estudos por trecho abaixo.</div>
   <div class="controls"><label for="leitura" class="muted">Modo de leitura</label><select id="leitura" class="field"><option value="continua">Leitura contínua</option><option value="separada">Por versículos</option></select></div>
   <section id="texto" class="reading continuous" aria-label="Texto bíblico">
     {amostra.versos.map(v=><button class="verse" data-verse={v.numero} aria-label={'Prévia de Gênesis 1:'+v.numero}><span class="verse-number">{v.numero}</span>{v.texto}</button>)}
   </section>
   <p class="muted" style="font-size:12px;margin-top:12px">Toque em um versículo para abrir uma prévia rápida. A partir dela, você poderá abrir a página de estudo completa.</p>
+  <div class="section-heading"><h2>Aulas do capítulo completo</h2><span class="tag">Gênesis 1:1–31</span></div>
+  <div class="grid two">
+    {aulasDoCapitulo(1).map(a=><a class="card" href={'/estudos/'+a.aula+'/'}><span class="eyebrow">Aula {String(a.aula).padStart(2,'0')} · Gênesis {a.faixa}</span><h3 style="margin-top:8px">{a.tema}</h3><p class="gold" style="font-size:13px;margin-top:8px">Ler estudo →</p></a>)}
+  </div>
   <div class="controls"><a class="btn secondary" href="/livros/genesis/">← Voltar a Gênesis</a><a class="btn" href="/livros/genesis/1/1/">Estudar Gênesis 1:1 →</a></div>
   <dialog id="preview" aria-labelledby="preview-title">
     <div class="dialog-header"><div><span class="eyebrow">Prévia do versículo</span><h2 id="preview-title"></h2></div><button id="close" class="btn secondary small" aria-label="Fechar prévia">✕ Fechar</button></div>
