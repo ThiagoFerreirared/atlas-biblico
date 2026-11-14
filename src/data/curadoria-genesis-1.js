@@ -17,10 +17,9 @@ export function estudoGenesisInicial(versiculo, aulas) {
   };
   const fonte='PDF consolidado · Aulas 06–07';
   const semEvidencias=item('Evidências e limites','As aulas 06–07 não apresentam descobertas arqueológicas específicas que comprovem este versículo. Para aprofundamento, consulte a Aula 05 sobre o antigo Oriente Próximo.','Limite da fonte');
-  const revisao=(perguntas,registro)=>[
-    ...perguntas.map((p,i)=>item('Pergunta '+(i+1)+' · PDF',p,fonte)),
-    item('Registro e questões abertas',registro,fonte)
-  ];
+  // O sexto módulo apresenta uma síntese de leitura, sem questões ou provas.
+  // As perguntas originais permanecem preservadas em aulas.js.
+  const sintese=(titulo,trecho,origem)=>[item(titulo,trecho,origem)];
   const r6=(indices)=>indices.map(i=>({...aula6.referencias[i],origem:'Aula 06'}));
   const r7=(indices)=>indices.map(i=>({...aula7.referencias[i],origem:'Aula 07'}));
   const conexoes=(refs)=>refs.map(r=>item(r.referencia,r.texto+'\n\nConexão: '+r.conexao,r.origem,'referencia'));
@@ -34,7 +33,7 @@ export function estudoGenesisInicial(versiculo, aulas) {
       conexoes:[transcrever(aula6,'João e o princípio'),...conexoes(refs)],
       interpretacoes:[item('Criação a partir do nada · limite interpretativo',interpretacao,'Aula 06 · O primeiro versículo')],
       arqueologia:[semEvidencias],
-      revisao:revisao(aula6.perguntas,aula6.registro),
+      revisao:sintese('O que Gênesis 1:1 apresenta',sec(aula6,'O primeiro versículo').texto,'Aula 06 · O primeiro versículo'),
       referencias:refs
     };
   }
@@ -52,7 +51,7 @@ export function estudoGenesisInicial(versiculo, aulas) {
       conexoes:conexoes(refs),
       interpretacoes:[item('Leitura cristã e limites do texto',leituraCrista,'Aula 07 · Espírito ou vento de Deus')],
       arqueologia:[item('Limites de comparação científica',limiteGeologico,'Aula 07 · A terra sem forma e vazia')],
-      revisao:revisao([aula7.perguntas[1]],aula7.registro),
+      revisao:sintese('O essencial de Gênesis 1:2',sec(aula7,'A terra sem forma e vazia').texto+' '+sec(aula7,'Espírito ou vento de Deus').texto,'Aula 07 · Gênesis 1:2'),
       referencias:refs
     };
   }
@@ -66,7 +65,7 @@ export function estudoGenesisInicial(versiculo, aulas) {
       conexoes:conexoes(refs),
       interpretacoes:[item('Luz e luminares',debate,'Aula 07 · Haja luz')],
       arqueologia:[semEvidencias],
-      revisao:revisao([aula7.perguntas[0]],aula7.registro),
+      revisao:sintese('O essencial de Gênesis 1:3',sec(aula7,'Haja luz').texto,'Aula 07 · Gênesis 1:3'),
       referencias:refs
     };
   }
