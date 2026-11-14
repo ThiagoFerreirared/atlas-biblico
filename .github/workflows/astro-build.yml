@@ -19,6 +19,8 @@ jobs:
         run: node scripts/validar-curadoria.mjs
       - name: Validar aprofundamento de Genesis 1
         run: node scripts/validar-genesis1-profundo.mjs
+      - name: Validar todas as 24 aulas e 69 estudos
+        run: node scripts/validar-todos-estudos.mjs
       - name: Gerar site
         run: npm run build
       - name: Conferir páginas geradas
