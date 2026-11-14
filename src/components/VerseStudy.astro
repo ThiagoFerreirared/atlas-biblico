@@ -25,7 +25,7 @@ const aprofundamento=obterAprofundamento(capitulo,versiculo);
 ---
 <Base title={title+' — Atlas Bíblico'}>
   <div class="breadcrumbs"><a href="/">Biblioteca</a> / <a href="/livros/genesis/">Gênesis</a> / <a href={'/livros/genesis/'+capitulo+'/'}>Capítulo {capitulo}</a> / <span class="gold">Versículo {versiculo}</span></div>
-  <section class="intro"><span class="eyebrow">Livro de Gênesis · Capítulo {capitulo} · Versículo {versiculo}</span><h1>{title}</h1><p class="muted">{has?'Leia as explicações por assunto, com o conteúdo do estudo original organizado dentro dos módulos.':'Texto bíblico disponível · A análise deste versículo ainda não foi publicada.'}</p></section>
+  <section class="intro"><span class="eyebrow">Livro de Gênesis · Capítulo {capitulo} · Versículo {versiculo}</span><h1>{title}</h1><p class="muted">{has?'Leia as explicações detalhadas e compare os diferentes sentidos possíveis desta passagem.':'Texto bíblico disponível · A análise deste versículo ainda não foi publicada.'}</p></section>
   <div class="verse-box main-verse">“{verse.texto}”</div>
   <p class="source">Texto: Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018. <a href="https://creativecommons.org/licenses/by/3.0/br/" target="_blank" rel="noopener noreferrer">CC BY 3.0 Brasil</a>.</p>
   <div class="verse-actions"><a class="btn secondary small" href={'/livros/genesis/'+capitulo+'/#v-'+versiculo}>← Voltar ao capítulo, versículo {versiculo}</a><a id="back-to-connection" class="btn secondary small hidden" href="/livros/genesis/1/1/">← Voltar ao estudo de origem</a><button class="btn secondary small" id="mark-read" type="button">Marcar como lido</button><a class="btn secondary small" href="/progresso/">Meu progresso</a></div>
@@ -43,7 +43,7 @@ const aprofundamento=obterAprofundamento(capitulo,versiculo);
       : m.id==='interpretacoes' ? aprofundamento.leituras.length+' leituras e comparações'
       : m.id==='arqueologia' ? 'Limites históricos e científicos'
       : aprofundamento.sintese.length+' pontos essenciais')
-    : (study[m.id]?.[0]?.titulo==='Sem estudo específico no PDF' ? 'Este tema ainda não possui uma explicação específica' : study[m.id]?.[0]?.titulo || m.descricao))}</p><span class="gold">Ler explicação →</span></button>)}
+    : (study[m.id]?.[0]?.titulo==='Sem estudo específico registrado' ? 'Este tema ainda não possui uma explicação específica' : study[m.id]?.[0]?.titulo || m.descricao))}</p><span class="gold">Ler explicação →</span></button>)}
     </div>
     <p class="notice hidden" id="verse-complete" style="margin-top:20px">✓ Todos os seis módulos concluídos! Este versículo entrou no ciclo opcional de revisão espaçada.</p>
 
@@ -63,12 +63,12 @@ const aprofundamento=obterAprofundamento(capitulo,versiculo);
       <a class="future-questions-all" href="/estudos/debates/">Ver o arquivo completo de questões em aberto →</a>
     </section>
     <details class="source-details">
-      <summary>Consultar o material original deste estudo</summary>
+      <summary>Notas e leituras complementares</summary>
       <p>Os assuntos desta passagem também integram as aulas completas do acervo. Você pode consultar o material de referência, se quiser.</p>
-      {study.aulas.map(t=><a href={'/estudos/'+t.aula.numero+'/'} class="source-link">Aula {String(t.aula.numero).padStart(2,'0')} · Gênesis {t.faixa} · consultar original →</a>)}
+      {study.aulas.map(t=><a href={'/estudos/'+t.aula.numero+'/'} class="source-link">Aula {String(t.aula.numero).padStart(2,'0')} · Gênesis {t.faixa} · abrir estudo →</a>)}
     </details>
   </> : <>
-    <div class="notice" style="margin-top:22px">Este versículo tem texto completo para leitura, mas ainda não possui análise nas 24 aulas importadas. Os estudos publicados chegam até Gênesis 3:13; a próxima etapa é Gênesis 3:14–15. Os seis módulos serão disponibilizados somente quando houver material correspondente.</div>
+    <div class="notice" style="margin-top:22px">O texto deste versículo já está disponível. O aprofundamento será publicado quando o estudo chegar a esta passagem. Os estudos publicados chegam até Gênesis 3:13; a próxima etapa é Gênesis 3:14–15. Os seis módulos serão disponibilizados somente quando houver material correspondente.</div>
     <a href="/estudos/24/" class="btn secondary" style="margin-top:18px">Consultar a última aula publicada →</a>
   </>}
   <div class="chapter-nav">
@@ -93,7 +93,7 @@ const aprofundamento=obterAprofundamento(capitulo,versiculo);
                     </details>}
                   </div>
                 </>
-                : <div class="connection-scripture"><p>“{r.texto}”</p><p class="muted" style="font:12px/1.5 system-ui">Paráfrase de estudo do PDF; o texto integral desta referência ainda não está disponível aqui.</p></div>}
+                : <div class="connection-scripture"><p>“{r.texto}”</p><p class="muted" style="font:12px/1.5 system-ui">Resumo da passagem; o texto integral desta referência ainda não está disponível nesta página.</p></div>}
               <details class="connection-context"><summary>Entender por que os textos estão relacionados</summary><p>{r.conexao}</p></details>
               <a class="btn secondary small connection-open" href={r.pagina}>{r.estudo?'Estudar este versículo no Atlas →':'Ir para esta passagem no Atlas →'}</a>
             </section>)
@@ -184,7 +184,7 @@ if(headline){
    document.getElementById('module-guide').textContent=id==='interpretacoes'
      ?'Interpretações compara possibilidades de leitura e seus limites. Distinguimos o que o versículo afirma de conclusões teológicas ou científicas adicionais.'
      :isExpanded
-       ?'Esta é uma ampliação editorial baseada nas aulas 06–15 do PDF consolidado. A transcrição do hebraico foi conferida em fonte textual. O trecho original da aula pode ser consultado ao final.'
+       ?'Explore a passagem em etapas e compare diferentes interpretações e seus limites. As notas complementares estão disponíveis ao final.'
        :'Leia as explicações organizadas por assunto. Ao terminar, você pode marcar este módulo como lido.';
    const tpl=document.getElementById('template-'+id);
    const body=document.getElementById('module-body');body.replaceChildren(tpl.content.cloneNode(true));
