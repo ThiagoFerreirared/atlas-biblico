@@ -29,12 +29,6 @@ const title='Gênesis '+capitulo+':'+versiculo;
     </div>
     <p class="notice hidden" id="verse-complete" style="margin-top:20px">✓ Todos os seis módulos concluídos! Este versículo entrou no ciclo opcional de revisão espaçada.</p>
 
-    <div class="section-heading"><h2>Conexões bíblicas</h2><span class="tag">{refs.length} referências da fonte</span></div>
-    <p class="muted" style="margin-bottom:16px">Clique para ler o texto completo da Bíblia Livre e entender a conexão registrada no PDF.</p>
-    <div class="grid two">
-      {refs.map(r=><button type="button" class="card ref-card" data-ref={r.id}><span class="eyebrow">Conexão · Aula</span><h3>{r.referencia}</h3><p class="muted">{r.conexao}</p><span class="gold">Ler passagem completa →</span></button>)}
-    </div>
-
     <div class="section-heading"><h2>Reflexão pessoal</h2></div>
     <div class="card"><label class="label" for="verse-note">Minhas anotações sobre {title} (salvas no navegador)</label><textarea class="field personal-notes" id="verse-note" rows="5" placeholder="Registre aqui suas observações, dúvidas e interpretações..."></textarea></div>
     <div class="review-panel" id="review-panel" hidden><h3>Revisão espaçada</h3><p id="review-message" class="muted"></p><button type="button" class="btn secondary" id="review-now">✓ Já revisei este versículo</button></div>
@@ -50,14 +44,28 @@ const title='Gênesis '+capitulo+':'+versiculo;
 
   {has && <>
     {modulos.map(m=><template id={'template-'+m.id}>
-      {(study[m.id]||[]).map((section,i)=><section class="study-part" id={'part-'+i}><span class="part-origin">{section.origem}</span><h3>{section.titulo}</h3><p>{section.texto}</p></section>)}
-    </template>)}
-    {refs.map(r=><template id={'ref-template-'+r.id}>
-      <h3 class="passage-name">{r.referencia}</h3>
-      {r.completo?<div class="full-passage">{r.completo.versiculos.map(v=><p><span class="passage-number">{v.numero}</span> {v.texto}</p>)}</div>:<p class="muted">Texto completo indisponível nesta versão.</p>}
-      <p class="source">Texto bíblico: Bíblia Livre (BLIVRE), CC BY 3.0 Brasil.</p>
-      <div class="connection-reason"><span class="eyebrow">Por que esta passagem está conectada?</span><p>{r.conexao}</p><p class="muted" style="font-size:12px">Origem da conexão: {r.origem}. Paráfrase presente no PDF: “{r.texto}”</p></div>
-      {r.destino&&<a class="btn secondary" href={r.destino}>Estudar a passagem no Atlas →</a>}
+      {m.id==='conexoes'
+        ? (refs.length
+          ? refs.map((r,i)=><section class="study-part connection-entry" id={'part-'+i}>
+              <span class="part-origin">{r.origem} · Referência bíblica</span>
+              <h3>{r.referencia}</h3>
+              {r.completo
+                ? <>
+                  <div class="connection-scripture">
+                    {r.completo.versiculos.slice(0,3).map(v=><p><span class="passage-number">{v.numero}</span>{v.texto}</p>)}
+                    {r.completo.versiculos.length>3&&<details class="connection-more">
+                      <summary>Mostrar mais {r.completo.versiculos.length-3} versículos</summary>
+                      {r.completo.versiculos.slice(3).map(v=><p><span class="passage-number">{v.numero}</span>{v.texto}</p>)}
+                    </details>}
+                  </div>
+                  <p class="source">Texto bíblico: Bíblia Livre (BLIVRE), 2018 · CC BY 3.0 Brasil.</p>
+                </>
+                : <div class="connection-scripture"><p>“{r.texto}”</p><p class="muted" style="font:12px/1.5 system-ui">Paráfrase de estudo do PDF; texto integral indisponível nesta referência.</p></div>}
+              <div class="connection-reason"><span class="eyebrow">Por que esta passagem está conectada?</span><p>{r.conexao}</p></div>
+              {r.destino&&<a class="btn secondary small" href={r.destino}>Estudar este versículo no Atlas →</a>}
+            </section>)
+          : <section class="study-part" id="part-0"><h3>Sem conexão específica registrada</h3><p>O PDF não traz uma conexão bíblica atribuída diretamente a este versículo. Consulte a aula completa para conferir as referências do trecho.</p></section>)
+        : (study[m.id]||[]).map((section,i)=><section class="study-part" id={'part-'+i}><span class="part-origin">{section.origem}</span><h3>{section.titulo}</h3><p>{section.texto}</p></section>)}
     </template>)}
     <dialog id="module-dialog" aria-labelledby="module-heading">
       <header class="modal-header"><div><span id="modal-step" class="eyebrow"></span><h2 id="module-heading"></h2></div><button type="button" id="module-close" class="btn secondary small">✕ Fechar</button></header>
@@ -66,22 +74,26 @@ const title='Gênesis '+capitulo+':'+versiculo;
       <div id="module-body"></div>
       <div class="modal-bottom"><button type="button" class="btn" id="module-done">✓ Concluir e fechar</button><button type="button" class="btn secondary" id="module-next">Próximo módulo →</button></div>
     </dialog>
-    <dialog id="ref-dialog" aria-label="Passagem bíblica relacionada">
-      <header class="modal-header"><span class="eyebrow">Conexão bíblica · texto completo</span><button type="button" class="btn secondary small" id="ref-close">✕ Fechar</button></header>
-      <div id="ref-body"></div>
-      <button type="button" class="btn secondary" id="ref-back" style="margin-top:20px">← Voltar a {title}</button>
-    </dialog>
+
   </>}
 </Base>
 <style is:global>
 .main-verse{margin-bottom:10px}.source{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px}.source a{color:var(--gold);text-decoration:underline}.verse-actions,.lesson-links,.chapter-nav{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:18px 0 25px}
 .lesson-link{display:grid;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 17px;font-size:13px;min-width:170px}.lesson-link:hover{border-color:var(--gold)}
 .progress-line{height:7px;background:#33383d;border-radius:12px;margin:0 0 17px;overflow:hidden}.progress-line>div{height:100%;width:0;background:var(--gold);transition:width .2s}
-.module,.ref-card{text-align:left;color:var(--text);display:flex;flex-direction:column;gap:8px}.module{min-height:170px}.module h3,.ref-card h3{font-size:17px}.module p,.ref-card p{font-size:13px}.module .gold,.ref-card .gold{font-size:12px;margin-top:auto;font-weight:650}.module-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.module-symbol{font-size:23px;color:var(--gold)}.module-status{font-size:11px;color:var(--muted)}.module[data-state="in-progress"] .module-status{color:var(--gold)}.module[data-state="done"]{border-color:#47775b}.module[data-state="done"] .module-status{color:var(--green)}.module[data-state="done"] .module-status::before{content:'✓ ';color:var(--green)}
+.module{text-align:left;color:var(--text);display:flex;flex-direction:column;gap:8px}.module{min-height:170px}.module h3{font-size:17px}.module p{font-size:13px}.module .gold{font-size:12px;margin-top:auto;font-weight:650}.module-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.module-symbol{font-size:23px;color:var(--gold)}.module-status{font-size:11px;color:var(--muted)}.module[data-state="in-progress"] .module-status{color:var(--gold)}.module[data-state="done"]{border-color:#47775b}.module[data-state="done"] .module-status{color:var(--green)}.module[data-state="done"] .module-status::before{content:'✓ ';color:var(--green)}
 .module-guide{margin:14px 0 22px}.modal-guide{font-size:13px;color:var(--muted);border-left:2px solid var(--gold);padding:9px 12px;margin:15px 0;line-height:1.65}.modal-guide strong{color:var(--text)}.panel-index-title{font-size:10px;color:var(--muted);letter-spacing:.12em;font-weight:700;margin-top:18px}.personal-notes{display:block;width:100%;resize:vertical}.review-panel{border:1px solid #6f563c;border-radius:12px;background:#25231d;padding:20px;margin-top:23px}.review-panel h3{margin-bottom:10px}.review-panel button{margin-top:12px}.chapter-nav{justify-content:space-between;margin-top:38px}
-#module-dialog,#ref-dialog{width:min(840px,calc(100vw - 26px));max-height:91dvh;overflow:auto;background:var(--card);border:1px solid #755e3e;border-radius:15px;color:var(--text);padding:26px;box-shadow:0 25px 90px #000b}#module-dialog::backdrop,#ref-dialog::backdrop{background:#000c}
-.modal-header{display:flex;justify-content:space-between;gap:15px;align-items:start;margin-bottom:16px}.modal-header h2{margin-top:5px}.panel-index{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 18px;padding:13px;background:var(--card2);border:1px solid var(--line);border-radius:11px}.panel-index a{font-size:12px;padding:5px 9px;color:var(--gold);border:1px solid #524633;border-radius:7px}.study-part{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:13px;scroll-margin-top:25px}.study-part .part-origin{font-size:11px;color:var(--muted)}.study-part h3{font-size:19px;margin:6px 0 11px}.study-part p{white-space:pre-line;line-height:1.85}.modal-bottom{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.full-passage{padding:18px;background:var(--card2);border:1px solid var(--line);border-radius:12px;font:19px/1.85 Georgia,serif;margin:14px 0}.full-passage p+p{margin-top:7px}.passage-number{font:700 12px Inter,system-ui,sans-serif;color:var(--gold);margin-right:6px}.passage-name{font-size:22px;color:var(--text)}.connection-reason{border-left:3px solid var(--gold);padding:13px 17px;margin:19px 0;background:#282722}.connection-reason p{margin-top:9px;line-height:1.7}
-@media(max-width:650px){#module-dialog,#ref-dialog{width:100vw;max-width:none;height:100dvh;max-height:100dvh;border-radius:0;padding:18px;margin:0}.modal-bottom .btn{flex:1}.chapter-nav .btn{flex:1}.lesson-link{width:100%}}
+#module-dialog{width:min(840px,calc(100vw - 26px));max-height:91dvh;overflow:auto;background:var(--card);border:1px solid #755e3e;border-radius:15px;color:var(--text);padding:26px;box-shadow:0 25px 90px #000b}#module-dialog::backdrop{background:#000c}
+.modal-header{display:flex;justify-content:space-between;gap:15px;align-items:start;margin-bottom:16px}.modal-header h2{margin-top:5px}.panel-index{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 18px;padding:13px;background:var(--card2);border:1px solid var(--line);border-radius:11px}.panel-index a{font-size:12px;padding:5px 9px;color:var(--gold);border:1px solid #524633;border-radius:7px}.study-part{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:13px;scroll-margin-top:25px}.study-part .part-origin{font-size:11px;color:var(--muted)}.study-part h3{font-size:19px;margin:6px 0 11px}.study-part p{white-space:pre-line;line-height:1.85}.modal-bottom{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.full-passage{padding:18px;background:var(--card2);border:1px solid var(--line);border-radius:12px;font:19px/1.85 Georgia,serif;margin:14px 0}.full-passage p+p{margin-top:7px}.passage-number{font:700 12px Inter,system-ui,sans-serif;color:var(--gold);margin-right:6px}.passage-name{font-size:22px;color:var(--text)}.connection-entry h3{font-size:20px;margin:6px 0 12px;color:var(--gold)}
+.connection-scripture{background:#1a1e20;border:1px solid var(--line);border-radius:10px;padding:16px 18px;font:18px/1.85 Georgia,serif;color:var(--text)}
+.connection-scripture p{white-space:normal;line-height:1.85}.connection-scripture p+p{margin-top:8px}
+.connection-scripture .passage-number{display:inline-block;min-width:22px;vertical-align:baseline;margin-right:6px}
+.connection-more{margin-top:13px;border-top:1px solid var(--line);padding-top:12px}
+.connection-more summary{font:600 13px/1.6 system-ui;color:var(--gold);cursor:pointer;margin-bottom:10px}
+.connection-entry .connection-reason{background:#272520;margin:15px 0}
+.connection-entry .source{margin-top:8px;margin-bottom:0}
+.connection-reason{border-left:3px solid var(--gold);padding:13px 17px;margin:19px 0;background:#282722}.connection-reason p{margin-top:9px;line-height:1.7}
+@media(max-width:650px){#module-dialog{width:100vw;max-width:none;height:100dvh;max-height:100dvh;border-radius:0;padding:18px;margin:0}.modal-bottom .btn{flex:1}.chapter-nav .btn{flex:1}.lesson-link{width:100%}}
 </style>
 <script>
 import { getVerse, markRead, markOpened, markDone, reviewVerse, saveDraft, getDraft } from '../scripts/progresso.js';
@@ -99,7 +111,6 @@ if(headline){
  if(notes){const key='genesis:'+chapter+':'+number+':nota';notes.value=getDraft(key);notes.addEventListener('input',()=>saveDraft(key,notes.value));}
  const tiles=[...document.querySelectorAll('[data-module]')];
  const modal=document.getElementById('module-dialog');
- const refDialog=document.getElementById('ref-dialog');
  let active=0;
  function formatDate(v){return new Date(v).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});}
  function render(){
@@ -137,15 +148,7 @@ if(headline){
  document.getElementById('module-close')?.addEventListener('click',()=>modal.close());
  document.getElementById('module-done')?.addEventListener('click',()=>{markDone(chapter,number,ids[active]);modal.close();render();});
  document.getElementById('module-next')?.addEventListener('click',()=>{if(active<5)openModule(active+1);});
- document.querySelectorAll('[data-ref]').forEach(button=>button.addEventListener('click',()=>{
-   const id=button.dataset.ref,body=document.getElementById('ref-body');
-   body.replaceChildren(document.getElementById('ref-template-'+id).content.cloneNode(true));
-   refDialog.showModal();
- }));
- document.getElementById('ref-close')?.addEventListener('click',()=>refDialog.close());
- document.getElementById('ref-back')?.addEventListener('click',()=>refDialog.close());
  modal?.addEventListener('click',e=>{if(e.target===modal)modal.close();});
- refDialog?.addEventListener('click',e=>{if(e.target===refDialog)refDialog.close();});
  document.getElementById('review-now')?.addEventListener('click',()=>{reviewVerse(chapter,number);render();});
  render();
 }
