@@ -20,7 +20,7 @@ const next=v.numero<amostra.versos.length?v.numero+1:null;
   </div>
   <p id="complete-message" class="notice hidden" style="margin-top:18px">✓ Versículo concluído! Todos os seis módulos foram marcados. Você pode revisitá-los quando quiser.</p>
   <div class="section-heading"><h2>Conexões bíblicas</h2><span class="tag">{v.numero === 1 ? "Aulas 6–7" : "Amostra"}</span></div>
-  <p class="muted" style="margin-bottom:14px">Selecione uma passagem para ler a explicação sem perder seu lugar.</p>
+  <p class="muted" style="margin-bottom:14px">{v.numero === 1 ? "Selecione uma passagem para ler a explicação sem perder seu lugar." : "As conexões deste versículo ainda não foram importadas."}</p>
   <div class="grid two">
     {amostra.conexoes.map((c,i)=><button class="card connection" data-connection={i}><span class="eyebrow">{c.tipo}</span><h3>{c.referencia}</h3><p>“{c.texto}”</p><span class="gold">Explorar conexão →</span></button>)}
   </div>
@@ -63,7 +63,7 @@ const next=v.numero<amostra.versos.length?v.numero+1:null;
     document.getElementById('module-label').textContent='GÊNESIS 1:'+verseNumber+' · ETAPA '+(index+1)+'/'+modules.length;
     document.getElementById('module-desc').textContent=mod.descricao;
     const area=document.getElementById('module-content');area.replaceChildren();
-    for(const part of content[mod.id]||[{titulo:'Material em preparação',texto:'Este módulo será publicado após revisão.'}]){
+    for(const part of (verseNumber===1?content[mod.id]:[{titulo:'Conteúdo em preparação',texto:'O estudo deste versículo ainda não foi importado do PDF consolidado. Esta página permanece demonstrativa.'}])||[{titulo:'Material em preparação',texto:'Este módulo será publicado após revisão.'}]){
       const box=document.createElement('section');box.className='subsection';
       const h=document.createElement('h3');h.textContent=part.titulo;const p=document.createElement('p');p.textContent=part.texto;
       box.append(h,p);area.append(box);
