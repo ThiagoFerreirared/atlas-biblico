@@ -17,13 +17,3 @@ export const livros = [
   ['Romanos',16,'Cartas paulinas'],['1 Coríntios',16,'Cartas paulinas'],['2 Coríntios',13,'Cartas paulinas'],['Gálatas',6,'Cartas paulinas'],['Efésios',6,'Cartas paulinas'],['Filipenses',4,'Cartas paulinas'],['Colossenses',4,'Cartas paulinas'],['1 Tessalonicenses',5,'Cartas paulinas'],['2 Tessalonicenses',3,'Cartas paulinas'],['1 Timóteo',6,'Cartas paulinas'],['2 Timóteo',4,'Cartas paulinas'],['Tito',3,'Cartas paulinas'],['Filemom',1,'Cartas paulinas'],
   ['Hebreus',13,'Cartas gerais'],['Tiago',5,'Cartas gerais'],['1 Pedro',5,'Cartas gerais'],['2 Pedro',3,'Cartas gerais'],['1 João',5,'Cartas gerais'],['2 João',1,'Cartas gerais'],['3 João',1,'Cartas gerais'],['Judas',1,'Cartas gerais'],['Apocalipse',22,'Literatura apocalíptica'],
 ].map(([nome, capitulos, categoria], indice) => ({ nome, capitulos, categoria, indice, testamento: indice < 39 ? 'AT' : 'NT' }));
-
-// Gênesis 1:1 tem estudo transposto das aulas 6 e 7 do PDF consolidado (14/11/2026).
-// Os versículos 2 e 3 permanecem demonstrativos; traduções integrais aguardam verificação de licença.
-export const amostra = {
-  livro: 'Gênesis', capitulo: 1,
-  versos: [
-    { numero: 1, texto: 'No princípio, Deus criou os céus e a terra.' },
-    { numero: 2, texto: 'E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.' },
-    { numero: 3, texto: 'E disse Deus: Haja luz. E houve luz.' }
-  ],
