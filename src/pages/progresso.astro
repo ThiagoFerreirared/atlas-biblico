@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 ---
 <Base title="Meu progresso e revisões">
   <div class="breadcrumbs"><a href="/">Biblioteca</a> / <span class="gold">Meu progresso</span></div>
-  <section class="intro"><span class="eyebrow">Acompanhamento pessoal</span><h1>Minha jornada pelo Atlas</h1><p class="muted">Acompanhe leitura, módulos concluídos, resultados das avaliações e revisões programadas — tudo salvo neste navegador.</p></section>
+  <section class="intro"><span class="eyebrow">Acompanhamento pessoal</span><h1>Minha jornada pelo Atlas</h1><p class="muted">Acompanhe sua leitura, os módulos concluídos e o progresso dos estudos, salvos neste navegador.</p></section>
   <div class="notice">Os registros desta página são pessoais e locais. Não são sincronizados entre dispositivos. As estatísticas históricas do PDF não foram atribuídas automaticamente ao seu progresso atual.</div>
   <div class="stats">
     <div class="card stat"><span class="eyebrow">Leitura</span><strong id="read-count">—</strong><p>de 80 versículos disponíveis em Gênesis 1–3</p></div>
@@ -15,10 +15,6 @@ import Base from '../layouts/Base.astro';
   <div class="grid">
     {[1,2,3].map(n=><a href={'/livros/genesis/'+n+'/'} class="card chapter-stat" data-chapter-summary={n}><span class="eyebrow">Gênesis</span><h3>Capítulo {n}</h3><p class="muted" data-ch-read>Leitura —</p><div class="meter"><div data-read-fill></div></div><p class="muted" data-ch-done>Estudo —</p><div class="meter"><div data-study-fill></div></div><span class="gold" style="font-size:12px">Continuar estudo →</span></a>)}
   </div>
-  <div class="section-heading"><h2>Avaliações</h2></div>
-  <div class="grid">
-    {[1,2,3].map(n=><a class="card" href={'/livros/genesis/'+n+'/avaliacao/'}><span class="eyebrow">Capítulo {n}</span><h3 style="margin:8px 0" data-quiz-summary={n}>Nenhuma avaliação registrada</h3><span class="gold" style="font-size:12px">Fazer ou repetir avaliação →</span></a>)}
-  </div>
   <div class="section-heading"><h2>Revisões espaçadas</h2><span class="tag">1 · 7 · 30 dias</span></div>
   <p class="muted" style="margin-bottom:13px">Após concluir os seis módulos de um versículo, ele entra no ciclo de revisão. Ao revisar, marque a revisão na própria página do versículo.</p>
   <div class="card"><h3>Revisões disponíveis agora</h3><div id="due-list" class="review-list"><p class="muted">Nenhuma revisão pendente.</p></div><hr/><h3>Próximas revisões</h3><div id="next-list" class="review-list"><p class="muted">Nenhuma revisão programada.</p></div></div>
@@ -28,7 +24,7 @@ import Base from '../layouts/Base.astro';
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:25px 0}.stat{display:grid;gap:5px}.stat strong{font-size:31px;color:var(--gold)}.stat p{font-size:12px;color:var(--muted)}.chapter-stat{display:grid;gap:9px}.chapter-stat h3{font-size:20px}.chapter-stat p{font-size:12px}.meter{height:7px;border-radius:10px;background:#343a40;overflow:hidden}.meter div{height:100%;width:0;background:var(--gold)}.review-list{padding-top:15px;display:grid;gap:8px}.review-list a{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:9px;padding:10px 13px}.review-list a:hover{border-color:var(--gold)}.review-list .muted{font-size:12px}hr{border:0;border-top:1px solid var(--line);margin:23px 0}@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}@media(max-width:400px){.stats{grid-template-columns:1fr}}
 </style>
 <script>
-import {summary,getQuiz} from '../scripts/progresso.js';
+import {summary} from '../scripts/progresso.js';
 const s=summary();
 document.getElementById('read-count').textContent=s.read;
 document.getElementById('done-count').textContent=s.studied;
@@ -41,10 +37,7 @@ for(const card of document.querySelectorAll('[data-chapter-summary]')){
  card.querySelector('[data-read-fill]').style.width=(d.read/d.total*100)+'%';
  card.querySelector('[data-study-fill]').style.width=(d.done/d.studiedTotal*100)+'%';
 }
-for(const cell of document.querySelectorAll('[data-quiz-summary]')){
- const q=getQuiz(Number(cell.dataset.quizSummary));
- cell.textContent=q?'Última nota: '+q.correct+'/'+q.total+' · Melhor: '+q.best+'/'+q.total:'Ainda não realizada';
-}
+
 function display(items,target,empty){
  const list=document.getElementById(target);list.replaceChildren();
  if(!items.length){const p=document.createElement('p');p.className='muted';p.textContent=empty;list.append(p);return;}
