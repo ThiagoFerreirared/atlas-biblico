@@ -7,7 +7,7 @@ import { livros } from '../data/biblia.js';
     <span class="eyebrow">Biblioteca das Escrituras</span>
     <h1>Cada versículo, um universo<br/>de conhecimento.</h1>
     <p class="muted">Explore os livros da Bíblia, conheça seus contextos e aprofunde-se nos estudos. O Atlas cresce conforme cada conteúdo é pesquisado e revisado.</p>
-    <div class="controls"><a class="btn" href="/estudos/">Explorar as 25 aulas →</a><a class="btn secondary" href="/livros/genesis/">Começar por Gênesis</a><a class="btn secondary" href="/progresso/">Meu progresso</a></div>
+    <div class="controls"><a class="btn" href="/estudos/">Explorar as 26 aulas →</a><a class="btn secondary" href="/livros/genesis/">Começar por Gênesis</a><a class="btn secondary" href="/progresso/">Meu progresso</a></div>
   </section>
   <div class="controls" aria-label="Filtros da biblioteca">
     <input class="field search" id="search" aria-label="Pesquisar livros" placeholder="Pesquisar livros..." type="search"/>
@@ -22,7 +22,7 @@ import { livros } from '../data/biblia.js';
       {l.indice===0?<a class="text-link" href="/livros/genesis/">Explorar livro →</a>:<span class="status">Estrutura prevista</span>}
     </article>)}
   </div>
-  <p class="notice" style="margin-top:24px">Explore os estudos de Gênesis 1 e 2 e de Gênesis 3:1–15, com explicações aprofundadas, interpretações e conexões. Outros capítulos serão adicionados progressivamente.</p>
+  <p class="notice" style="margin-top:24px">Explore os estudos de Gênesis 1 e 2 e de Gênesis 3:1–19, com explicações aprofundadas, interpretações e conexões. Outros capítulos serão adicionados progressivamente.</p>
 </Base>
 <style>
   .catalog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.book-item{display:flex;flex-direction:column;gap:9px;min-height:155px}.book-item h3{font-size:20px}.book-item .text-link,.book-item .status{margin-top:auto}.book-item .text-link{color:var(--gold);font-size:13px;font-weight:700}.options{border:1px solid var(--line);border-radius:9px;padding:13px 16px;margin-bottom:22px;color:var(--muted);font-size:13px}.options summary{cursor:pointer}.options p{padding-top:9px}

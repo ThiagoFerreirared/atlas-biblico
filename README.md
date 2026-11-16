@@ -73,3 +73,7 @@ O GitHub Actions valida a curadoria dos 69 versículos, os registros das 24 aula
 Aula 26 — **Gênesis 3:16–19**. Os textos de leitura de Gênesis 3:14–24 já estão disponíveis, mas os comentários desse trecho somente serão criados a partir da nova aula real.
 
 Esta versão foi concebida para que novas aulas possam ser adicionadas ao repositório sem recriar manualmente uma página para cada versículo.
+
+## Aula 26 — Gênesis 3:16–19 (16/11/2026)
+
+A Aula 26 amplia o estudo com quatro versículos, preservando os 24 registros originais auditados. O catálogo totaliza **26 aulas**, **75 versículos aprofundados**, **450 módulos de estudo** e **43 questões em investigação**. Os novos debates DB-040 a DB-045 tratam de parto e dor, `teshuqah`, domínio, solo amaldiçoado, vegetação espinhosa e mortalidade. Aulas e conexões não têm avaliações obrigatórias. Próximo trecho: Gênesis 3:20–24. Vercel e publicação permanecem sob controle do mantenedor.

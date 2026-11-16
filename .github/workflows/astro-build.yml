@@ -21,7 +21,7 @@ jobs:
         run: node scripts/validar-genesis1-profundo.mjs
       - name: Auditar fidelidade ao PDF de 42 páginas
         run: node scripts/validar-fidelidade-pdf.mjs
-      - name: Validar 24 aulas auditadas e a Aula 25 (71 estudos)
+      - name: Validar acervo auditado e Aulas 25–26 (75 estudos)
         run: node scripts/validar-todos-estudos.mjs
       - name: Gerar site
         run: npm run build
@@ -33,6 +33,7 @@ jobs:
           test -f dist/estudos/1/index.html
           test -f dist/estudos/24/index.html
           test -f dist/estudos/25/index.html
+          test -f dist/estudos/26/index.html
           test -f dist/livros/genesis/1/index.html
           test -f dist/livros/genesis/1/31/index.html
           test -f dist/livros/genesis/2/25/index.html

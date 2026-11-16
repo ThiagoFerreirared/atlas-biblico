@@ -1,4 +1,3 @@
-// Questões adicionais posteriores ao acervo auditado; nenhuma é avaliação obrigatória.
 export const debatesNovos=[
   {
     "id": "DB-34",
@@ -112,10 +111,6 @@ export const debatesNovos=[
       [
         3,
         16
-      ],
-      [
-        4,
-        7
       ]
     ],
     "origem": [

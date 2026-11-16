@@ -59,3 +59,7 @@ Essa auditoria é parte do **código do GitHub**; a hospedagem e a publicação 
 ## 5. Ampliação posterior sem alteração do instantâneo auditado
 
 A Aula 25 (Gênesis 3:14–15) foi adicionada em arquivos separados. O hash e os 273 campos do acervo de 24 aulas originais em `src/data/aulas.js` permanecem intactos. O teste de auditoria continua verificando somente os 69 versículos e os 31 debates da fonte histórica, enquanto a curadoria geral passa a conferir 71 versículos e o caderno expandido reúne 37 debates. A Aula 25 utiliza traduções de estudo identificadas; os 116 textos BLIVRE anteriores continuam priorizados em referências repetidas. A ampliação não é uma nova auditoria do PDF original. GitHub Actions executa os validadores e o build; não publica na Vercel.
+
+## 6. Continuidade com a Aula 26 (16/11/2026)
+
+A Aula 26 foi acrescentada ao acervo suplementar, sem modificar os 24 registros históricos de `src/data/aulas.js`. A auditoria de fidelidade do PDF mantém seu escopo original de 24 aulas, 69 versículos e 31 debates. As verificações editoriais gerais passam a cobrir 26 aulas e 75 versículos em seis módulos. O caderno adicional passa de seis a doze temas, totalizando 43 debates sem avaliações obrigatórias. Não é reauditoria retroativa do PDF original.
