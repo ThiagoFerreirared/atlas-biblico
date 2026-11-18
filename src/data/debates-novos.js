@@ -182,5 +182,114 @@ export const debatesNovos=[
     ],
     "estado": "Em aberto",
     "nota": "Investigação iniciada na Aula 26; hipótese não equiparada a prova."
+  },
+  {
+    "id": "DB-046",
+    "titulo": "Chavvah, o nome Eva e a continuidade da vida",
+    "passagens": [
+      [
+        3,
+        20
+      ]
+    ],
+    "origem": [
+      27
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 27; não confundir leitura histórica e desenvolvimento teológico."
+  },
+  {
+    "id": "DB-047",
+    "titulo": "Vestes de pele: existe necessariamente sacrifício?",
+    "passagens": [
+      [
+        3,
+        21
+      ]
+    ],
+    "origem": [
+      27
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 27; não confundir leitura histórica e desenvolvimento teológico."
+  },
+  {
+    "id": "DB-048",
+    "titulo": "O plural 'um de nós' e o conselho celestial",
+    "passagens": [
+      [
+        3,
+        22
+      ]
+    ],
+    "origem": [
+      27
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 27; não confundir leitura histórica e desenvolvimento teológico."
+  },
+  {
+    "id": "DB-049",
+    "titulo": "Imortalidade original e função da árvore da vida",
+    "passagens": [
+      [
+        3,
+        22
+      ]
+    ],
+    "origem": [
+      27
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 27; não confundir leitura histórica e desenvolvimento teológico."
+  },
+  {
+    "id": "DB-050",
+    "titulo": "Querubins no Éden e paralelos iconográficos",
+    "passagens": [
+      [
+        3,
+        24
+      ]
+    ],
+    "origem": [
+      27
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 27; não confundir leitura histórica e desenvolvimento teológico."
+  },
+  {
+    "id": "DB-051",
+    "titulo": "A espada flamejante e seu movimento",
+    "passagens": [
+      [
+        3,
+        24
+      ]
+    ],
+    "origem": [
+      27
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 27; não confundir leitura histórica e desenvolvimento teológico."
+  },
+  {
+    "id": "DB-052",
+    "titulo": "Éden como jardim-santuário",
+    "passagens": [
+      [
+        3,
+        23
+      ],
+      [
+        3,
+        24
+      ]
+    ],
+    "origem": [
+      27
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 27; não confundir leitura histórica e desenvolvimento teológico."
   }
 ];

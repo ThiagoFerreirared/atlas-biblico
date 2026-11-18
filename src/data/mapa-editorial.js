@@ -91,5 +91,6 @@ export const mapaEditorial={
   }
   ,25:{secoes:[[0,[14],"textual"],[1,[14],"historico"],[2,[14],"arqueologia"],[3,[15],"textual"],[4,[15],"textual"],[5,[15],"interpretacoes"],[6,[15],"historico"],[7,[14,15],"arqueologia"]],referencias:[[1,[14]],[2,[14]],[3,[14]],[4,[15]],[5,[15]],[6,[15]],[7,[15]],[8,[15]],[9,[15]]],perguntas:[]}
   ,26:{secoes:[[0,[16],"textual"],[1,[16,17],"textual"],[2,[16],"interpretacoes"],[3,[16],"interpretacoes"],[4,[17],"textual"],[5,[17],"historico"],[6,[17,18,19],"interpretacoes"],[7,[18],"textual"],[8,[19],"historico"],[9,[19],"textual"],[10,[17,18,19],"interpretacoes"],[11,[16,17,18,19],"arqueologia"]],referencias:[[1,[16]],[2,[16]],[3,[16]],[4,[16]],[5,[17]],[6,[17,18,19]],[7,[18]],[8,[19]],[9,[19]],[10,[17,18,19]],[11,[19]]],perguntas:[]}
+  ,27:{secoes:[[0,[20],"textual"],[1,[20],"historico"],[2,[21],"textual"],[3,[21],"historico"],[4,[22],"interpretacoes"],[5,[22],"textual"],[6,[23],"textual"],[7,[23,24],"arqueologia"],[8,[24],"historico"],[9,[24],"textual"],[10,[22,24],"interpretacoes"],[11,[24],"arqueologia"]],referencias:[[1,[20]],[2,[20]],[3,[21]],[4,[22]],[5,[22]],[6,[23]],[7,[24]],[8,[22,24]],[9,[24]]],perguntas:[]}
 };
 export const versiculosRelacionados=(aula,versiculo,tipo)=>mapaEditorial[aula]?.[tipo]?.filter(([,versos])=>versos.includes(Number(versiculo)))||[];

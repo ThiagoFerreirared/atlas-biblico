@@ -6,7 +6,7 @@ import { estudoGenesisInicial } from './curadoria-genesis-1.js';
 import { mapaEditorial } from './mapa-editorial.js';
 
 export { modulos };
-export const TOTAL_ESTUDADOS = 75; // Gn 1:1–31 (31), 2:1–25 (25), 3:1–13 (13).
+export const TOTAL_ESTUDADOS = 80; // Gn 1:1–31 (31), 2:1–25 (25), 3:1–13 (13).
 export const TOTAL_LIDOS_DISPONIVEIS = 80; // Gênesis 1–3 em Bíblia Livre.
 export const totalVersosPorCapitulo = { 1:31, 2:25, 3:24 };
 

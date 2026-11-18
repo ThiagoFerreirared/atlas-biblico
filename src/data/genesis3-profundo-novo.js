@@ -1,4 +1,4 @@
-// Estudo desenvolvido após a auditoria original. Cada versículo possui seis módulos.
+// Expansões posteriores às 24 aulas auditadas; cinco novos estudos completam Gênesis 3.
 export default {
   "14": {
     "tema": "A serpente: maldição, ventre e pó",
@@ -401,6 +401,341 @@ export default {
       "O trabalho penoso acompanha a subsistência.",
       "O humano retorna ao solo do qual foi tomado.",
       "A esperança da ressurreição é uma leitura cristã posterior."
+    ]
+  },
+  "20": {
+    "tema": "Eva, mãe de todos os viventes",
+    "passos": [
+      [
+        "Etapa 1",
+        "O homem atribui à mulher o nome Chavvah/Eva no momento seguinte à sentença de mortalidade."
+      ],
+      [
+        "Etapa 2",
+        "O texto relaciona o nome à maternidade e à vida; antes disso não há nascimento explicitamente narrado."
+      ],
+      [
+        "Etapa 3",
+        "O contraste com 3:19 dá força literária à continuidade da vida, mas o versículo não descreve a intenção psicológica de Adão como fé messiânica comprovada."
+      ],
+      [
+        "Etapa 4",
+        "Gênesis 4:1 relata posteriormente a concepção e o nascimento de Caim."
+      ]
+    ],
+    "termos": [
+      [
+        "חַוָּה",
+        "Chavvah",
+        "Eva, nome relacionado à vida"
+      ],
+      [
+        "חַי",
+        "chay",
+        "vivo/vida"
+      ]
+    ],
+    "leituras": [
+      [
+        "Nome como esperança",
+        "O contraste com a morte pode sugerir esperança na continuidade humana.",
+        "A narrativa não atribui expressamente a Adão uma declaração de esperança messiânica."
+      ],
+      [
+        "Explicação de origem",
+        "O narrador relaciona o nome à futura maternidade.",
+        "Não equivale necessariamente à reconstrução definitiva da etimologia histórica."
+      ]
+    ],
+    "historico": [
+      "Rashi comenta a semelhança entre Chavvah e o vocabulário de vida.",
+      "A tradição antiga debate o significado do nome, e as análises modernas distinguem jogo literário e etimologia."
+    ],
+    "limites": [
+      "Não declarar nascimento humano anterior ao narrado.",
+      "Não atribuir certeza sobre a psicologia de Adão."
+    ],
+    "sintese": [
+      "Chavvah é relacionado à vida.",
+      "O nome contrasta com o retorno ao pó.",
+      "O primeiro nascimento explicitado vem em Gênesis 4."
+    ]
+  },
+  "21": {
+    "tema": "Vestes de pele: provisão e interpretações",
+    "passos": [
+      [
+        "Etapa 1",
+        "O Senhor Deus faz túnicas/vestes de pele e veste o casal, em contraste com as coberturas humanas de folhas de figueira."
+      ],
+      [
+        "Etapa 2",
+        "Os termos kotnot e or designam vestes e pele; não há descrição direta de altar, sangue, sacrifício ou morte animal."
+      ],
+      [
+        "Etapa 3",
+        "A interpretação de um primeiro sacrifício é inferência teológica, não afirmação explícita do narrador."
+      ],
+      [
+        "Etapa 4",
+        "A tradição judaica também registrou jogos interpretativos sobre vestes de pele e de luz."
+      ]
+    ],
+    "termos": [
+      [
+        "כָּתְנוֹת",
+        "kotnot",
+        "túnicas/vestes"
+      ],
+      [
+        "עוֹר",
+        "or",
+        "pele/couro"
+      ]
+    ],
+    "leituras": [
+      [
+        "Provisão divina",
+        "Deus veste o casal apesar da sentença.",
+        "O texto não utiliza expressamente a palavra perdão."
+      ],
+      [
+        "Tipologia de sacrifício",
+        "Alguns cristãos relacionam a pele à morte de um animal e à expiação.",
+        "Não existe altar, oferta ou sangue narrado em 3:21."
+      ],
+      [
+        "Vestes de luz",
+        "Midrash apresenta leitura simbólica de vestes de luz.",
+        "A leitura massorética comum diz pele."
+      ]
+    ],
+    "historico": [
+      "Rashi e Midrash Bereshit Rabbah registram interpretações diversas das vestes.",
+      "Tradição cristã vê cuidado divino; autores diferem sobre tipologia sacrificial."
+    ],
+    "limites": [
+      "Não inventar espécie de animal sacrificado.",
+      "Não apresentar o Midrash como leitura massorética literal."
+    ],
+    "sintese": [
+      "Deus produz vestes e veste o casal.",
+      "Vestes de pele são explicitadas, sacrifício não.",
+      "A comparação com Gênesis 3:7 mostra mudança no tratamento da nudez."
+    ]
+  },
+  "22": {
+    "tema": "Um de nós e a árvore da vida",
+    "passos": [
+      [
+        "Etapa 1",
+        "A fala divina reconhece uma mudança na condição do conhecimento humano do bem e do mal, em correspondência parcial com a alegação da serpente."
+      ],
+      [
+        "Etapa 2",
+        "Conhecimento adquirido não elimina a advertência de morte, a vergonha, o medo e o afastamento narrados."
+      ],
+      [
+        "Etapa 3",
+        "O plural 'um de nós' recebe leituras sobre conselho celestial, deliberação divina ou, retrospectivamente, Trindade; o texto não formula uma doutrina trinitária explícita."
+      ],
+      [
+        "Etapa 4",
+        "O acesso à árvore da vida é restringido para impedir que o homem coma e viva para sempre."
+      ],
+      [
+        "Etapa 5",
+        "A narrativa não esclarece se a árvore conferia vida por um fruto único, ingestão contínua ou simbolismo sacro."
+      ]
+    ],
+    "termos": [
+      [
+        "עֵץ הַחַיִּים",
+        "ets ha-chayyim",
+        "árvore da vida"
+      ],
+      [
+        "יָדַע",
+        "yada",
+        "conhecer"
+      ],
+      [
+        "לְעֹלָם",
+        "leolam",
+        "para sempre"
+      ]
+    ],
+    "leituras": [
+      [
+        "Imortalidade condicionada",
+        "A árvore representa provisão divina de permanência na vida.",
+        "O mecanismo não é descrito."
+      ],
+      [
+        "Imortalidade perdida",
+        "A queda causa perda da possibilidade de viver indefinidamente.",
+        "O texto não afirma que o homem já havia comido da árvore."
+      ],
+      [
+        "Leitura simbólica",
+        "A árvore representa acesso à vida divina em narrativa sagrada.",
+        "O símbolo não exclui necessariamente a realidade literária da árvore."
+      ]
+    ],
+    "historico": [
+      "A pesquisa de T. Stordalen e outros autores investiga árvore, jardim e templo em contextos do Oriente Próximo.",
+      "O plural divino é discutido nas tradições judaica, cristã e na pesquisa literária."
+    ],
+    "limites": [
+      "Não afirmar que comer uma única vez produziria automaticamente imortalidade.",
+      "Não confundir eco cristão posterior com explicação direta do narrador."
+    ],
+    "sintese": [
+      "O texto liga árvore da vida à possibilidade de viver para sempre.",
+      "Deus restringe o acesso após a desobediência.",
+      "O plural 'nós' não resolve isoladamente o debate sobre o conselho divino."
+    ]
+  },
+  "23": {
+    "tema": "A expulsão do jardim e o retorno ao solo",
+    "passos": [
+      [
+        "Etapa 1",
+        "O Senhor envia o homem do Éden para trabalhar o solo do qual foi tomado."
+      ],
+      [
+        "Etapa 2",
+        "Gênesis 2:15 já havia atribuído cultivo e guarda; a expulsão altera o lugar e o acesso à árvore da vida, não a existência do trabalho."
+      ],
+      [
+        "Etapa 3",
+        "A palavra adamah retoma a relação entre homem e solo."
+      ],
+      [
+        "Etapa 4",
+        "Perda de acesso ao Éden não é afirmação de ausência absoluta de ações divinas posteriores na história."
+      ]
+    ],
+    "termos": [
+      [
+        "אֲדָמָה",
+        "adamah",
+        "solo"
+      ],
+      [
+        "עָבַד",
+        "avad",
+        "trabalhar/cultivar"
+      ],
+      [
+        "שָׁלַח",
+        "shalach",
+        "enviar"
+      ]
+    ],
+    "leituras": [
+      [
+        "Julgamento",
+        "A expulsão realiza o impedimento de acesso anunciado no versículo anterior.",
+        "Não descreve que a humanidade deixa de existir."
+      ],
+      [
+        "Mudança na vocação",
+        "O trabalho continua fora do jardim, em condições alteradas.",
+        "Não afirmar que antes o homem não trabalhava."
+      ]
+    ],
+    "historico": [
+      "Jardins e áreas cultivadas têm simbolismos antigos de proteção e ordem.",
+      "Os paralelos de santuário são interpretativos, não reconstrução arqueológica do Éden."
+    ],
+    "limites": [
+      "Não interpretar expulsão como prova de que Deus nunca mais se relacionaria com humanos.",
+      "Não deduzir um mapa do jardim."
+    ],
+    "sintese": [
+      "Deus envia o homem para cultivar solo.",
+      "O acesso à árvore da vida é interrompido.",
+      "A relação adam-adamah volta a aparecer."
+    ]
+  },
+  "24": {
+    "tema": "Querubins, espada flamejante e caminho guardado",
+    "passos": [
+      [
+        "Etapa 1",
+        "O texto localiza os querubins a leste do jardim e apresenta a chama da espada que gira ou se move para guardar a rota da árvore da vida."
+      ],
+      [
+        "Etapa 2",
+        "Querubins são seres associados ao espaço sagrado e à presença divina; Êxodo 25:18–20 apresenta suas imagens sobre a arca."
+      ],
+      [
+        "Etapa 3",
+        "A pintura de um querubim segurando a espada não é exigida pela gramática hebraica; a arma pode ser descrita separadamente."
+      ],
+      [
+        "Etapa 4",
+        "A localização a leste não fornece coordenadas nem comprova que o Éden tivesse só uma entrada."
+      ],
+      [
+        "Etapa 5",
+        "Apocalipse 22 retoma a árvore da vida no cenário da restauração cristã."
+      ]
+    ],
+    "termos": [
+      [
+        "כְּרֻבִים",
+        "keruvim",
+        "querubins"
+      ],
+      [
+        "לַהַט",
+        "lahat",
+        "chama/brilho ardente"
+      ],
+      [
+        "מִתְהַפֶּכֶת",
+        "mithappekhet",
+        "que gira ou se move"
+      ],
+      [
+        "דֶּרֶךְ",
+        "derekh",
+        "caminho"
+      ]
+    ],
+    "leituras": [
+      [
+        "Função de guarda",
+        "Querubins e espada impedem acesso livre à árvore da vida.",
+        "O texto não afirma que a espada atingiu Adão e Eva."
+      ],
+      [
+        "Éden como espaço sagrado",
+        "Símbolos de querubins e árvore podem ser comparados a descrições de santuários.",
+        "Semelhança não demonstra arquitetura histórica idêntica."
+      ],
+      [
+        "Leitura cristã de restauração",
+        "Apocalipse 22 contrapõe acesso restaurado e ausência de maldição.",
+        "É releitura literária posterior."
+      ]
+    ],
+    "historico": [
+      "Criaturas protetoras aladas também aparecem na iconografia do Oriente Próximo.",
+      "A semelhança com lamassu assírios não prova identidade dos querubins bíblicos.",
+      "O estudo acadêmico do Éden como templo considera paralelos e divergências."
+    ],
+    "limites": [
+      "Não representar os querubins obrigatoriamente como bebês alados.",
+      "Não declarar que cada querubim carregava uma espada.",
+      "Não estabelecer localização arqueológica a partir da palavra leste."
+    ],
+    "sintese": [
+      "A função explícita é guardar o caminho.",
+      "O texto não descreve uma espada empunhada por um querubim.",
+      "A árvore da vida reaparece em Apocalipse 22."
     ]
   }
 };

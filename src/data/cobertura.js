@@ -19,6 +19,7 @@ export const coberturaGenesis = [
   {aula:23,capitulo:3,de:6,ate:7,faixa:'3:6–7',tema:'A desobediência'},
   {aula:24,capitulo:3,de:8,ate:13,faixa:'3:8–13',tema:'Medo e responsabilidade'},
   {aula:25,capitulo:3,de:14,ate:15,faixa:'3:14–15',tema:'A serpente e o protoevangelho'},
-  {aula:26,capitulo:3,de:16,ate:19,faixa:'3:16–19',tema:'Sofrimento, terra e mortalidade'}
+  {aula:26,capitulo:3,de:16,ate:19,faixa:'3:16–19',tema:'Sofrimento, terra e mortalidade'},
+  {aula:27,capitulo:3,de:20,ate:24,faixa:'3:20–24',tema:'Eva, vestes e expulsão do Éden'}
 ];
 export const aulasDoCapitulo=(numero)=>coberturaGenesis.filter(x=>x.capitulo===Number(numero));

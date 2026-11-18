@@ -1,4 +1,4 @@
-// Traduções próprias de estudo (não atribuídas à BLIVRE). Referências antigas mantêm prioridade.
+// Traduções próprias de estudo; não atribuir à BLIVRE. O acervo anterior prevalece para referências repetidas.
 export default {
   "Gênesis 3:13": {
     "livro": "Gênesis",
@@ -249,6 +249,110 @@ export default {
       {
         "numero": 22,
         "texto": "Assim como em Adão todos morrem, também em Cristo todos receberão vida."
+      }
+    ]
+  },
+  "Gênesis 3:19": {
+    "livro": "Gênesis",
+    "capitulo": 3,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 19,
+        "texto": "Com o suor do rosto comerás alimento até voltares ao solo, pois dele foste tomado; porque és pó, e ao pó retornarás."
+      }
+    ]
+  },
+  "Gênesis 4:1": {
+    "livro": "Gênesis",
+    "capitulo": 4,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 1,
+        "texto": "Adão teve relações com Eva, sua mulher; ela concebeu e deu à luz Caim. Então disse: Adquiri um homem com a ajuda do Senhor."
+      }
+    ]
+  },
+  "Gênesis 3:7": {
+    "livro": "Gênesis",
+    "capitulo": 3,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 7,
+        "texto": "Os olhos dos dois foram abertos, perceberam que estavam nus e costuraram folhas de figueira, fazendo coberturas para si."
+      }
+    ]
+  },
+  "Gênesis 1:26": {
+    "livro": "Gênesis",
+    "capitulo": 1,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 26,
+        "texto": "Então Deus disse: Façamos o ser humano à nossa imagem e semelhança, para que exerça responsabilidade sobre as criaturas do mar, céu e terra."
+      }
+    ]
+  },
+  "Gênesis 2:9": {
+    "livro": "Gênesis",
+    "capitulo": 2,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 9,
+        "texto": "O Senhor Deus fez brotar do solo árvores agradáveis à vista e boas para alimento, e também a árvore da vida no meio do jardim e a árvore do conhecimento do bem e do mal."
+      }
+    ]
+  },
+  "Êxodo 25:18-20": {
+    "livro": "Êxodo",
+    "capitulo": 25,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 18,
+        "texto": "Farás dois querubins de ouro, trabalhados a martelo, nas duas extremidades da tampa da arca."
+      },
+      {
+        "numero": 19,
+        "texto": "Farás um querubim em uma extremidade e outro na extremidade oposta, formando-os como parte da tampa."
+      },
+      {
+        "numero": 20,
+        "texto": "Os querubins terão asas estendidas para cima, cobrindo a tampa. Estarão voltados um para o outro, com o rosto em direção à tampa."
+      }
+    ]
+  },
+  "Apocalipse 22:1-3": {
+    "livro": "Apocalipse",
+    "capitulo": 22,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 1,
+        "texto": "O anjo mostrou um rio de água da vida, brilhante como cristal, que saía do trono de Deus e do Cordeiro."
+      },
+      {
+        "numero": 2,
+        "texto": "No meio da rua da cidade e de cada lado do rio estava a árvore da vida, com doze colheitas de frutos, uma por mês. Suas folhas serviam à cura das nações."
+      },
+      {
+        "numero": 3,
+        "texto": "Nunca mais haverá maldição. O trono de Deus e do Cordeiro estará na cidade e seus servos o adorarão."
+      }
+    ]
+  },
+  "Apocalipse 22:14": {
+    "livro": "Apocalipse",
+    "capitulo": 22,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 14,
+        "texto": "Felizes os que lavam suas vestes, para que tenham direito à árvore da vida e possam entrar na cidade pelos portões."
       }
     ]
   }

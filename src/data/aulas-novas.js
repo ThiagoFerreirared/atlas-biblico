@@ -1,4 +1,4 @@
-// Aulas adicionais publicadas após a auditoria das primeiras 24.
+// Aulas 25 em diante, fora do instantâneo auditado de 24 aulas.
 export const aulasNovas=[
   {
     "numero": 25,
@@ -211,5 +211,114 @@ export const aulasNovas=[
     ],
     "perguntas": [],
     "registro": "Aula 26: Gênesis 3:16–19. Interpretações de teshuqah e mashal mantidas em debate; sofrimento no parto não proíbe cuidados médicos e domínio não autoriza abuso. Trabalho antecede a queda. DB-040 a DB-045 seguem abertos. Próxima: Gênesis 3:20–24. Sem avaliação obrigatória."
+  },
+  {
+    "numero": 27,
+    "categoria": "Gênesis",
+    "titulo": "A expulsão do Éden, Eva, vestes e árvore da vida — Gênesis 3:20–24",
+    "secoes": [
+      {
+        "titulo": "Eva e a vida: a nomeação depois da sentença de morte",
+        "texto": "Chavvah é associado no relato ao vocabulário de vida e maternidade. A nomeação ocorre antes do primeiro nascimento explicitamente narrado no livro, e contrasta com o retorno ao pó anunciado em Gênesis 3:19. A interpretação como esperança messiânica consciente é possível em algumas tradições, mas não explicitada."
+      },
+      {
+        "titulo": "O nome Chavvah e a tradição judaica",
+        "texto": "O hebraico חַוָּה (Chavvah) relaciona-se no jogo etimológico do texto a vida e geração. Rashi comenta sua afinidade com chayah. Evitar afirmar etimologia histórica absoluta baseada apenas na explicação narrativa."
+      },
+      {
+        "titulo": "Deus faz vestes de pele",
+        "texto": "Gênesis 3:21 usa kotnot ('túnicas, vestes') e or ('pele, couro') e descreve Deus vestindo o casal. O contraste com as folhas de figueira de 3:7 é explícito. Sacrifício, altar, oferta e morte de um animal não são narrados; uma tipologia cristológica possível não equivale a prova textual."
+      },
+      {
+        "titulo": "Vestes de luz? História da recepção",
+        "texto": "A tradição midráshica discute vestes de luz em jogo textual com vestes de pele, palavras hebraicas de som semelhante e grafia distinta. O texto massorético usa or com ayin, 'pele'. Deve-se distinguir a tradição interpretativa do texto hebraico recebido."
+      },
+      {
+        "titulo": "Como um de nós e o conhecimento do bem e do mal",
+        "texto": "Gênesis 3:22 retoma a promessa anterior de conhecimento, mas uma correspondência parcial não valida a afirmação da serpente sobre a morte. O plural 'nós' é interpretado como conselho celestial, deliberação divina ou, em leitura cristã posterior, antecipação trinitária; o texto não explicita a Trindade."
+      },
+      {
+        "titulo": "A árvore da vida e a condição mortal",
+        "texto": "A árvore da vida aparece desde Gênesis 2:9. Em 3:22 é relacionada a comer e viver para sempre; o texto não esclarece se uma refeição bastaria, se o acesso deveria ser renovado ou se a função era simbólica. Modelos de imortalidade condicionada, perda de imortalidade e símbolo literário são discutidos."
+      },
+      {
+        "titulo": "A expulsão: trabalhar o solo fora do jardim",
+        "texto": "O homem é enviado para cultivar o solo do qual veio. O verbo relacionado ao trabalho já aparece antes da queda em Gênesis 2:15; a mudança na narrativa diz respeito ao lugar, à dureza da existência e ao acesso à árvore da vida, não à invenção do trabalho."
+      },
+      {
+        "titulo": "O Éden e o santuário na pesquisa histórica",
+        "texto": "A associação entre jardim sagrado e templo é investigada com base em querubins, árvore da vida, símbolos de acesso e iconografia do antigo Oriente Próximo. Paralelos não provam arquitetura idêntica nem localização histórica do jardim."
+      },
+      {
+        "titulo": "Querubins, seres celestiais e iconografia",
+        "texto": "Keruvim é plural de querubim. Seres com função de guarda aparecem junto ao caminho da árvore da vida e, em Êxodo 25:18–20, sobre a arca. Não devem ser representados obrigatoriamente como bebês alados; não podem ser identificados automaticamente com lamassu assírios."
+      },
+      {
+        "titulo": "A espada que se move e protege o caminho",
+        "texto": "O versículo apresenta querubins e chama de espada que se move ou gira, guardando o caminho da árvore da vida. Não afirma que um querubim empunhe pessoalmente a espada nem que ela execute Adão e Eva. A menção ao leste não comprova um mapa arqueológico do Éden."
+      },
+      {
+        "titulo": "A árvore da vida de Gênesis ao Apocalipse",
+        "texto": "Apocalipse 22:1–3 e 22:14 retomam árvore da vida, rio, ausência de maldição e acesso na restauração. Conexão teológica e literária posterior, não descrição literal antecipada em todos os detalhes por Gênesis 3."
+      },
+      {
+        "titulo": "Limites da reconstrução arqueológica",
+        "texto": "Não existe artefato conhecido que demonstre a existência histórica desses querubins do jardim ou da espada flamejante. Iconografia e literatura comparada ajudam a compreender imagens sagradas antigas, mas não provam o evento narrado."
+      }
+    ],
+    "referencias": [
+      {
+        "referencia": "Gênesis 3:20-24",
+        "texto": "Adão nomeia Eva; Deus veste o casal, declara a aquisição de conhecimento e impede o acesso à árvore da vida mediante expulsão e guarda do caminho.",
+        "conexao": "Texto central integral da Aula 27."
+      },
+      {
+        "referencia": "Gênesis 3:19",
+        "texto": "O homem é informado de que retornará ao solo, pois do pó foi tomado.",
+        "conexao": "Contraste imediato entre mortalidade e o nome ligado à vida."
+      },
+      {
+        "referencia": "Gênesis 4:1",
+        "texto": "Eva concebe e dá à luz Caim, o primeiro nascimento explicitamente narrado.",
+        "conexao": "Continuidade narrativa da nomeação como mãe de viventes."
+      },
+      {
+        "referencia": "Gênesis 3:7",
+        "texto": "Após perceber a nudez, o casal faz coberturas de folhas de figueira.",
+        "conexao": "Contraste entre coberturas humanas e vestes feitas por Deus."
+      },
+      {
+        "referencia": "Gênesis 1:26",
+        "texto": "Deus diz façamos o ser humano à nossa imagem.",
+        "conexao": "Paralelo da linguagem divina plural com 'um de nós'."
+      },
+      {
+        "referencia": "Gênesis 2:9",
+        "texto": "Deus faz crescer árvores e menciona a árvore da vida e do conhecimento.",
+        "conexao": "Antecedente explícito da árvore cuja entrada será guardada."
+      },
+      {
+        "referencia": "Gênesis 2:15",
+        "texto": "Deus coloca o homem no jardim para cultivar e guardar.",
+        "conexao": "O trabalho antecede o afastamento do Éden."
+      },
+      {
+        "referencia": "Êxodo 25:18-20",
+        "texto": "Deus ordena a fabricação de dois querubins de ouro, com asas sobre a tampa da arca.",
+        "conexao": "Paralelo do simbolismo dos querubins no espaço sagrado."
+      },
+      {
+        "referencia": "Apocalipse 22:1-3",
+        "texto": "A visão apresenta rio de vida, árvore da vida e ausência da maldição.",
+        "conexao": "Retomada cristã do acesso à árvore da vida na restauração."
+      },
+      {
+        "referencia": "Apocalipse 22:14",
+        "texto": "A visão anuncia acesso à árvore da vida na cidade restaurada.",
+        "conexao": "Contraste entre caminho guardado e acesso restaurado."
+      }
+    ],
+    "perguntas": [],
+    "registro": "Aula 27 — Gênesis 3:20–24. Gênesis 3 concluído; debates DB-046–DB-052 permanecem abertos. Não há questionário obrigatório. Próxima aula: Gênesis 4:1–5."
   }
 ];
