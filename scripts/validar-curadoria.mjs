@@ -37,7 +37,7 @@ for(const [c,max] of [[1,31],[2,25],[3,24]]){
   assert.equal(textoGenesis[c].length,max,'Texto bíblico incompleto, capítulo '+c);
   for(let v=1;v<=max;v++){
     const analise=gerarConteudoDoVersiculo(c,v);
-    const esperado=c<3||v<=19;
+    const esperado=c<3||v<=24;
     assert.equal(Boolean(analise),esperado,`Cobertura incorreta Gênesis ${c}:${v}`);
     assert.equal(possuiEstudo(c,v),esperado);
     if(!analise)continue;
@@ -50,5 +50,5 @@ for(const [c,max] of [[1,31],[2,25],[3,24]]){
     verificados++;
   }
 }
-assert.equal(verificados,75);
-console.log('Curadoria validada: 75 versículos, '+totalSecoes+' seções, '+totalRefs+' referências e '+totalPerguntas+' perguntas em aulas 8–24.');
+assert.equal(verificados,80);
+console.log('Curadoria validada: 80 versículos, '+totalSecoes+' seções, '+totalRefs+' referências e '+totalPerguntas+' perguntas em aulas 8–24.');

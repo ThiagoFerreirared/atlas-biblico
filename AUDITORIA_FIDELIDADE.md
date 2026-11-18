@@ -63,3 +63,7 @@ A Aula 25 (Gênesis 3:14–15) foi adicionada em arquivos separados. O hash e os
 ## 6. Continuidade com a Aula 26 (16/11/2026)
 
 A Aula 26 foi acrescentada ao acervo suplementar, sem modificar os 24 registros históricos de `src/data/aulas.js`. A auditoria de fidelidade do PDF mantém seu escopo original de 24 aulas, 69 versículos e 31 debates. As verificações editoriais gerais passam a cobrir 26 aulas e 75 versículos em seis módulos. O caderno adicional passa de seis a doze temas, totalizando 43 debates sem avaliações obrigatórias. Não é reauditoria retroativa do PDF original.
+
+## 7. Encerramento de Gênesis 3 com Aula 27 (18/11/2026)
+
+Aula 27 (Gênesis 3:20–24) adicionada à extensão editorial das Aulas 25–26. O instantâneo auditado das Aulas 1–24 não foi modificado; a auditoria das 42 páginas continua limitada ao acervo histórico. A curadoria geral cobre agora 27 aulas, 80 versículos de Gênesis 1–3, 480 módulos e 50 questões abertas. Gênesis 3 está concluído quanto à cobertura inicial, não quanto à resolução de todos os debates. As traduções de estudo adicionais são rotuladas e a Vercel permanece sob controle do mantenedor.

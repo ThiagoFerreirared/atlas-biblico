@@ -4,9 +4,9 @@ import { textoGenesis } from '../src/data/texto-genesis.js';
 import { aulas } from '../src/data/catalogo-aulas.js';
 import { gerarConteudoDoVersiculo, possuiEstudo } from '../src/data/estudo.js';
 
-assert.equal(aulas.length,26,'Acervo deve manter todas as 24 aulas');
+assert.equal(aulas.length,27,'Acervo deve manter todas as 24 aulas');
 let count=0;
-for(const [c,n] of [[1,31],[2,25],[3,19]]){
+for(const [c,n] of [[1,31],[2,25],[3,24]]){
   assert.equal(Object.keys(estudosAprofundados[c]).length,n,'Quantidade de estudos errada em Gênesis '+c);
   for(let v=1;v<=n;v++){
     const d=obterAprofundamento(c,v);
@@ -23,6 +23,6 @@ for(const [c,n] of [[1,31],[2,25],[3,19]]){
     count++;
   }
 }
-for(let v=20;v<=24;v++)assert.equal(obterAprofundamento(3,v),null,'Não criar estudo fora da fonte: Gênesis 3:'+v);
-assert.equal(count,75);
-console.log('OK: 24 aulas originais preservadas, mais Aulas 25–26; 75 estudos aprofundados e 80 versículos para leitura.');
+// Gênesis 1–3 estão completos; os estudos posteriores à auditoria são separados do acervo histórico.
+assert.equal(count,80);
+console.log('OK: Aulas 1–24 preservadas, Aulas 25–27 integradas; 80 versículos com estudos aprofundados e 480 módulos.');

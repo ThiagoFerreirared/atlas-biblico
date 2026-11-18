@@ -77,3 +77,7 @@ Esta versão foi concebida para que novas aulas possam ser adicionadas ao reposi
 ## Aula 26 — Gênesis 3:16–19 (16/11/2026)
 
 A Aula 26 amplia o estudo com quatro versículos, preservando os 24 registros originais auditados. O catálogo totaliza **26 aulas**, **75 versículos aprofundados**, **450 módulos de estudo** e **43 questões em investigação**. Os novos debates DB-040 a DB-045 tratam de parto e dor, `teshuqah`, domínio, solo amaldiçoado, vegetação espinhosa e mortalidade. Aulas e conexões não têm avaliações obrigatórias. Próximo trecho: Gênesis 3:20–24. Vercel e publicação permanecem sob controle do mantenedor.
+
+## Aula 27 — Gênesis 3:20–24 (18/11/2026)
+
+A Aula 27 completa o capítulo 3 de Gênesis, com cinco estudos individuais e seus seis módulos. O catálogo passa a **27 aulas**, **80 versículos com aprofundamento** e **480 módulos possíveis**, abrangendo Gênesis 1:1–3:24. Foram preservados integralmente os 24 registros originais auditados em `src/data/aulas.js`. O caderno possui **50 debates**, incluindo DB-046 a DB-052, ainda abertos. A aula distingue expressamente vestes de pele e hipóteses de sacrifício, conhecimento do bem e do mal e releituras da árvore da vida. Textos novos de referência são identificados como traduções de estudo, sem alterar os textos BLIVRE já preservados. Nenhum quiz é obrigatório. Próximo estudo proposto: Gênesis 4:1–5. A Vercel não é alterada pelo projeto.

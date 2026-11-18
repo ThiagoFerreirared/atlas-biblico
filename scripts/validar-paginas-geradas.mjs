@@ -15,7 +15,7 @@ for(const [cap,total] of [[1,31],[2,25],[3,24]]){
     assert(existsSync(path),'Versículo sem página: '+cap+':'+verse);
     const html=readFileSync(path,'utf8');
     assert(html.includes('Gênesis '+cap+':'+verse),'Referência não apresentada: '+cap+':'+verse);
-    const hasStudy=cap!==3||verse<=19;
+    const hasStudy=cap!==3||verse<=24;
     if(hasStudy){
       assert(estudosAprofundados[cap][verse], 'Estudo sem conteúdo aprofundado: '+cap+':'+verse);
       assert(html.includes('data-expanded="1"'),'Aprofundamento não conectado: '+cap+':'+verse);
@@ -35,9 +35,9 @@ for(const ref of Object.keys(textosDasReferencias)){
   assert(existsSync(path),'Passagem cruzada ausente: '+ref);
   crossrefs++;
 }
-for(const essential of ['dist/estudos/1/index.html','dist/estudos/24/index.html','dist/estudos/25/index.html','dist/estudos/26/index.html','dist/estudos/debates/index.html','dist/progresso/index.html','dist/busca/index.html'])
+for(const essential of ['dist/estudos/1/index.html','dist/estudos/24/index.html','dist/estudos/25/index.html','dist/estudos/26/index.html','dist/estudos/27/index.html','dist/estudos/debates/index.html','dist/progresso/index.html','dist/busca/index.html'])
   assert(existsSync(essential),'Página essencial ausente: '+essential);
 assert.equal(pages,80);
-assert.equal(rich,75);
+assert.equal(rich,80);
 assert.equal(crossrefs,Object.keys(textosDasReferencias).length);
-console.log('Build verificado: 3 roteiros, 80 versículos, 75 estudos com 6 módulos e referências cruzadas verificadas.');
+console.log('Build verificado: 3 roteiros, 80 versículos, 80 estudos com 6 módulos e referências cruzadas verificadas.');
