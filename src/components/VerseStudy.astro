@@ -18,7 +18,7 @@ const refs=study?.referencias.map((r,i)=>{
     pagina:estudo?direto+'?voltar='+capitulo+'-'+versiculo:urlReferencia(r.referencia)+'?origem='+capitulo+'-'+versiculo};
 })||[];
 const prev=versiculo>1?{c:capitulo,v:versiculo-1}:capitulo>1?{c:capitulo-1,v:totalVersosPorCapitulo[capitulo-1]}:null;
-const next=versiculo<totalVersosPorCapitulo[capitulo]?{c:capitulo,v:versiculo+1}:capitulo<3?{c:capitulo+1,v:1}:null;
+const next=versiculo<totalVersosPorCapitulo[capitulo]?{c:capitulo,v:versiculo+1}:capitulo<4?{c:capitulo+1,v:1}:null;
 const title='Gênesis '+capitulo+':'+versiculo;
 const questoes=questoesDoVersiculo(capitulo,versiculo);
 const aprofundamento=obterAprofundamento(capitulo,versiculo);
@@ -68,13 +68,13 @@ const aprofundamento=obterAprofundamento(capitulo,versiculo);
       {study.aulas.map(t=><a href={'/estudos/'+t.aula.numero+'/'} class="source-link">Aula {String(t.aula.numero).padStart(2,'0')} · Gênesis {t.faixa} · abrir estudo →</a>)}
     </details>
   </> : <>
-    <div class="notice" style="margin-top:22px">O texto deste versículo já está disponível. O aprofundamento será publicado quando o estudo chegar a esta passagem. Os estudos publicados chegam até Gênesis 3:13; a próxima etapa é Gênesis 3:14–15. Os seis módulos serão disponibilizados somente quando houver material correspondente.</div>
-    <a href="/estudos/24/" class="btn secondary" style="margin-top:18px">Consultar a última aula publicada →</a>
+    <div class="notice" style="margin-top:22px">O texto deste versículo já está disponível. O aprofundamento será publicado quando o estudo chegar a esta passagem. Os estudos aprofundados chegam até Gênesis 4:5; os versículos seguintes estão disponíveis para leitura. Os seis módulos serão disponibilizados somente quando houver material correspondente.</div>
+    <a href="/estudos/28/" class="btn secondary" style="margin-top:18px">Consultar a Aula 28 →</a>
   </>}
   <div class="chapter-nav">
     {prev?<a href={urlVerso(prev.c,prev.v)} class="btn secondary">← {prev.c}:{prev.v}</a>:<a href={'/livros/genesis/'+capitulo+'/'} class="btn secondary">← Voltar ao capítulo</a>}
     <a class="btn secondary" href={'/livros/genesis/'+capitulo+'/#v-'+versiculo}>Leitura do capítulo</a>
-    {next?<a href={urlVerso(next.c,next.v)} class="btn">Próximo · {next.c}:{next.v} →</a>:<a href="/livros/genesis/" class="btn">Fim do capítulo 3 →</a>}
+    {next?<a href={urlVerso(next.c,next.v)} class="btn">Próximo · {next.c}:{next.v} →</a>:<a href="/livros/genesis/" class="btn">Voltar ao livro de Gênesis →</a>}
   </div>
 
   {has && <>

@@ -10,7 +10,7 @@ const { capitulo } = Astro.props;
 const versos=textoGenesis[capitulo]||[];
 const aulas=aulasDoCapitulo(capitulo);
 const aulasOriginais=aulas.map(bloco=>({...bloco, original:aulasFonte.find(item=>item.numero===bloco.aula)}));
-const cobertura=capitulo===3?'24 de 24':versos.length+' de '+versos.length;
+const cobertura=capitulo===4?'5 de 26':versos.length+' de '+versos.length;
 const temasPendentes=questoesDoCapitulo(capitulo);
 const roteiros={
   1:[
@@ -37,7 +37,8 @@ const roteiros={
     {nome:'A sentença',faixa:'3:14–15',topico:'A serpente e a descendência da mulher',verso:14},
     {nome:'O solo',faixa:'3:16–19',topico:'Parto, domínio, trabalho e mortalidade',verso:16},
     {nome:'A expulsão',faixa:'3:20–24',topico:'Eva, vestes, árvore da vida e querubins',verso:20}
-  ]
+  ],
+  4:[{nome:'Caim e Abel',faixa:'4:1–5',topico:'Nascimento, profissões e ofertas dos irmãos',verso:1}]
 };
 const roteiro=roteiros[capitulo]||[];
 ---
@@ -68,7 +69,7 @@ const roteiro=roteiros[capitulo]||[];
   </div>
   <p class="muted" style="font-size:12px;margin-top:12px">O texto bíblico acima é da Bíblia Livre, sob licença CC BY 3.0 Brasil. Os módulos dos versículos estudados incluem explicações passo a passo, hebraico quando relevante e interpretações comparadas.</p>
   <section class="genesis1-route" id="roteiro">
-    <div class="section-heading"><h2>Roteiro aprofundado de Gênesis {capitulo}</h2><span class="tag">{capitulo===3?'13 versículos estudados':versos.length+' versículos estudados'}</span></div>
+    <div class="section-heading"><h2>Roteiro aprofundado de Gênesis {capitulo}</h2><span class="tag">{capitulo===4?'5 versículos estudados':versos.length+' versículos estudados'}</span></div>
     <p class="muted" style="margin-bottom:16px">Escolha uma etapa para abrir os estudos por versículo, com explicações passo a passo, interpretações comparadas e palavras hebraicas quando relevantes.</p>
     <div class="genesis1-route-grid">
       {roteiro.map(item=><a href={'/livros/genesis/'+capitulo+'/'+item.verso+'/'} class="genesis1-route-card">
@@ -77,7 +78,7 @@ const roteiro=roteiros[capitulo]||[];
         <span class="gold">Estudar passagem →</span>
       </a>)}
     </div>
-    {capitulo===3&&<p class="muted genesis1-route-note">O estudo aprofundado acompanha os versículos 1 a 13; o restante do capítulo está disponível para leitura.</p>}
+    {capitulo===4&&<p class="muted genesis1-route-note">Gênesis 4:1–5 possui seis módulos por versículo. Os versículos 6–26 estão disponíveis somente para leitura, sem comentários aprofundados publicados.</p>}
   </section>
 
   <div class="controls"><a class="btn secondary" href="/progresso/">Acompanhar minha leitura →</a></div>

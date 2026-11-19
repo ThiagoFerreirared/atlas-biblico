@@ -38,7 +38,7 @@ const studyAvailable=Boolean(refMatch && possuiEstudo(Number(refMatch[1]),Number
     {studyAvailable && direct
       ? <a class="btn" href={direct}>Estudar com os seis módulos →</a>
       : <span class="tag">Estudo individual aprofundado ainda não publicado</span>}
-    <a class="btn secondary" href="/estudos/">Ver as 27 aulas</a>
+    <a class="btn secondary" href="/estudos/">Ver as 28 aulas</a>
     <a class="btn secondary" id="return-origin" href="/estudos/">← Voltar ao estudo de origem</a>
   </div>
 
@@ -52,7 +52,7 @@ const studyAvailable=Boolean(refMatch && possuiEstudo(Number(refMatch[1]),Number
       <a class="text-link gold" href={'/estudos/'+c.aula+'/'}>Ler a aula de origem →</a>
     </article>)}
   </div>
-  <p class="notice" style="margin-top:24px">Os estudos aprofundados chegam até Gênesis 3:24. Outras passagens podem ser consultadas aqui, mesmo quando seus módulos individuais ainda não foram publicados.</p>
+  <p class="notice" style="margin-top:24px">Os estudos aprofundados chegam até Gênesis 4:5. Outras passagens podem ser consultadas aqui, mesmo quando seus módulos individuais ainda não foram publicados.</p>
 </Base>
 <style>
 .passage{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:24px 28px;font:21px/1.9 Georgia,serif}
@@ -65,10 +65,10 @@ const studyAvailable=Boolean(refMatch && possuiEstudo(Number(refMatch[1]),Number
 <script>
 const back=document.getElementById('return-origin');
 const origin=new URLSearchParams(window.location.search).get('origem');
-const match=origin?.match(/^([123])-([1-9]\d?)$/);
+const match=origin?.match(/^([1234])-([1-9]\d?)$/);
 if(match&&back){
  const c=Number(match[1]),v=Number(match[2]);
- if((c===1&&v<=31)||(c===2&&v<=25)||(c===3&&v<=24)){
+ if((c===1&&v<=31)||(c===2&&v<=25)||(c===3&&v<=24)||(c===4&&v<=26)){
    back.href='/livros/genesis/'+c+'/'+v+'/';
    back.textContent='← Voltar a Gênesis '+c+':'+v;
  }

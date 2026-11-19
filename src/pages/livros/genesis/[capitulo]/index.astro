@@ -1,6 +1,6 @@
 ---
 import ChapterView from '../../../../components/ChapterView.astro';
-export function getStaticPaths(){return [2,3].map(numero=>({params:{capitulo:String(numero)},props:{numero}}));}
+export function getStaticPaths(){return [2,3,4].map(numero=>({params:{capitulo:String(numero)},props:{numero}}));}
 const {numero}=Astro.props;
 ---
 <ChapterView capitulo={numero} />
