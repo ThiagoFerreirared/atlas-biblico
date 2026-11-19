@@ -7,13 +7,13 @@ import { obterAprofundamento } from '../data/estudos-aprofundados.js';
 const results=[
   ...livros.map(l=>({tipo:'Livro bíblico',titulo:l.nome,descricao:l.categoria+' · '+l.capitulos+' capítulos',conteudo:l.nome+' '+l.categoria,href:l.nome==='Gênesis'?'/livros/genesis/':'/'})),
   ...aulas.map(a=>({tipo:'Aula '+String(a.numero).padStart(2,'0'),titulo:a.titulo,descricao:a.categoria+' · '+a.secoes.length+' tópicos · '+a.referencias.length+' referências',conteudo:[a.titulo,...a.secoes.map(s=>s.titulo+' '+s.texto),...a.referencias.map(r=>r.referencia+' '+r.texto+' '+r.conexao),...a.perguntas].join(' '),href:'/estudos/'+a.numero+'/'})),
-  ...[1,2,3].flatMap(c=>textoGenesis[c].map(v=>({tipo:'Texto bíblico · Gênesis '+c,titulo:'Gênesis '+c+':'+v.numero,descricao:'Bíblia Livre (BLIVRE)',conteudo:['Gênesis '+c+':'+v.numero,v.texto,...(obterAprofundamento(c,v.numero) ? [obterAprofundamento(c,v.numero).tema,...obterAprofundamento(c,v.numero).passos.flat(),...obterAprofundamento(c,v.numero).leituras.flat(),...obterAprofundamento(c,v.numero).termos?.flat()||[],...obterAprofundamento(c,v.numero).sintese] : [])].join(' '),href:'/livros/genesis/'+c+'/'+v.numero+'/'})))
+  ...[1,2,3,4].flatMap(c=>textoGenesis[c].map(v=>({tipo:'Texto bíblico · Gênesis '+c,titulo:'Gênesis '+c+':'+v.numero,descricao:'Bíblia Livre (BLIVRE)',conteudo:['Gênesis '+c+':'+v.numero,v.texto,...(obterAprofundamento(c,v.numero) ? [obterAprofundamento(c,v.numero).tema,...obterAprofundamento(c,v.numero).passos.flat(),...obterAprofundamento(c,v.numero).leituras.flat(),...obterAprofundamento(c,v.numero).termos?.flat()||[],...obterAprofundamento(c,v.numero).sintese] : [])].join(' '),href:'/livros/genesis/'+c+'/'+v.numero+'/'})))
 ];
 const json=JSON.stringify(results).replace(/</g,'\\u003c');
 ---
 <Base title="Busca no Atlas Bíblico">
   <div class="breadcrumbs"><a href="/">Biblioteca</a> / <span class="gold">Buscar</span></div>
-  <section class="intro"><span class="eyebrow">Pesquisa no acervo</span><h1>O que deseja estudar?</h1><p class="muted">Pesquise entre os 66 títulos da biblioteca, os conteúdos das 27 aulas, suas conexões e o texto integral de Gênesis 1–3.</p></section>
+  <section class="intro"><span class="eyebrow">Pesquisa no acervo</span><h1>O que deseja estudar?</h1><p class="muted">Pesquise entre os 66 títulos da biblioteca, os conteúdos das 28 aulas, suas conexões e o texto integral de Gênesis 1–4.</p></section>
   <div class="searchbox"><input id="global-search" type="search" class="field" autocomplete="off" placeholder="Ex.: bereshit, ezer kenegdo, João 1, Gênesis 2:7..." aria-label="Pesquisar no Atlas Bíblico"/><button type="button" id="clear" class="btn secondary">Limpar</button></div>
   <p id="count" class="muted" aria-live="polite">Digite um termo para pesquisar.</p>
   <div id="results" class="search-results" aria-live="polite"></div>

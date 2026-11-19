@@ -5,7 +5,7 @@ import { slugReferencia } from '../src/data/rotas-referencias.js';
 import { estudosAprofundados } from '../src/data/estudos-aprofundados.js';
 
 let pages=0,rich=0;
-for(const [cap,total] of [[1,31],[2,25],[3,24]]){
+for(const [cap,total] of [[1,31],[2,25],[3,24],[4,26]]){
   const chapterPath='dist/livros/genesis/'+cap+'/index.html';
   assert(existsSync(chapterPath),'Capítulo ausente: '+chapterPath);
   const chapterHtml=readFileSync(chapterPath,'utf8');
@@ -15,7 +15,7 @@ for(const [cap,total] of [[1,31],[2,25],[3,24]]){
     assert(existsSync(path),'Versículo sem página: '+cap+':'+verse);
     const html=readFileSync(path,'utf8');
     assert(html.includes('Gênesis '+cap+':'+verse),'Referência não apresentada: '+cap+':'+verse);
-    const hasStudy=cap!==3||verse<=24;
+    const hasStudy=cap<4||verse<=5;
     if(hasStudy){
       assert(estudosAprofundados[cap][verse], 'Estudo sem conteúdo aprofundado: '+cap+':'+verse);
       assert(html.includes('data-expanded="1"'),'Aprofundamento não conectado: '+cap+':'+verse);
@@ -35,9 +35,9 @@ for(const ref of Object.keys(textosDasReferencias)){
   assert(existsSync(path),'Passagem cruzada ausente: '+ref);
   crossrefs++;
 }
-for(const essential of ['dist/estudos/1/index.html','dist/estudos/24/index.html','dist/estudos/25/index.html','dist/estudos/26/index.html','dist/estudos/27/index.html','dist/estudos/debates/index.html','dist/progresso/index.html','dist/busca/index.html'])
+for(const essential of ['dist/estudos/1/index.html','dist/estudos/24/index.html','dist/estudos/25/index.html','dist/estudos/26/index.html','dist/estudos/27/index.html','dist/estudos/28/index.html','dist/estudos/debates/index.html','dist/progresso/index.html','dist/busca/index.html'])
   assert(existsSync(essential),'Página essencial ausente: '+essential);
-assert.equal(pages,80);
-assert.equal(rich,80);
+assert.equal(pages,106);
+assert.equal(rich,85);
 assert.equal(crossrefs,Object.keys(textosDasReferencias).length);
-console.log('Build verificado: 3 roteiros, 80 versículos, 80 estudos com 6 módulos e referências cruzadas verificadas.');
+console.log('Build verificado: 4 roteiros, 106 versículos, 85 estudos com 6 módulos e referências cruzadas verificadas.');

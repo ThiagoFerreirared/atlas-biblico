@@ -33,11 +33,11 @@ for(const faixa of coberturaGenesis.filter(f=>f.aula>=8)){
   }
   totalSecoes+=aula.secoes.length;totalRefs+=aula.referencias.length;totalPerguntas+=aula.perguntas.length;
 }
-for(const [c,max] of [[1,31],[2,25],[3,24]]){
+for(const [c,max] of [[1,31],[2,25],[3,24],[4,26]]){
   assert.equal(textoGenesis[c].length,max,'Texto bíblico incompleto, capítulo '+c);
   for(let v=1;v<=max;v++){
     const analise=gerarConteudoDoVersiculo(c,v);
-    const esperado=c<3||v<=24;
+    const esperado=c<4||v<=5;
     assert.equal(Boolean(analise),esperado,`Cobertura incorreta Gênesis ${c}:${v}`);
     assert.equal(possuiEstudo(c,v),esperado);
     if(!analise)continue;
@@ -50,5 +50,5 @@ for(const [c,max] of [[1,31],[2,25],[3,24]]){
     verificados++;
   }
 }
-assert.equal(verificados,80);
-console.log('Curadoria validada: 80 versículos, '+totalSecoes+' seções, '+totalRefs+' referências e '+totalPerguntas+' perguntas em aulas 8–24.');
+assert.equal(verificados,85);
+console.log('Curadoria validada: 85 versículos, '+totalSecoes+' seções, '+totalRefs+' referências e '+totalPerguntas+' perguntas em aulas 8–24.');

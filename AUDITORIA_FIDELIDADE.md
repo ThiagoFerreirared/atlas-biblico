@@ -67,3 +67,7 @@ A Aula 26 foi acrescentada ao acervo suplementar, sem modificar os 24 registros 
 ## 7. Encerramento de Gênesis 3 com Aula 27 (18/11/2026)
 
 Aula 27 (Gênesis 3:20–24) adicionada à extensão editorial das Aulas 25–26. O instantâneo auditado das Aulas 1–24 não foi modificado; a auditoria das 42 páginas continua limitada ao acervo histórico. A curadoria geral cobre agora 27 aulas, 80 versículos de Gênesis 1–3, 480 módulos e 50 questões abertas. Gênesis 3 está concluído quanto à cobertura inicial, não quanto à resolução de todos os debates. As traduções de estudo adicionais são rotuladas e a Vercel permanece sob controle do mantenedor.
+
+## 8. Ampliação para Gênesis 4 e Aula 28 (19/11/2026)
+
+A Aula 28 (Gênesis 4:1–5) integra o acervo suplementar e mantém intactos os 24 registros e 31 debates da auditoria original de 42 páginas. Gênesis 4 foi incorporado integralmente para leitura com atribuição à Bíblia Livre (CC BY 3.0 Brasil), e apenas seus cinco primeiros versículos contam com os seis módulos aprofundados. O total é de 85 versículos aprofundados e 106 disponíveis para leitura, com 57 debates. Essa expansão não reaudita o PDF histórico nem aciona a Vercel.
