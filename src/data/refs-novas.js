@@ -1,4 +1,4 @@
-// Traduções próprias de estudo; não atribuir à BLIVRE. O acervo anterior prevalece para referências repetidas.
+// Traduções próprias de estudo; o acervo BLIVRE antigo prevalece nas chaves repetidas.
 export default {
   "Gênesis 3:13": {
     "livro": "Gênesis",
@@ -353,6 +353,91 @@ export default {
       {
         "numero": 14,
         "texto": "Felizes os que lavam suas vestes, para que tenham direito à árvore da vida e possam entrar na cidade pelos portões."
+      }
+    ]
+  },
+  "Gênesis 3:20": {
+    "livro": "Gênesis",
+    "capitulo": 3,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 20,
+        "texto": "O homem chamou sua mulher de Eva, porque ela seria a mãe de todos os viventes."
+      }
+    ]
+  },
+  "Levítico 2:1": {
+    "livro": "Levítico",
+    "capitulo": 2,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 1,
+        "texto": "Quando alguém apresentar ao Senhor uma oferta de cereal, sua oferta será de farinha fina; derramará azeite sobre ela e acrescentará incenso."
+      }
+    ]
+  },
+  "Levítico 2:14": {
+    "livro": "Levítico",
+    "capitulo": 2,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 14,
+        "texto": "Se apresentares ao Senhor uma oferta de primeiros frutos, oferecerás espigas novas tostadas ao fogo e grãos triturados de cereal fresco."
+      }
+    ]
+  },
+  "Hebreus 11:4": {
+    "livro": "Hebreus",
+    "capitulo": 11,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 4,
+        "texto": "Pela fé, Abel ofereceu a Deus um sacrifício melhor que Caim. Por meio dela recebeu testemunho de que era justo, pois Deus deu testemunho a respeito de suas ofertas. E, por meio da fé, embora morto, ainda fala."
+      }
+    ]
+  },
+  "1 João 3:11-12": {
+    "livro": "1 João",
+    "capitulo": 3,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 11,
+        "texto": "Esta é a mensagem que vocês ouviram desde o princípio: devemos amar uns aos outros."
+      },
+      {
+        "numero": 12,
+        "texto": "Não devemos agir como Caim, que pertencia ao Maligno e matou seu irmão. E por que o matou? Porque suas obras eram más, enquanto as de seu irmão eram justas."
+      }
+    ]
+  },
+  "Gênesis 4:6-7": {
+    "livro": "Gênesis",
+    "capitulo": 4,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 6,
+        "texto": "Então o Senhor perguntou a Caim: Por que estás irado? E por que teu rosto está abatido?"
+      },
+      {
+        "numero": 7,
+        "texto": "Se fizeres o bem, não haverá aceitação? Mas se não fizeres o bem, o pecado está à porta, à espreita. Seu desejo se volta para ti, mas tu deves dominá-lo."
+      }
+    ]
+  },
+  "Mateus 23:35": {
+    "livro": "Mateus",
+    "capitulo": 23,
+    "fonte": "Tradução de estudo do Atlas",
+    "versiculos": [
+      {
+        "numero": 35,
+        "texto": "Assim, recairá sobre vocês a responsabilidade pelo sangue justo derramado na terra, desde o sangue de Abel, o justo, até o sangue de Zacarias, filho de Baraquias, assassinado entre o santuário e o altar."
       }
     ]
   }

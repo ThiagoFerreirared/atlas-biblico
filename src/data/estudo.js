@@ -6,9 +6,9 @@ import { estudoGenesisInicial } from './curadoria-genesis-1.js';
 import { mapaEditorial } from './mapa-editorial.js';
 
 export { modulos };
-export const TOTAL_ESTUDADOS = 80; // Gn 1:1–31 (31), 2:1–25 (25), 3:1–13 (13).
-export const TOTAL_LIDOS_DISPONIVEIS = 80; // Gênesis 1–3 em Bíblia Livre.
-export const totalVersosPorCapitulo = { 1:31, 2:25, 3:24 };
+export const TOTAL_ESTUDADOS = 85; // 31 + 25 + 24 + 5 estudados.
+export const TOTAL_LIDOS_DISPONIVEIS = 106; // Gênesis 1–4 completos para leitura (BLIVRE).
+export const totalVersosPorCapitulo = { 1:31, 2:25, 3:24, 4:26 };
 
 export function trechoDoVersiculo(capitulo, versiculo) {
   return coberturaGenesis
@@ -25,7 +25,7 @@ export function urlVerso(capitulo,versiculo){return '/livros/genesis/'+capitulo+
 export function urlCapitulo(capitulo){return '/livros/genesis/'+capitulo+'/';}
 export function ligaReferencia(referencia){
   const r=String(referencia).match(/^G[eê]nesis\s+(\d+):(\d+)/i);
-  return r&&Number(r[1])<=3&&Number(r[1])>0&&textoVerso(Number(r[1]),Number(r[2]))
+  return r&&Number(r[1])<=4&&Number(r[1])>0&&textoVerso(Number(r[1]),Number(r[2]))
     ?urlVerso(Number(r[1]),Number(r[2])):null;
 }
 

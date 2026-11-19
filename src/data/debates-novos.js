@@ -291,5 +291,126 @@ export const debatesNovos=[
     ],
     "estado": "Em aberto",
     "nota": "Investigação iniciada na Aula 27; não confundir leitura histórica e desenvolvimento teológico."
+  },
+  {
+    "id": "DB-053",
+    "titulo": "Qayin e qaniti: significado do nome Caim",
+    "passagens": [
+      [
+        4,
+        1
+      ]
+    ],
+    "origem": [
+      28
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 28; evitar atribuir ao texto motivos não explicitados."
+  },
+  {
+    "id": "DB-054",
+    "titulo": "Abel/hevel e a tradição de Caim e Abel gêmeos",
+    "passagens": [
+      [
+        4,
+        2
+      ]
+    ],
+    "origem": [
+      28
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 28; evitar atribuir ao texto motivos não explicitados."
+  },
+  {
+    "id": "DB-055",
+    "titulo": "Agricultura e pastoreio: contraste social ou moral?",
+    "passagens": [
+      [
+        4,
+        2
+      ]
+    ],
+    "origem": [
+      28
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 28; evitar atribuir ao texto motivos não explicitados."
+  },
+  {
+    "id": "DB-056",
+    "titulo": "Minchah: tipo de oferta de Caim e Abel",
+    "passagens": [
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        4
+      ]
+    ],
+    "origem": [
+      28
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 28; evitar atribuir ao texto motivos não explicitados."
+  },
+  {
+    "id": "DB-057",
+    "titulo": "Primeiros frutos, gordura e qualidade da oferta",
+    "passagens": [
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        4
+      ]
+    ],
+    "origem": [
+      28
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 28; evitar atribuir ao texto motivos não explicitados."
+  },
+  {
+    "id": "DB-058",
+    "titulo": "Por que Deus aceitou Abel e rejeitou Caim?",
+    "passagens": [
+      [
+        4,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "origem": [
+      28
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 28; evitar atribuir ao texto motivos não explicitados."
+  },
+  {
+    "id": "DB-059",
+    "titulo": "Como a aceitação foi demonstrada? Existe fogo no texto?",
+    "passagens": [
+      [
+        4,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "origem": [
+      28
+    ],
+    "estado": "Em aberto",
+    "nota": "Investigação iniciada na Aula 28; evitar atribuir ao texto motivos não explicitados."
   }
 ];

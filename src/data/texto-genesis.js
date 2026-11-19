@@ -2,7 +2,8 @@
 // Licença CC BY 3.0 Brasil: https://creativecommons.org/licenses/by/3.0/br/
 // Fonte de distribuição: https://github.com/Projeto-Euaggelion/biblia.publica
 // Original: https://github.com/blivre/BibliaLivre
-// Texto integral dos capítulos 1, 2 e 3 de Gênesis, sem modificações editoriais.
+// Capítulos 1–3 preservados da BLIVRE; capítulo 4 incorporado de arquivo separado.
+import genesis4 from './genesis4-texto.js';
 export const textoGenesis = {
   "1": [
     {
@@ -330,5 +331,6 @@ export const textoGenesis = {
       "texto": "Lançou, pois, fora ao homem, e pôs ao oriente do jardim de Éden querubins, e uma espada acesa que se revolvia a todos os lados, para guardar o caminho da árvore da vida."
     }
   ]
+  ,"4":genesis4
 };
 export const creditoTraducao = {nome:'Bíblia Livre (BLIVRE)',autores:'Diego Santos, Mario Sérgio e Marco Teles',ano:'2018',licenca:'CC BY 3.0 Brasil',licencaUrl:'https://creativecommons.org/licenses/by/3.0/br/',fonte:'https://github.com/blivre/BibliaLivre'};

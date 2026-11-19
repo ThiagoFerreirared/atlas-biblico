@@ -1,4 +1,4 @@
-// Aulas 25 em diante, fora do instantâneo auditado de 24 aulas.
+// Aulas novas, sem modificar src/data/aulas.js (instantâneo auditado).
 export const aulasNovas=[
   {
     "numero": 25,
@@ -320,5 +320,109 @@ export const aulasNovas=[
     ],
     "perguntas": [],
     "registro": "Aula 27 — Gênesis 3:20–24. Gênesis 3 concluído; debates DB-046–DB-052 permanecem abertos. Não há questionário obrigatório. Próxima aula: Gênesis 4:1–5."
+  },
+  {
+    "numero": 28,
+    "categoria": "Gênesis",
+    "titulo": "Caim e Abel, os primeiros irmãos e suas ofertas — Gênesis 4:1–5",
+    "secoes": [
+      {
+        "titulo": "Primeira geração humana fora do jardim",
+        "texto": "Adão conhece sua mulher em sentido conjugal e Eva dá à luz Caim. A expressão não afirma que aquela foi a primeira relação sexual dos dois. A nomeação dá continuidade ao título de Eva como mãe de todos os viventes em Gênesis 3:20."
+      },
+      {
+        "titulo": "Qayin e qaniti: o nome Caim",
+        "texto": "O nome hebraico Qayin (קַיִן) é aproximado pelo narrador à fala qaniti (קָנִיתִי), 'adquiri/obtive'. A expressão 'com o Senhor' admite traduções discutidas, como 'com a ajuda do Senhor'. Não afirmar que Eva identificou Caim como Messias."
+      },
+      {
+        "titulo": "Hevel: o nome Abel e sua brevidade",
+        "texto": "Hevel (הֶבֶל) significa sopro ou vapor em outros contextos bíblicos, sugerindo transitoriedade. O texto não declara que seus pais lhe deram o nome para antecipar sua morte. Não há comprovação de que Caim e Abel fossem gêmeos."
+      },
+      {
+        "titulo": "Agricultura e pastoreio no mundo antigo",
+        "texto": "Abel cuida do rebanho e Caim trabalha o solo. A narrativa não julga a agricultura como profissão imoral; Gênesis 2:15 já atribuíra cultivo ao ser humano. O mundo antigo conheceu cooperação e conflito entre pastores e agricultores, mas a história não é datação arqueológica de um episódio preciso."
+      },
+      {
+        "titulo": "Minchah: a oferta como presente e tributo",
+        "texto": "Minchah (מִנְחָה) abrange presente, tributo e oferta. A palavra geral vale para as duas ofertas, apesar dos materiais distintos. Gênesis não fornece data de festa, local de altar ou ritual específico."
+      },
+      {
+        "titulo": "A oferta vegetal é automaticamente inferior?",
+        "texto": "Levítico 2:1 e 2:14 reconhecem ofertas de cereal e primeiros frutos em legislação posterior. Isso impede afirmar que toda oferta vegetal seja intrinsecamente rejeitada, mas não permite projetar integralmente a legislação mosaica sobre Caim e Abel."
+      },
+      {
+        "titulo": "Primogênitos e gordura da oferta de Abel",
+        "texto": "O texto enfatiza primogênitos do rebanho e porções gordas na oferta de Abel. Caim oferece fruto do solo sem qualificação comparável. Qualidade e prioridade são hipóteses interpretativas; o narrador não diz que Caim levou frutos podres ou que Abel tinha uma ordem revelada para sangue."
+      },
+      {
+        "titulo": "A aceitação e o verbo sha'ah",
+        "texto": "Sha'ah (שָׁעָה) indica olhar com consideração ou favor. O narrador menciona primeiro Abel e depois a oferta; faz o mesmo com Caim. O motivo concreto não é declarado por uma oração causal, e não se descreve sinal de fogo."
+      },
+      {
+        "titulo": "Por que a oferta foi recusada? Quatro leituras",
+        "texto": "As tradições atribuem a diferença à fé e disposição do ofertante, ao cuidado com a qualidade, à presença de sangue ou à estratégia narrativa que prepara a reação de Caim. Hebreus 11:4 destaca a fé e 1 João 3:11–12 a justiça moral; nenhuma dessas passagens reconstitui o rito original."
+      },
+      {
+        "titulo": "A ira e o rosto abatido",
+        "texto": "Gênesis 4:5 apresenta ira intensa e semblante caído. Gênesis 4:6–7 desenvolve o diálogo sobre o pecado à porta; a reação emocional de Caim prepara a sequência, sem ensinar que toda tristeza ou frustração seja pecado."
+      },
+      {
+        "titulo": "Arqueologia, narrativas das origens e limites",
+        "texto": "Não há achado arqueológico conhecido que autentique as ofertas individuais de Caim e Abel. A agricultura e o pastoreio eram atividades reais no antigo Oriente Próximo, mas isso não prova a historicidade dos detalhes da narrativa."
+      },
+      {
+        "titulo": "História de interpretação e rigor",
+        "texto": "John Byron analisou as razões atribuídas à rejeição de Caim na história da interpretação. Alguns autores argumentam por sangue, outros por fé e qualidade; o texto de Gênesis não descreve fogo divino consumindo somente uma oferta. Rodrigo Silva não recebe atribuição sem vídeo ou transcrição verificável."
+      }
+    ],
+    "referencias": [
+      {
+        "referencia": "Gênesis 4:1-5",
+        "texto": "Eva dá à luz Caim e Abel; os irmãos se dedicam a atividades diferentes e apresentam ofertas ao Senhor, que olha favoravelmente para Abel e sua oferta, mas não para Caim e a dele.",
+        "conexao": "Passagem principal da Aula 28; a razão exata da rejeição não é explicitada."
+      },
+      {
+        "referencia": "Gênesis 3:20",
+        "texto": "Eva é chamada mãe de todos os viventes.",
+        "conexao": "Continuidade narrativa entre nome de Eva e nascimento de Caim."
+      },
+      {
+        "referencia": "Gênesis 2:15",
+        "texto": "O ser humano é colocado no jardim para cultivar e guardar.",
+        "conexao": "O trabalho agrícola já existia antes da queda."
+      },
+      {
+        "referencia": "Levítico 2:1",
+        "texto": "O Senhor admite oferta de cereal com farinha, azeite e incenso.",
+        "conexao": "Legislação posterior permite oferta vegetal; não pressupor mesma regra para os irmãos."
+      },
+      {
+        "referencia": "Levítico 2:14",
+        "texto": "A oferta de primeiros frutos inclui cereal fresco preparado.",
+        "conexao": "Primeiros frutos também podem ser vegetais."
+      },
+      {
+        "referencia": "Hebreus 11:4",
+        "texto": "Pela fé Abel oferece melhor sacrifício e recebe testemunho de justiça.",
+        "conexao": "Interpretação cristã explícita sobre a fé de Abel."
+      },
+      {
+        "referencia": "1 João 3:11-12",
+        "texto": "O amor fraternal contrasta com Caim, cujas obras eram más.",
+        "conexao": "Relação entre conduta moral e história dos irmãos; não condenação da agricultura."
+      },
+      {
+        "referencia": "Gênesis 4:6-7",
+        "texto": "Deus questiona a ira de Caim e adverte sobre o pecado à porta.",
+        "conexao": "Continuação narrativa explica preocupação com a resposta de Caim."
+      },
+      {
+        "referencia": "Mateus 23:35",
+        "texto": "Jesus menciona Abel como justo e vítima de sangue derramado.",
+        "conexao": "Recepção de Abel como justo; não explicação ritual da oferta."
+      }
+    ],
+    "perguntas": [],
+    "registro": "Aula 28, Gênesis 4:1–5. O motivo exato da rejeição da oferta de Caim não é afirmado expressamente. Discussões em aberto DB-053–DB-059; sem questionários obrigatórios. Próxima aula: Gênesis 4:6–8."
   }
 ];
